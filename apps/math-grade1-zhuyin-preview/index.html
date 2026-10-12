@@ -46,21 +46,32 @@
 .review-item strong{font-size:15px}.review-item .review-answer{margin-top:5px;color:#61718b}.review-item .review-explain{margin-top:5px;color:#727b97}
 @media(max-width:650px){.exam-entry{gap:11px;padding:17px 15px;align-items:flex-start;flex-wrap:wrap}.exam-symbol{width:56px;height:56px;flex-basis:56px;font-size:30px;border-radius:17px}.exam-words{min-width:calc(100% - 72px)}.exam-copy{font-size:13px}.exam-go{width:100%;min-height:46px;padding:9px 16px}.review-panel summary{font-size:14px}.review-list{padding:0 11px 13px}}
 
-/* 注音測試版：使用原生 ruby；顯示開關僅改變呈現，不更動任何答案或分數。 */
+/* 注音測試版：國字右側直排注音，輕聲點置於注音上方；不更動任何答案或分數。 */
 .bopo-banner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:14px 18px;background:#fff9e9;border:1px solid #f2dfb4;border-radius:17px;margin-bottom:12px}
 .bopo-banner strong{display:block;color:#855f26;font-size:15px;font-weight:950}.bopo-banner span{display:block;font-size:12px;color:#8a7965;margin-top:4px;line-height:1.6}
 .bopo-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.bopo-switch{border:0;min-height:45px;border-radius:13px;padding:10px 14px;background:#6955c1;color:white;font-weight:900;font-size:13px;white-space:nowrap}
 .official-link{display:grid;place-items:center;min-height:45px;border-radius:13px;padding:10px 12px;color:#6c5ca2;background:#fff;border:1px solid #e9e0cf;font-size:13px;font-weight:900}
-ruby.bopo{ruby-position:over}ruby.bopo rb{white-space:nowrap}ruby.bopo rt{font-family:"Noto Sans CJK TC","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;color:#8066ba;font-weight:700;font-size:.55em;line-height:1.1;text-align:center}
-.no-bopo ruby.bopo rt{display:none}
-.questionarea h2{line-height:2.35;padding-top:2px}
-.answer{min-height:102px;line-height:2.1;padding-top:18px;padding-bottom:13px}
-.answer .read-option{line-height:2.15}
-.feedback{line-height:2.3;min-height:83px;padding-top:17px;padding-bottom:14px}
-.review-item{line-height:2.55;padding-top:20px;overflow-wrap:anywhere;word-break:break-all}.review-item strong,.review-item .review-answer,.review-item .review-explain{overflow-wrap:anywhere;word-break:break-all}.review-panel{overflow:visible}.review-list{min-width:0}
+
+/* 每字左右並排：中文在左，右側拼音符號直排。 */
+span.bopo{display:inline-flex;flex-direction:row;align-items:center;justify-content:center;vertical-align:middle;white-space:nowrap;letter-spacing:0;line-height:1.2;margin-inline:0 .015em}
+span.bopo .bopo-han{display:inline-block;white-space:nowrap;line-height:1.2;flex:0 0 auto}
+span.bopo .bopo-rt{position:relative;display:inline-flex;flex:0 0 auto;align-items:center;justify-content:flex-start;min-width:1.05em;margin-left:.10em;font-family:"Noto Sans CJK TC","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;color:#745cad;font-weight:800;font-size:.64em;line-height:1;white-space:nowrap;text-align:center;letter-spacing:0}
+span.bopo .bopo-rt .bopo-sounds{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;letter-spacing:0;white-space:nowrap}
+span.bopo .bopo-rt .bopo-sound{display:block;line-height:1;white-space:nowrap}
+span.bopo .bopo-rt .bopo-tone{display:inline-block;margin-left:-.04em;align-self:flex-end;padding-bottom:.12em;font-size:.94em;line-height:1}
+/* 輕聲點以小圓點標於右側注音列的上方。 */
+span.bopo .bopo-rt.bopo-light{padding-top:.55em}
+span.bopo .bopo-rt .bopo-light-dot{position:absolute;top:-.06em;left:0;right:0;line-height:.75;font-size:1.15em;text-align:center}
+.no-bopo span.bopo .bopo-rt{display:none}
+/* 右側標音比上標更緊湊，維持足夠的換行與觸控區域。 */
+.questionarea h2{line-height:1.85;padding-top:2px}
+.answer{min-height:102px;line-height:1.65;padding-top:14px;padding-bottom:13px}
+.answer .read-option{line-height:1.65;overflow-wrap:anywhere}
+.feedback{line-height:1.85;min-height:83px;padding-top:13px;padding-bottom:14px}
+.review-item{line-height:2;overflow-wrap:anywhere;word-break:normal}.review-item strong,.review-item .review-answer,.review-item .review-explain{overflow-wrap:anywhere;word-break:normal}.review-panel{overflow:visible}.review-list{min-width:0}
 .no-bopo .questionarea h2{line-height:1.52}.no-bopo .answer{min-height:85px;line-height:1.5;padding-top:11px;padding-bottom:11px}.no-bopo .feedback{min-height:70px;line-height:1.7;padding-top:13px;padding-bottom:13px}.no-bopo .review-item{line-height:1.7;padding-top:13px}
-@media(max-width:470px){.bopo-banner{padding:12px 13px}.bopo-tools{width:100%}.bopo-switch{flex:1}.official-link{flex:1}.questionarea h2{font-size:clamp(21px,6vw,25px);line-height:2.4}.answer{font-size:clamp(18px,5vw,22px);min-height:96px;padding:16px 7px 12px;gap:5px}.choices{gap:10px}.answer .letter{width:23px;height:23px;font-size:11px}}
-@media(max-width:345px){.questionarea h2{font-size:21px}.answer{font-size:17px;gap:4px}.answer .letter{width:19px;height:19px;font-size:10px}}
+@media(max-width:470px){.bopo-banner{padding:12px 13px}.bopo-tools{width:100%}.bopo-switch{flex:1}.official-link{flex:1}.questionarea h2{font-size:clamp(20px,5.8vw,25px);line-height:1.9}.answer{font-size:clamp(17px,4.9vw,22px);min-height:96px;padding:14px 7px 12px;gap:5px}.choices{gap:10px}.answer .letter{width:23px;height:23px;font-size:11px}}
+@media(max-width:345px){.questionarea h2{font-size:20px}.answer{font-size:17px;gap:4px}.answer .letter{width:19px;height:19px;font-size:10px}}
 </style>
 </head>
 <body>
@@ -85,12 +96,14 @@ const CATEGORIES = [{"id":"all","name":"50 題大挑戰","emoji":"🏆","brief":
 const escapeHTML=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 // 本測試版內建繁體中文注音對照表，不必連線字典服務。
-const ZHUYIN_MAP = {"一":"ㄧ","三":"ㄙㄢ","上":"ㄕㄤˋ","下":"ㄒㄧㄚˋ","不":"ㄅㄨˋ","且":"ㄑㄧㄝˇ","中":"ㄓㄨㄥ","主":"ㄓㄨˇ","也":"ㄧㄝˇ","亂":"ㄌㄨㄢˋ","了":"˙ㄌㄜ","二":"ㄦˋ","互":"ㄏㄨˋ","五":"ㄨˇ","人":"ㄖㄣˊ","什":"ㄕㄣˊ","今":"ㄐㄧㄣ","仍":"ㄖㄥˊ","他":"ㄊㄚ","付":"ㄈㄨˋ","以":"ㄧˇ","伴":"ㄅㄢˋ","伸":"ㄕㄣ","位":"ㄨㄟˋ","作":"ㄗㄨㄛˋ","你":"ㄋㄧˇ","來":"ㄌㄞˊ","供":"ㄍㄨㄥ","依":"ㄧ","係":"ㄒㄧˋ","保":"ㄅㄠˇ","個":"ㄍㄜˋ","備":"ㄅㄟˋ","優":"ㄧㄡ","元":"ㄩㄢˊ","先":"ㄒㄧㄢ","兒":"ㄦˊ","入":"ㄖㄨˋ","內":"ㄋㄟˋ","全":"ㄑㄩㄢˊ","兩":"ㄌㄧㄤˇ","公":"ㄍㄨㄥ","六":"ㄌㄧㄡˋ","共":"ㄍㄨㄥˋ","其":"ㄑㄧˊ","再":"ㄗㄞˋ","冒":"ㄇㄠˋ","出":"ㄔㄨ","分":"ㄈㄣ","列":"ㄌㄧㄝˋ","判":"ㄆㄢˋ","別":"ㄅㄧㄝˊ","到":"ㄉㄠˋ","刻":"ㄎㄜˋ","則":"ㄗㄜˊ","前":"ㄑㄧㄢˊ","剛":"ㄍㄤ","剩":"ㄕㄥˋ","劃":"ㄏㄨㄚˋ","力":"ㄌㄧˋ","加":"ㄐㄧㄚ","努":"ㄋㄨˇ","勇":"ㄩㄥˇ","動":"ㄉㄨㄥˋ","區":"ㄑㄩ","十":"ㄕˊ","半":"ㄅㄢˋ","卡":"ㄎㄚˇ","原":"ㄩㄢˊ","去":"ㄑㄩˋ","口":"ㄎㄡˇ","只":"ㄓˇ","可":"ㄎㄜˇ","右":"ㄧㄡˋ","吃":"ㄔ","各":"ㄍㄜˋ","合":"ㄏㄜˊ","向":"ㄒㄧㄤˋ","和":"ㄏㄜˊ","咪":"ㄇㄧ","品":"ㄆㄧㄣˇ","哇":"˙ㄨㄚ","哪":"ㄋㄚˇ","喔":"ㄛ","喜":"ㄒㄧˇ","單":"ㄉㄢ","嗎":"˙ㄇㄚ","囉":"ㄌㄨㄛ","四":"ㄙˋ","回":"ㄏㄨㄟˊ","因":"ㄧㄣ","國":"ㄍㄨㄛˊ","圓":"ㄩㄢˊ","圖":"ㄊㄨˊ","在":"ㄗㄞˋ","地":"˙ㄉㄜ","域":"ㄩˋ","場":"ㄔㄤˇ","塘":"ㄊㄤˊ","填":"ㄊㄧㄢˊ","增":"ㄗㄥ","士":"ㄕˋ","多":"ㄉㄨㄛ","大":"ㄉㄚˋ","天":"ㄊㄧㄢ","太":"ㄊㄞˋ","奇":"ㄑㄧˊ","好":"ㄏㄠˇ","始":"ㄕˇ","媽":"ㄇㄚ","子":"ㄗˇ","字":"ㄗˋ","學":"ㄒㄩㄝˊ","安":"ㄢ","完":"ㄨㄢˊ","定":"ㄉㄧㄥˋ","容":"ㄖㄨㄥˊ","察":"ㄔㄚˊ","對":"ㄉㄨㄟˋ","小":"ㄒㄧㄠˇ","少":"ㄕㄠˇ","就":"ㄐㄧㄡˋ","展":"ㄓㄢˇ","左":"ㄗㄨㄛˇ","差":"ㄔㄚˋ","已":"ㄧˇ","布":"ㄅㄨˋ","帶":"ㄉㄞˋ","幣":"ㄅㄧˋ","平":"ㄆㄧㄥˊ","年":"ㄋㄧㄢˊ","幾":"ㄐㄧˇ","序":"ㄒㄩˋ","度":"ㄉㄨˋ","延":"ㄧㄢˊ","式":"ㄕˋ","形":"ㄒㄧㄥˊ","彩":"ㄘㄞˇ","往":"ㄨㄤˇ","很":"ㄏㄣˇ","後":"ㄏㄡˋ","得":"ㄉㄜˊ","從":"ㄘㄨㄥˊ","心":"ㄒㄧㄣ","快":"ㄎㄨㄞˋ","怎":"ㄗㄣˇ","思":"ㄙ","想":"ㄒㄧㄤˇ","意":"ㄧˋ","慢":"ㄇㄢˋ","應":"ㄧㄥ","成":"ㄔㄥˊ","我":"ㄨㄛˇ","戰":"ㄓㄢˋ","所":"ㄙㄨㄛˇ","手":"ㄕㄡˇ","才":"ㄘㄞˊ","打":"ㄉㄚˇ","找":"ㄓㄠˇ","把":"ㄅㄚˇ","抽":"ㄔㄡ","拿":"ㄋㄚˊ","持":"ㄔˊ","指":"ㄓˇ","按":"ㄢˋ","挑":"ㄊㄧㄠ","掉":"ㄉㄧㄠˋ","排":"ㄆㄞˊ","接":"ㄐㄧㄝ","提":"ㄊㄧˊ","換":"ㄏㄨㄢˋ","揭":"ㄐㄧㄝ","擇":"ㄗㄜˊ","據":"ㄐㄩˋ","擦":"ㄘㄚ","放":"ㄈㄤˋ","教":"ㄐㄧㄠˋ","整":"ㄓㄥˇ","數":"ㄕㄨˋ","新":"ㄒㄧㄣ","方":"ㄈㄤ","於":"ㄩˊ","日":"ㄖˋ","明":"ㄇㄧㄥˊ","易":"ㄧˋ","星":"ㄒㄧㄥ","昨":"ㄗㄨㄛˊ","是":"ㄕˋ","時":"ㄕˊ","曉":"ㄒㄧㄠˇ","書":"ㄕㄨ","最":"ㄗㄨㄟˋ","會":"ㄏㄨㄟˋ","有":"ㄧㄡˇ","朗":"ㄌㄤˇ","期":"ㄑㄧ","木":"ㄇㄨˋ","本":"ㄅㄣˇ","朵":"ㄉㄨㄛˇ","析":"ㄒㄧ","果":"ㄍㄨㄛˇ","查":"ㄔㄚˊ","校":"ㄒㄧㄠˋ","根":"ㄍㄣ","格":"ㄍㄜˊ","案":"ㄢˋ","條":"ㄊㄧㄠˊ","棒":"ㄅㄤˋ","樂":"ㄌㄜˋ","模":"ㄇㄛˊ","樣":"ㄧㄤˋ","機":"ㄐㄧ","橡":"ㄒㄧㄤˋ","次":"ㄘˋ","歡":"ㄏㄨㄢ","正":"ㄓㄥˋ","此":"ㄘˇ","每":"ㄇㄟˇ","比":"ㄅㄧˇ","水":"ㄕㄨㄟˇ","池":"ㄔˊ","沒":"ㄇㄟˊ","油":"ㄧㄡˊ","法":"ㄈㄚˇ","活":"ㄏㄨㄛˊ","清":"ㄑㄧㄥ","減":"ㄐㄧㄢˇ","測":"ㄘㄜˋ","游":"ㄧㄡˊ","湊":"ㄘㄡˋ","源":"ㄩㄢˊ","準":"ㄓㄨㄣˇ","滑":"ㄏㄨㄚˊ","滾":"ㄍㄨㄣˇ","滿":"ㄇㄢˇ","灣":"ㄨㄢ","為":"ㄨㄟˋ","照":"ㄓㄠˋ","物":"ㄨˋ","狀":"ㄓㄨㄤˋ","獨":"ㄉㄨˊ","獲":"ㄏㄨㄛˋ","玩":"ㄨㄢˊ","現":"ㄒㄧㄢˋ","球":"ㄑㄧㄡˊ","生":"ㄕㄥ","用":"ㄩㄥˋ","由":"ㄧㄡˊ","留":"ㄌㄧㄡˊ","發":"ㄈㄚ","百":"ㄅㄞˇ","的":"˙ㄉㄜ","皮":"ㄆㄧˊ","盒":"ㄏㄜˊ","目":"ㄇㄨˋ","直":"ㄓˊ","看":"ㄎㄢˋ","真":"ㄓㄣ","短":"ㄉㄨㄢˇ","硬":"ㄧㄥˋ","確":"ㄑㄩㄝˋ","示":"ㄕˋ","積":"ㄐㄧ","空":"ㄎㄨㄥ","立":"ㄌㄧˋ","童":"ㄊㄨㄥˊ","第":"ㄉㄧˋ","等":"ㄉㄥˇ","答":"ㄉㄚˊ","算":"ㄙㄨㄢˋ","糖":"ㄊㄤˊ","紅":"ㄏㄨㄥˊ","紙":"ㄓˇ","級":"ㄐㄧˊ","組":"ㄗㄨˇ","給":"ㄍㄟˇ","經":"ㄐㄧㄥ","綠":"ㄌㄩˋ","綱":"ㄍㄤ","練":"ㄌㄧㄢˋ","總":"ㄗㄨㄥˇ","績":"ㄐㄧ","繩":"ㄕㄥˊ","繼":"ㄐㄧˋ","續":"ㄒㄩˋ","美":"ㄇㄟˇ","習":"ㄒㄧˊ","考":"ㄎㄠˇ","育":"ㄩˋ","能":"ㄋㄥˊ","腦":"ㄋㄠˇ","自":"ㄗˋ","臺":"ㄊㄞˊ","與":"ㄩˇ","色":"ㄙㄜˋ","花":"ㄏㄨㄚ","萄":"ㄊㄠˊ","著":"ㄓㄨˋ","葡":"ㄆㄨˊ","蕉":"ㄐㄧㄠ","藍":"ㄌㄢˊ","蘋":"ㄆㄧㄥˊ","表":"ㄅㄧㄠˇ","裡":"ㄌㄧˇ","複":"ㄈㄨˋ","規":"ㄍㄨㄟ","觀":"ㄍㄨㄢ","角":"ㄐㄧㄠˇ","解":"ㄐㄧㄝˇ","計":"ㄐㄧˋ","記":"ㄐㄧˋ","設":"ㄕㄜˋ","評":"ㄆㄧㄥˊ","試":"ㄕˋ","該":"ㄍㄞ","課":"ㄎㄜˋ","請":"ㄑㄧㄥˇ","讀":"ㄉㄨˊ","變":"ㄅㄧㄢˋ","貓":"ㄇㄠ","買":"ㄇㄞˇ","貼":"ㄊㄧㄝ","走":"ㄗㄡˇ","起":"ㄑㄧˇ","較":"ㄐㄧㄠˋ","途":"ㄊㄨˊ","這":"ㄓㄜˋ","進":"ㄐㄧㄣˋ","道":"ㄉㄠˋ","達":"ㄉㄚˊ","遠":"ㄩㄢˇ","選":"ㄒㄩㄢˇ","還":"ㄏㄞˊ","邊":"ㄅㄧㄢ","部":"ㄅㄨˋ","都":"ㄉㄡ","重":"ㄓㄨㄥˋ","量":"ㄌㄧㄤˋ","針":"ㄓㄣ","錄":"ㄌㄨˋ","錯":"ㄘㄨㄛˋ","鐘":"ㄓㄨㄥ","長":"ㄓㄤˇ","開":"ㄎㄞ","間":"ㄐㄧㄢ","闖":"ㄔㄨㄤˇ","關":"ㄍㄨㄢ","陪":"ㄆㄟˊ","隨":"ㄙㄨㄟˊ","險":"ㄒㄧㄢˇ","隻":"ㄓ","面":"ㄇㄧㄢˋ","頁":"ㄧㄝˋ","項":"ㄒㄧㄤˋ","順":"ㄕㄨㄣˋ","領":"ㄌㄧㄥˇ","顆":"ㄎㄜ","題":"ㄊㄧˊ","類":"ㄌㄟˋ","顧":"ㄍㄨˋ","顯":"ㄒㄧㄢˇ","餘":"ㄩˊ","首":"ㄕㄡˇ","香":"ㄒㄧㄤ","驗":"ㄧㄢˋ","高":"ㄍㄠ","鴨":"ㄧㄚ","麼":"˙ㄇㄜ","黃":"ㄏㄨㄤˊ","點":"ㄉㄧㄢˇ"};
+const ZHUYIN_MAP = {"一":"ㄧ","三":"ㄙㄢ","上":"ㄕㄤˋ","下":"ㄒㄧㄚˋ","不":"ㄅㄨˋ","且":"ㄑㄧㄝˇ","中":"ㄓㄨㄥ","主":"ㄓㄨˇ","也":"ㄧㄝˇ","亂":"ㄌㄨㄢˋ","了":"˙ㄌㄜ","二":"ㄦˋ","互":"ㄏㄨˋ","五":"ㄨˇ","人":"ㄖㄣˊ","什":"ㄕㄣˊ","今":"ㄐㄧㄣ","仍":"ㄖㄥˊ","他":"ㄊㄚ","付":"ㄈㄨˋ","以":"ㄧˇ","伴":"ㄅㄢˋ","伸":"ㄕㄣ","位":"ㄨㄟˋ","作":"ㄗㄨㄛˋ","你":"ㄋㄧˇ","來":"ㄌㄞˊ","供":"ㄍㄨㄥ","依":"ㄧ","係":"ㄒㄧˋ","保":"ㄅㄠˇ","個":"˙ㄍㄜ","備":"ㄅㄟˋ","優":"ㄧㄡ","元":"ㄩㄢˊ","先":"ㄒㄧㄢ","兒":"ㄦˊ","入":"ㄖㄨˋ","內":"ㄋㄟˋ","全":"ㄑㄩㄢˊ","兩":"ㄌㄧㄤˇ","公":"ㄍㄨㄥ","六":"ㄌㄧㄡˋ","共":"ㄍㄨㄥˋ","其":"ㄑㄧˊ","再":"ㄗㄞˋ","冒":"ㄇㄠˋ","出":"ㄔㄨ","分":"ㄈㄣ","列":"ㄌㄧㄝˋ","判":"ㄆㄢˋ","別":"ㄅㄧㄝˊ","到":"ㄉㄠˋ","刻":"ㄎㄜˋ","則":"ㄗㄜˊ","前":"ㄑㄧㄢˊ","剛":"ㄍㄤ","剩":"ㄕㄥˋ","劃":"ㄏㄨㄚˋ","力":"ㄌㄧˋ","加":"ㄐㄧㄚ","努":"ㄋㄨˇ","勇":"ㄩㄥˇ","動":"ㄉㄨㄥˋ","區":"ㄑㄩ","十":"ㄕˊ","半":"ㄅㄢˋ","卡":"ㄎㄚˇ","原":"ㄩㄢˊ","去":"ㄑㄩˋ","口":"ㄎㄡˇ","只":"ㄓˇ","可":"ㄎㄜˇ","右":"ㄧㄡˋ","吃":"ㄔ","各":"ㄍㄜˋ","合":"ㄏㄜˊ","向":"ㄒㄧㄤˋ","和":"ㄏㄜˊ","咪":"ㄇㄧ","品":"ㄆㄧㄣˇ","哇":"˙ㄨㄚ","哪":"ㄋㄚˇ","喔":"ㄛ","喜":"ㄒㄧˇ","單":"ㄉㄢ","嗎":"˙ㄇㄚ","囉":"ㄌㄨㄛ","四":"ㄙˋ","回":"ㄏㄨㄟˊ","因":"ㄧㄣ","國":"ㄍㄨㄛˊ","圓":"ㄩㄢˊ","圖":"ㄊㄨˊ","在":"ㄗㄞˋ","地":"˙ㄉㄜ","域":"ㄩˋ","場":"ㄔㄤˇ","塘":"ㄊㄤˊ","填":"ㄊㄧㄢˊ","增":"ㄗㄥ","士":"ㄕˋ","多":"ㄉㄨㄛ","大":"ㄉㄚˋ","天":"ㄊㄧㄢ","太":"ㄊㄞˋ","奇":"ㄑㄧˊ","好":"ㄏㄠˇ","始":"ㄕˇ","媽":"ㄇㄚ","子":"ㄗˇ","字":"ㄗˋ","學":"ㄒㄩㄝˊ","安":"ㄢ","完":"ㄨㄢˊ","定":"ㄉㄧㄥˋ","容":"ㄖㄨㄥˊ","察":"ㄔㄚˊ","對":"ㄉㄨㄟˋ","小":"ㄒㄧㄠˇ","少":"ㄕㄠˇ","就":"ㄐㄧㄡˋ","展":"ㄓㄢˇ","左":"ㄗㄨㄛˇ","差":"ㄔㄚˋ","已":"ㄧˇ","布":"ㄅㄨˋ","帶":"ㄉㄞˋ","幣":"ㄅㄧˋ","平":"ㄆㄧㄥˊ","年":"ㄋㄧㄢˊ","幾":"ㄐㄧˇ","序":"ㄒㄩˋ","度":"ㄉㄨˋ","延":"ㄧㄢˊ","式":"ㄕˋ","形":"ㄒㄧㄥˊ","彩":"ㄘㄞˇ","往":"ㄨㄤˇ","很":"ㄏㄣˇ","後":"ㄏㄡˋ","得":"ㄉㄜˊ","從":"ㄘㄨㄥˊ","心":"ㄒㄧㄣ","快":"ㄎㄨㄞˋ","怎":"ㄗㄣˇ","思":"ㄙ","想":"ㄒㄧㄤˇ","意":"ㄧˋ","慢":"ㄇㄢˋ","應":"ㄧㄥ","成":"ㄔㄥˊ","我":"ㄨㄛˇ","戰":"ㄓㄢˋ","所":"ㄙㄨㄛˇ","手":"ㄕㄡˇ","才":"ㄘㄞˊ","打":"ㄉㄚˇ","找":"ㄓㄠˇ","把":"ㄅㄚˇ","抽":"ㄔㄡ","拿":"ㄋㄚˊ","持":"ㄔˊ","指":"ㄓˇ","按":"ㄢˋ","挑":"ㄊㄧㄠ","掉":"ㄉㄧㄠˋ","排":"ㄆㄞˊ","接":"ㄐㄧㄝ","提":"ㄊㄧˊ","換":"ㄏㄨㄢˋ","揭":"ㄐㄧㄝ","擇":"ㄗㄜˊ","據":"ㄐㄩˋ","擦":"ㄘㄚ","放":"ㄈㄤˋ","教":"ㄐㄧㄠˋ","整":"ㄓㄥˇ","數":"ㄕㄨˋ","新":"ㄒㄧㄣ","方":"ㄈㄤ","於":"ㄩˊ","日":"ㄖˋ","明":"ㄇㄧㄥˊ","易":"ㄧˋ","星":"ㄒㄧㄥ","昨":"ㄗㄨㄛˊ","是":"ㄕˋ","時":"ㄕˊ","曉":"ㄒㄧㄠˇ","書":"ㄕㄨ","最":"ㄗㄨㄟˋ","會":"ㄏㄨㄟˋ","有":"ㄧㄡˇ","朗":"ㄌㄤˇ","期":"ㄑㄧ","木":"ㄇㄨˋ","本":"ㄅㄣˇ","朵":"ㄉㄨㄛˇ","析":"ㄒㄧ","果":"ㄍㄨㄛˇ","查":"ㄔㄚˊ","校":"ㄒㄧㄠˋ","根":"ㄍㄣ","格":"ㄍㄜˊ","案":"ㄢˋ","條":"ㄊㄧㄠˊ","棒":"ㄅㄤˋ","樂":"ㄌㄜˋ","模":"ㄇㄛˊ","樣":"ㄧㄤˋ","機":"ㄐㄧ","橡":"ㄒㄧㄤˋ","次":"ㄘˋ","歡":"ㄏㄨㄢ","正":"ㄓㄥˋ","此":"ㄘˇ","每":"ㄇㄟˇ","比":"ㄅㄧˇ","水":"ㄕㄨㄟˇ","池":"ㄔˊ","沒":"ㄇㄟˊ","油":"ㄧㄡˊ","法":"ㄈㄚˇ","活":"ㄏㄨㄛˊ","清":"ㄑㄧㄥ","減":"ㄐㄧㄢˇ","測":"ㄘㄜˋ","游":"ㄧㄡˊ","湊":"ㄘㄡˋ","源":"ㄩㄢˊ","準":"ㄓㄨㄣˇ","滑":"ㄏㄨㄚˊ","滾":"ㄍㄨㄣˇ","滿":"ㄇㄢˇ","灣":"ㄨㄢ","為":"ㄨㄟˋ","照":"ㄓㄠˋ","物":"ㄨˋ","狀":"ㄓㄨㄤˋ","獨":"ㄉㄨˊ","獲":"ㄏㄨㄛˋ","玩":"ㄨㄢˊ","現":"ㄒㄧㄢˋ","球":"ㄑㄧㄡˊ","生":"ㄕㄥ","用":"ㄩㄥˋ","由":"ㄧㄡˊ","留":"ㄌㄧㄡˊ","發":"ㄈㄚ","百":"ㄅㄞˇ","的":"˙ㄉㄜ","皮":"ㄆㄧˊ","盒":"ㄏㄜˊ","目":"ㄇㄨˋ","直":"ㄓˊ","看":"ㄎㄢˋ","真":"ㄓㄣ","短":"ㄉㄨㄢˇ","硬":"ㄧㄥˋ","確":"ㄑㄩㄝˋ","示":"ㄕˋ","積":"ㄐㄧ","空":"ㄎㄨㄥ","立":"ㄌㄧˋ","童":"ㄊㄨㄥˊ","第":"ㄉㄧˋ","等":"ㄉㄥˇ","答":"ㄉㄚˊ","算":"ㄙㄨㄢˋ","糖":"ㄊㄤˊ","紅":"ㄏㄨㄥˊ","紙":"ㄓˇ","級":"ㄐㄧˊ","組":"ㄗㄨˇ","給":"ㄍㄟˇ","經":"ㄐㄧㄥ","綠":"ㄌㄩˋ","綱":"ㄍㄤ","練":"ㄌㄧㄢˋ","總":"ㄗㄨㄥˇ","績":"ㄐㄧ","繩":"ㄕㄥˊ","繼":"ㄐㄧˋ","續":"ㄒㄩˋ","美":"ㄇㄟˇ","習":"ㄒㄧˊ","考":"ㄎㄠˇ","育":"ㄩˋ","能":"ㄋㄥˊ","腦":"ㄋㄠˇ","自":"ㄗˋ","臺":"ㄊㄞˊ","與":"ㄩˇ","色":"ㄙㄜˋ","花":"ㄏㄨㄚ","萄":"ㄊㄠˊ","著":"ㄓㄨˋ","葡":"ㄆㄨˊ","蕉":"ㄐㄧㄠ","藍":"ㄌㄢˊ","蘋":"ㄆㄧㄥˊ","表":"ㄅㄧㄠˇ","裡":"ㄌㄧˇ","複":"ㄈㄨˋ","規":"ㄍㄨㄟ","觀":"ㄍㄨㄢ","角":"ㄐㄧㄠˇ","解":"ㄐㄧㄝˇ","計":"ㄐㄧˋ","記":"ㄐㄧˋ","設":"ㄕㄜˋ","評":"ㄆㄧㄥˊ","試":"ㄕˋ","該":"ㄍㄞ","課":"ㄎㄜˋ","請":"ㄑㄧㄥˇ","讀":"ㄉㄨˊ","變":"ㄅㄧㄢˋ","貓":"ㄇㄠ","買":"ㄇㄞˇ","貼":"ㄊㄧㄝ","走":"ㄗㄡˇ","起":"ㄑㄧˇ","較":"ㄐㄧㄠˋ","途":"ㄊㄨˊ","這":"ㄓㄜˋ","進":"ㄐㄧㄣˋ","道":"ㄉㄠˋ","達":"ㄉㄚˊ","遠":"ㄩㄢˇ","選":"ㄒㄩㄢˇ","還":"ㄏㄞˊ","邊":"ㄅㄧㄢ","部":"ㄅㄨˋ","都":"ㄉㄡ","重":"ㄓㄨㄥˋ","量":"ㄌㄧㄤˋ","針":"ㄓㄣ","錄":"ㄌㄨˋ","錯":"ㄘㄨㄛˋ","鐘":"ㄓㄨㄥ","長":"ㄓㄤˇ","開":"ㄎㄞ","間":"ㄐㄧㄢ","闖":"ㄔㄨㄤˇ","關":"ㄍㄨㄢ","陪":"ㄆㄟˊ","隨":"ㄙㄨㄟˊ","險":"ㄒㄧㄢˇ","隻":"ㄓ","面":"ㄇㄧㄢˋ","頁":"ㄧㄝˋ","項":"ㄒㄧㄤˋ","順":"ㄕㄨㄣˋ","領":"ㄌㄧㄥˇ","顆":"ㄎㄜ","題":"ㄊㄧˊ","類":"ㄌㄟˋ","顧":"ㄍㄨˋ","顯":"ㄒㄧㄢˇ","餘":"ㄩˊ","首":"ㄕㄡˇ","香":"ㄒㄧㄤ","驗":"ㄧㄢˋ","高":"ㄍㄠ","鴨":"ㄧㄚ","麼":"˙ㄇㄜ","黃":"ㄏㄨㄤˊ","點":"ㄉㄧㄢˇ"};
 let zhuyinEnabled=true;
 function zhuyinFor(ch,all,index){
  let z=ZHUYIN_MAP[ch];
  if(!z)return null;
  const prev=all[index-1]||'',next=all[index+1]||'';
+ // 量詞「一個／兩個／幾個／每個／個十」讀輕聲；「個位（數）」讀第四聲。
+ if(ch==='個')return next==='位'?'ㄍㄜˋ':'˙ㄍㄜ';
  // 本教材中「長」均表示長度或長針；「著」只出現於接著／指著。
  if(ch==='長')return 'ㄔㄤˊ';
  if(ch==='著'&&(prev==='接'||prev==='指'))return '˙ㄓㄜ';
@@ -106,7 +119,14 @@ function annotateText(txt){
  const chars=Array.from(String(txt));
  return chars.map((ch,i)=>{
    const reading=zhuyinFor(ch,chars,i);
-   return reading?`<ruby class="bopo"><rb>${escapeHTML(ch)}</rb><rt aria-hidden="true">${escapeHTML(reading)}</rt></ruby>`:escapeHTML(ch);
+   if(!reading)return escapeHTML(ch);
+   // 把原始注音「˙ㄍㄜ」拆為直排的聲韻符號與獨立聲調，避免直排時輕聲點跑到最下方。
+   const light=reading.startsWith('˙');
+   const clean=reading.replace(/^˙/,'');
+   const toneMatch=clean.match(/[ˊˇˋ]$/u);
+   const sound=toneMatch?clean.slice(0,-1):clean;
+   const tone=light?'<span class="bopo-light-dot">˙</span>':toneMatch?`<span class="bopo-tone">${escapeHTML(toneMatch[0])}</span>`:'';
+   return `<span class="bopo"><span class="bopo-han">${escapeHTML(ch)}</span><span aria-hidden="true" class="bopo-rt ${light?'bopo-light':''}"><span class="bopo-sounds">${Array.from(sound).map(k=>`<span class="bopo-sound">${escapeHTML(k)}</span>`).join('')}</span>${tone}</span></span>`;
  }).join('');
 }
 function setReadingText(element,txt){element.innerHTML=annotateText(txt);}
