@@ -20,14 +20,45 @@
 @media(max-width:470px){.shell{padding:13px 12px 40px}.brandicon{width:47px;height:47px;border-radius:15px;font-size:24px}.brandname{font-size:19px}.brandunder{font-size:11px}.home{font-size:12px;padding:9px 10px;min-height:43px}.welcome{padding:38px 5px 21px}.welcome h1{font-size:32px}.modegrid{gap:10px}.mode{padding:17px 14px;min-height:191px;gap:7px;border-radius:18px}.mode strong{font-size:16px}.mode .sub{font-size:12px}.mode .corner{font-size:10px;top:12px;right:10px}.mode.all{min-height:112px;padding:16px 16px}.mode.all .modeemoji{font-size:45px}.mode.all .modecontent{flex:1;min-width:0}.mode.all .corner{flex-shrink:0}.mode.all strong{font-size:19px}.mode.all .corner{font-size:10px;padding:8px;margin-left:auto}.stage{padding:17px 12px;border-radius:22px}.questionarea h2{font-size:clamp(22px,6vw,29px);line-height:1.5}.playtop{gap:6px}.back,.chapter,.score{font-size:11px;padding:9px 10px}.visual{min-height:113px}.visual-frame{min-height:95px;gap:8px;padding:12px}.emoji-item{font-size:29px}.emoji-group{max-width:210px;gap:3px}.join{font-size:20px}.choices{gap:11px}.answer{min-height:76px;border-radius:15px;padding:9px 6px;font-size:19px;gap:5px}.answer .letter{width:23px;height:23px;font-size:11px;border-radius:7px}.answer .shapeanswer{font-size:31px}.feedback{font-size:13px;margin-top:17px;min-height:66px;padding:10px}.gameactions{gap:6px}.hint{padding:10px 11px;font-size:12px}.next{padding:11px 19px;font-size:15px}.money .coin{width:67px;height:67px;font-size:22px}.clock{width:145px;height:145px}.numbertile{min-width:49px;min-height:53px;font-size:21px}.bars{gap:8px}.barrow{gap:7px}.barlabel{font-size:13px;width:39px}.bartrack{height:22px}.ucell{width:22px;height:22px}.unitrow{gap:5px}}
 @media(max-width:345px){.mode .corner{position:static}.mode.all .corner{position:static}.mode.all .modeemoji{font-size:37px}.mode.all strong{font-size:17px}.mode.all{gap:10px}.stats{font-size:12px}.answer{font-size:17px}.answer .letter{font-size:10px;width:21px;height:21px}.questionarea h2{font-size:21px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* 隨機10題：獨立測驗入口、明確成績、錯題回顧 */
+.exam-entry{width:100%;display:flex;align-items:center;text-align:left;gap:18px;padding:21px 24px;border:2px solid #e2d1ff;background:linear-gradient(112deg,#f3ecff 0%,#fff6e8 58%,#e9f8f4 100%);border-radius:24px;box-shadow:var(--shadow);color:var(--ink);transition:transform .18s,box-shadow .18s}
+.exam-entry:hover{transform:translateY(-2px);box-shadow:0 15px 32px #8275ba23}
+.exam-symbol{width:76px;height:76px;flex:0 0 76px;border-radius:22px;background:#ffffffd9;display:grid;place-items:center;font-size:43px;box-shadow:0 5px 20px #8876b020}
+.exam-words{display:flex;flex-direction:column;gap:7px;flex:1;min-width:0}
+.exam-title{font-size:clamp(19px,2.6vw,25px);font-weight:950;letter-spacing:-.4px}
+.exam-copy{font-size:14px;color:#696f89;font-weight:750;line-height:1.65}
+.exam-badges{display:flex;flex-wrap:wrap;gap:7px}
+.exam-badge{background:#ffffffcf;color:#6d5ab7;border-radius:90px;font-size:12px;font-weight:900;padding:6px 10px}
+.exam-go{flex:0 0 auto;display:grid;place-items:center;border-radius:16px;padding:12px 18px;color:white;font-size:15px;font-weight:950;background:#715bc6;min-height:50px}
+.exam-tip{margin:10px 2px 26px;color:#777e94;font-size:12px;line-height:1.7}
+.exam-picked{background:#edf0ff!important;border-color:#938be5!important;color:#554f9a!important;box-shadow:0 5px 0 #dcdcf5!important}
+.exam-result-score{font-size:clamp(25px,5vw,36px)!important;background:#eeeaff!important;color:#6651be!important;border-radius:24px!important;padding:16px 28px!important}
+.exam-result-score b{font-size:1.2em}
+.review-panel{max-width:760px;margin:24px auto;text-align:left;border-radius:20px;border:1px solid #e7e4f4;overflow:hidden;background:#fbfaff}
+.review-panel summary{cursor:pointer;list-style:none;font-size:16px;font-weight:950;padding:18px 20px;color:#6357a9;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.review-panel summary::-webkit-details-marker{display:none}
+.review-panel summary:after{content:'⌄';font-size:19px}
+.review-panel[open] summary:after{content:'⌃'}
+.review-list{margin:0;padding:0 18px 17px;list-style:none;display:grid;gap:10px}
+.review-item{background:white;border:1px solid #ebe7f5;border-radius:16px;padding:13px 16px;line-height:1.7;font-size:14px}
+.review-item.iswrong{border-left:5px solid #efa7a4}.review-item.isright{border-left:5px solid #7bd7b2}
+.review-item strong{font-size:15px}.review-item .review-answer{margin-top:5px;color:#61718b}.review-item .review-explain{margin-top:5px;color:#727b97}
+@media(max-width:650px){.exam-entry{gap:11px;padding:17px 15px;align-items:flex-start;flex-wrap:wrap}.exam-symbol{width:56px;height:56px;flex-basis:56px;font-size:30px;border-radius:17px}.exam-words{min-width:calc(100% - 72px)}.exam-copy{font-size:13px}.exam-go{width:100%;min-height:46px;padding:9px 16px}.review-panel summary{font-size:14px}.review-list{padding:0 11px 13px}}
 </style>
 </head>
 <body>
 <main class="shell">
 <header class="top"><div class="brand"><div class="brandicon" aria-hidden="true">🔢</div><div><div class="brandname">一年級數學大冒險</div><div class="brandunder">KidApp · 快樂數學練習</div></div></div><a class="home" href="../../">⌂ KidApp 首頁</a></header>
-<section id="menuScene" aria-label="選擇數學練習主題"><div class="welcome"><span class="spark a">⭐</span><span class="spark b">🌈</span><div class="eyebrow">✨ 國小一年級 · 50 題</div><h1>數學小勇士，<br><em>準備好出發了嗎？</em></h1><p>動動腦、數一數、找答案！選一個喜歡的關卡，每一題都能慢慢想、再試一次。</p></div><div id="savedProgress" class="saved" hidden></div><h2 class="smallheading">🎮 選擇你的冒險</h2><div id="modeGrid" class="modegrid"></div></section>
+<section id="menuScene" aria-label="選擇數學練習主題"><div class="welcome"><span class="spark a">⭐</span><span class="spark b">🌈</span><div class="eyebrow">✨ 國小一年級 · 50 題</div><h1>數學小勇士，<br><em>準備好出發了嗎？</em></h1><p>動動腦、數一數、找答案！選一個喜歡的關卡，每一題都能慢慢想、再試一次。</p></div><h2 class="smallheading">📝 來一場數學小測驗</h2>
+<button id="startExamBtn" class="exam-entry" type="button" aria-label="開始隨機十題評分測驗，滿分一百分">
+<span class="exam-symbol" aria-hidden="true">📋</span>
+<span class="exam-words"><span class="exam-title">隨機 10 題評分測驗</span><span class="exam-copy">從 50 題中抽出 10 題，每個主題各 2 題。每題 10 分，完成後看總分與錯題解析。</span><span class="exam-badges"><span class="exam-badge">🏅 滿分 100 分</span><span class="exam-badge">🎲 每次重新抽題</span></span></span>
+<span class="exam-go">開始測驗 →</span></button>
+<p class="exam-tip">測驗規則：每題只能回答一次，答題後不會立刻揭曉對錯，完成 10 題才計算分數；測驗中不提供提示。</p>
+<div id="savedProgress" class="saved" hidden></div><h2 class="smallheading">🎮 自由練習與闖關</h2><div id="modeGrid" class="modegrid"></div></section>
 <section id="gameScene" hidden aria-label="數學答題區"><div class="playtop"><button class="back" id="backMenu" type="button">← 選擇關卡</button><span id="currentChapter" class="chapter">數數與比大小</span><span class="score" id="currentStars">⭐ 0</span></div><div class="stage"><div class="stats"><span id="questionCounter">第 1 / 50 題</span><span id="progressPercent">進度 0%</span></div><div class="track" role="progressbar" id="progressTrack" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="答題進度"><span id="progressFill"></span></div><div class="questionarea"><span class="bubble" id="unitLabel">🔢 數數與比大小</span><h2 id="questionText">開始挑戰！</h2><button type="button" class="read" id="speakQuestion">🔊 朗讀題目</button><div class="visual" id="visual" aria-label="題目示意圖"></div></div><div class="picktitle">👇 請選出正確答案</div><div id="choices" class="choices" role="group" aria-label="四選一答案"></div><div id="feedback" class="feedback" role="status" aria-live="polite">你可以慢慢想，答錯也沒關係喔！</div><div class="gameactions"><button class="hint" id="hintBtn" type="button">💡 給我提示</button><button class="next" id="nextBtn" hidden type="button">下一題 →</button></div></div></section>
-<section id="finishScene" class="stage finish" hidden aria-label="闖關完成"><div class="award" aria-hidden="true">🏆</div><h2>哇！你完成挑戰了！</h2><p id="finishDesc">你真的好棒，繼續保持好奇心！</p><div class="finishstar" id="finishStars">⭐ 10 / 10 題</div><div class="finishbuttons"><button id="againBtn" class="next" type="button">再玩一次 ↻</button><button id="selectBtn" class="back" type="button">選其他關卡</button></div></section>
+<section id="finishScene" class="stage finish" hidden aria-label="闖關完成"><div class="award" aria-hidden="true" id="finishAward">🏆</div><h2 id="finishTitle">哇！你完成挑戰了！</h2><p id="finishDesc">你真的好棒，繼續保持好奇心！</p><div class="finishstar" id="finishStars">⭐ 10 / 10 題</div><div id="examReview" hidden></div><div class="finishbuttons"><button id="againBtn" class="next" type="button">再玩一次 ↻</button><button id="selectBtn" class="back" type="button">選其他關卡</button></div></section>
 <p class="bottom">依教育部國小一年級數學領域學習內容設計（N-1-1～N-1-6、S-1-2、D-1-1）。<br>陪伴練習用，不是學校正式測驗。<a href="https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001788" target="_blank" rel="noopener noreferrer">查看課綱來源 ↗</a></p>
 </main>
 <script>
@@ -42,19 +73,57 @@ let currentOptions=[];
 let wrongOptions=new Set();
 let soundEnabled=true;
 const reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-function getSaved(){try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&CATEGORIES.some(c=>c.id===s.mode)&&Number.isInteger(s.index)&&s.index>=0&&s.index<(s.mode==='all'?50:10)&&Number.isInteger(s.stars))return s;}catch{}return null;}
-function save(){try{if(session)localStorage.setItem(KEY,JSON.stringify({mode:session.mode,index:session.index,stars:session.stars,missed:session.missed,solved:session.solved}));}catch{}}
+function isExam(){return !!session&&session.mode==='exam';}
+function validExamSave(s){
+ if(!s||s.mode!=='exam'||!Array.isArray(s.questions)||s.questions.length!==10||new Set(s.questions).size!==10)return false;
+ const byId=new Map(QUESTION_BANK.map(q=>[q.id,q]));
+ if(!s.questions.every(id=>byId.has(id))||!Number.isInteger(s.index)||s.index<0||s.index>=10||!Number.isInteger(s.stars)||s.stars<0||s.stars>10||!Array.isArray(s.answers))return false;
+ if(s.answers.length!==s.index+(s.solved?1:0))return false;
+ return s.answers.every((a,i)=>a&&a.id===s.questions[i]&&byId.get(a.id).options.includes(a.selected));
+}
+function getSaved(){try{
+ const s=JSON.parse(localStorage.getItem(KEY)||'null');
+ if(validExamSave(s))return s;
+ if(s&&CATEGORIES.some(c=>c.id===s.mode)&&Number.isInteger(s.index)&&s.index>=0&&s.index<(s.mode==='all'?50:10)&&Number.isInteger(s.stars))return s;
+}catch{}return null;}
+function save(){try{if(session){
+ const data={mode:session.mode,index:session.index,stars:session.stars,missed:session.missed,solved:session.solved};
+ if(isExam()){data.questions=session.questions;data.answers=session.answers;}
+ localStorage.setItem(KEY,JSON.stringify(data));
+}}catch{}}
 function clearSave(){try{localStorage.removeItem(KEY)}catch{}}
 function show(scene){for(const name of ['menuScene','gameScene','finishScene'])$(name).hidden=(name!==scene);window.scrollTo({top:0,behavior:'instant'});}
 function makeMenu(){
  const menu=$('modeGrid');menu.innerHTML='';
  CATEGORIES.forEach((c,i)=>{const b=document.createElement('button');b.type='button';b.className='mode'+(i===0?' all':'');b.style.setProperty('--tone',c.color);b.innerHTML=`<span class="modeemoji" aria-hidden="true">${c.emoji}</span><span class="modecontent"><strong>${escapeHTML(c.name)}</strong><span class="sub">${i===0?'一次挑戰全部 50 題，也可以中途繼續！':'這一關有 10 題，答對就會得到小星星。'}</span></span><span class="corner">${i===0?'GO! 50 題':'10 題 →'}</span>`;b.addEventListener('click',()=>start(c.id));menu.append(b)});
  const s=getSaved();$('savedProgress').hidden=!s;
- if(s){const c=CATEGORIES.find(x=>x.id===s.mode);$('savedProgress').innerHTML=`<div><strong>✨ 上次的冒險還在等你！</strong><small>${escapeHTML(c.name)} · 第 ${s.index+1} 題，已獲得 ${s.stars} 顆星星</small></div><button id="resumeBtn" type="button">接著玩 →</button>`;$('resumeBtn').addEventListener('click',()=>resume(s));}
+ if(s){const label=s.mode==='exam'?'📝 隨機 10 題評分測驗':CATEGORIES.find(x=>x.id===s.mode).name;
+ const detail=s.mode==='exam'?`第 ${s.index+1} 題 · 已作答 ${s.answers.length} / 10 題`:`第 ${s.index+1} 題，已獲得 ${s.stars} 顆星星`;
+ $('savedProgress').innerHTML=`<div><strong>✨ 上次的冒險還在等你！</strong><small>${escapeHTML(label)} · ${detail}</small></div><button id="resumeBtn" type="button">接著玩 →</button>`;
+ $('resumeBtn').addEventListener('click',()=>resume(s));}
 }
-function listFor(mode){return mode==='all'?QUESTION_BANK:QUESTION_BANK.filter(q=>q.cat===mode)}
-function start(mode){session={mode,index:0,stars:0,missed:0,solved:false};save();renderQuestion();show('gameScene')}
-function resume(saved){session={mode:saved.mode,index:saved.index,stars:saved.stars,missed:saved.missed||0,solved:!!saved.solved};renderQuestion();show('gameScene')}
+function listFor(mode){
+ if(mode==='exam'){
+  const lookup=new Map(QUESTION_BANK.map(q=>[q.id,q]));
+  return session.questions.map(id=>lookup.get(id));
+ }
+ return mode==='all'?QUESTION_BANK:QUESTION_BANK.filter(q=>q.cat===mode);
+}
+function newExamQuestions(){
+ // 5 類各隨機抽 2 題，總計 10 題且題目不重複，最後再打亂出題順序。
+ const ids=CATEGORIES.slice(1).flatMap(c=>fisherYates(QUESTION_BANK.filter(q=>q.cat===c.id).slice()).slice(0,2).map(q=>q.id));
+ return fisherYates(ids);
+}
+function start(mode){
+ session={mode,index:0,stars:0,missed:0,solved:false};
+ if(mode==='exam'){session.questions=newExamQuestions();session.answers=[];}
+ save();renderQuestion();show('gameScene');
+}
+function resume(saved){
+ session={mode:saved.mode,index:saved.index,stars:saved.stars,missed:saved.missed||0,solved:!!saved.solved};
+ if(saved.mode==='exam'){session.questions=saved.questions.slice();session.answers=saved.answers.map(a=>({...a}));}
+ renderQuestion();show('gameScene');
+}
 function visualMarkup(v){if(!v||!v.type)return '<div class="visual-frame no-frame">✨</div>';
  let core='';
  if(v.type==='objects'){core='<div class="visual-frame">'+v.items.map((g,i)=>`<div class="emoji-group" aria-label="${g.count} 個物品">${Array.from({length:g.count},()=>`<span class="emoji-item">${escapeHTML(g.emoji)}</span>`).join('')}</div>${v.join&&i<v.items.length-1?`<span class="join">${escapeHTML(v.join)}</span>`:''}`).join('')+'</div>';}
@@ -72,19 +141,86 @@ function visualMarkup(v){if(!v||!v.type)return '<div class="visual-frame no-fram
  return core;
 }
 function fisherYates(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function renderQuestion(){const arr=listFor(session.mode);const q=arr[session.index];const c=CATEGORIES.find(x=>x.id===q.cat);wrongOptions=new Set();currentOptions=fisherYates(q.options.slice());$('currentChapter').textContent=session.mode==='all'?'🏆 50 題大挑戰':c.emoji+' '+c.name;$('currentStars').textContent='⭐ '+session.stars;$('questionCounter').textContent=`第 ${session.index+1} / ${arr.length} 題`;$('unitLabel').textContent=c.emoji+' '+c.name;$('questionText').textContent=q.question;$('visual').innerHTML=visualMarkup(q.visual);$('progressTrack').setAttribute('aria-valuenow',String(Math.round((session.index+(session.solved?1:0))/arr.length*100)));setProgress();$('nextBtn').hidden=!session.solved;$('nextBtn').textContent=session.index+1===arr.length?'看看闖關成果 →':'下一題 →';$('hintBtn').disabled=!!session.solved;$('hintBtn').style.opacity=session.solved?'.5':'1';$('feedback').className='feedback';$('feedback').textContent='你可以慢慢想，答錯也沒關係喔！';$('choices').innerHTML='';
- currentOptions.forEach((o,i)=>{const b=document.createElement('button');b.type='button';b.className='answer';b.dataset.value=o;b.innerHTML=`<span class="letter" aria-hidden="true">${'ABCD'[i]}</span><span class="${['△','□','○','▭','☆'].includes(o)?'shapeanswer':''}">${escapeHTML(o)}</span>`;b.setAttribute('aria-label',`選項${'ABCD'[i]}：${o}`);b.disabled=session.solved;if(session.solved&&o===q.answer)b.classList.add('correct');b.addEventListener('click',()=>selectOption(o,b));$('choices').append(b)});
- if(session.solved){$('feedback').className='feedback yes';$('feedback').textContent='答對了！'+q.explain;}
+function renderQuestion(){
+ const arr=listFor(session.mode),q=arr[session.index],c=CATEGORIES.find(x=>x.id===q.cat),exam=isExam();
+ wrongOptions=new Set();currentOptions=fisherYates(q.options.slice());
+ $('currentChapter').textContent=exam?'📝 評分測驗':session.mode==='all'?'🏆 50 題大挑戰':c.emoji+' '+c.name;
+ $('currentStars').textContent=exam?'🏅 滿分 100 分':'⭐ '+session.stars;
+ $('questionCounter').textContent=`第 ${session.index+1} / ${arr.length} 題`;
+ $('unitLabel').textContent=c.emoji+' '+c.name;
+ $('questionText').textContent=q.question;
+ $('visual').innerHTML=visualMarkup(q.visual);
+ $('nextBtn').hidden=!session.solved;
+ $('nextBtn').textContent=session.index+1===arr.length?(exam?'查看測驗成績 →':'看看闖關成果 →'):'下一題 →';
+ $('hintBtn').hidden=exam;
+ $('hintBtn').disabled=exam||!!session.solved;
+ $('hintBtn').style.opacity=session.solved?'.5':'1';
+ $('feedback').className='feedback';
+ $('feedback').textContent=exam?(session.solved?'已經記下你的答案囉！按「下一題」繼續，完成後公布分數。':'📝 測驗模式：每題只能選一次，完成後才公布分數。'):'你可以慢慢想，答錯也沒關係喔！';
+ $('choices').innerHTML='';
+ const answerGiven=exam&&session.solved?session.answers.find(a=>a.id===q.id)?.selected:null;
+ currentOptions.forEach((o,i)=>{
+  const b=document.createElement('button');b.type='button';b.className='answer';b.dataset.value=o;
+  b.innerHTML=`<span class="letter" aria-hidden="true">${'ABCD'[i]}</span><span class="${['△','□','○','▭','☆'].includes(o)?'shapeanswer':''}">${escapeHTML(o)}</span>`;
+  b.setAttribute('aria-label',`選項${'ABCD'[i]}：${o}`);b.disabled=session.solved;
+  if(session.solved&&(exam?o===answerGiven:o===q.answer))b.classList.add(exam?'exam-picked':'correct');
+  b.addEventListener('click',()=>selectOption(o,b));$('choices').append(b);
+ });
+ if(session.solved&&!exam){$('feedback').className='feedback yes';$('feedback').textContent='答對了！'+q.explain;}
+ setProgress();
 }
 function setProgress(){const a=listFor(session.mode).length;const percent=Math.round((session.index+(session.solved?1:0))/a*100);$('progressPercent').textContent='進度 '+percent+'%';$('progressFill').style.width=percent+'%';$('progressTrack').setAttribute('aria-valuenow',percent)}
-function selectOption(value,element){if(session.solved||wrongOptions.has(value))return;const q=listFor(session.mode)[session.index];if(value!==q.answer){element.classList.add('wrong');element.disabled=true;wrongOptions.add(value);session.missed+=1;$('feedback').className='feedback no';$('feedback').textContent='還差一點點！再觀察一下，你一定可以找到答案。';save();return;}
- session.solved=true;session.stars+=1;$('feedback').className='feedback yes';$('feedback').textContent='答對了！'+q.explain;$('nextBtn').hidden=false;$('hintBtn').disabled=true;$('hintBtn').style.opacity='.5';for(const btn of $('choices').querySelectorAll('button')){btn.disabled=true;if(btn.dataset.value===value)btn.classList.add('correct');} $('currentStars').textContent='⭐ '+session.stars;setProgress();save();cheer();}
+function selectOption(value,element){
+ if(session.solved||wrongOptions.has(value))return;
+ const q=listFor(session.mode)[session.index];
+ if(isExam()){
+  // 第一個選項就是正式答案：不能重試；在最後一題以前不顯示正確答案。
+  session.answers.push({id:q.id,selected:value});
+  session.solved=true;
+  if(value===q.answer)session.stars++;else session.missed++;
+  for(const b of $('choices').querySelectorAll('button')){
+   b.disabled=true;if(b.dataset.value===value)b.classList.add('exam-picked');
+  }
+  $('feedback').className='feedback';
+  $('feedback').textContent='✅ 已記錄答案！點「下一題」繼續。測驗完成後會顯示分數與解析。';
+  $('nextBtn').hidden=false;setProgress();save();return;
+ }
+ if(value!==q.answer){element.classList.add('wrong');element.disabled=true;wrongOptions.add(value);session.missed+=1;$('feedback').className='feedback no';$('feedback').textContent='還差一點點！再觀察一下，你一定可以找到答案。';save();return;}
+ session.solved=true;session.stars+=1;$('feedback').className='feedback yes';$('feedback').textContent='答對了！'+q.explain;$('nextBtn').hidden=false;$('hintBtn').disabled=true;$('hintBtn').style.opacity='.5';for(const btn of $('choices').querySelectorAll('button')){btn.disabled=true;if(btn.dataset.value===value)btn.classList.add('correct');} $('currentStars').textContent='⭐ '+session.stars;setProgress();save();cheer();
+}
 function cheer(){if(reduceMotion)return;const icons=['⭐','✨','🎉','🌟','💛'];for(let i=0;i<10;i++){const s=document.createElement('span');s.className='confetti';s.textContent=icons[i%icons.length];s.style.setProperty('--x',Math.round((Math.random()-.5)*500)+'px');s.style.setProperty('--y',Math.round((Math.random()-.5)*380)+'px');document.body.append(s);setTimeout(()=>s.remove(),1250);}}
 function next(){if(!session||!session.solved)return;session.index++;if(session.index>=listFor(session.mode).length){showFinish();return;}session.solved=false;save();renderQuestion();window.scrollTo({top:0,behavior:'instant'})}
-function showFinish(){const c=CATEGORIES.find(x=>x.id===session.mode),n=listFor(session.mode).length;$('finishDesc').textContent=`你完成了「${c.name}」的 ${n} 道數學題！每一題都有努力思考，真棒！`;$('finishStars').textContent=`⭐ ${session.stars} / ${n} 題`;clearSave();show('finishScene');}
+function showFinish(){
+ const exam=isExam(),n=listFor(session.mode).length;
+ $('finishStars').classList.toggle('exam-result-score',exam);
+ $('examReview').hidden=!exam;
+ if(exam){
+  const pts=session.stars*10;
+  $('finishAward').textContent=pts===100?'🏆':pts>=70?'🎖️':'🌈';
+  $('finishTitle').textContent=pts===100?'滿分！數學小達人！':pts>=80?'太棒了！測驗完成！':'測驗完成！繼續加油！';
+  $('finishDesc').textContent=`本次隨機 10 題，答對 ${session.stars} 題、答錯 ${10-session.stars} 題，每題 10 分。看看解析，下次再挑戰！`;
+  $('finishStars').textContent=`🏅 ${pts} / 100 分`;
+  $('againBtn').textContent='再抽 10 題測驗 ↻';
+  const lookup=new Map(QUESTION_BANK.map(q=>[q.id,q]));
+  const rows=session.answers.map((a,i)=>{const q=lookup.get(a.id),right=a.selected===q.answer;return {a,q,i,right};});
+  // 錯題優先排列，其餘答對題仍可在展開的回顧清單內查看。
+  rows.sort((a,b)=>Number(a.right)-Number(b.right)||a.i-b.i);
+  const html=rows.map(({a,q,i,right})=>`<li class="review-item ${right?'isright':'iswrong'}"><strong>${right?'✅':'📌'} 第 ${i+1} 題：${escapeHTML(q.question)}</strong><div class="review-answer">你的答案：${escapeHTML(a.selected)} ${right?'（答對）':'（答錯）'}<br>正確答案：<strong>${escapeHTML(q.answer)}</strong></div><div class="review-explain">💡 ${escapeHTML(q.explain)}</div></li>`).join('');
+  $('examReview').innerHTML=`<details class="review-panel" ${session.missed?'open':''}><summary>📚 查看 10 題完整解析（${session.missed} 題答錯）</summary><ol class="review-list">${html}</ol></details>`;
+ }else{
+  const c=CATEGORIES.find(x=>x.id===session.mode);
+  $('finishAward').textContent='🏆';$('finishTitle').textContent='哇！你完成挑戰了！';
+  $('finishDesc').textContent=`你完成了「${c.name}」的 ${n} 道數學題！每一題都有努力思考，真棒！`;
+  $('finishStars').textContent=`⭐ ${session.stars} / ${n} 題`;
+  $('againBtn').textContent='再玩一次 ↻';
+  $('examReview').innerHTML='';
+ }
+ clearSave();show('finishScene');
+}
 function goMenu(){session=null;makeMenu();show('menuScene')}
 function speak(){if(!('speechSynthesis'in window))return;let q=listFor(session.mode)[session.index];speechSynthesis.cancel();let txt=q.question.replace(/＋|\+/g,'加').replace(/−|-/g,'減').replace(/＝|=/g,'等於').replace(/\?/g,'是多少').replace(/□/g,'空格');let u=new SpeechSynthesisUtterance(txt);u.lang='zh-TW';u.rate=.82;let voices=speechSynthesis.getVoices();let voice=voices.find(x=>x.lang.toLowerCase()==='zh-tw')||voices.find(x=>x.lang.startsWith('zh'));if(voice)u.voice=voice;speechSynthesis.speak(u);}
-$('hintBtn').addEventListener('click',()=>{if(!session||session.solved)return;const q=listFor(session.mode)[session.index];$('feedback').className='feedback';$('feedback').textContent='💡 提示：'+q.hint;});
+$('hintBtn').addEventListener('click',()=>{if(!session||session.solved||isExam())return;const q=listFor(session.mode)[session.index];$('feedback').className='feedback';$('feedback').textContent='💡 提示：'+q.hint;});
+$('startExamBtn').addEventListener('click',()=>start('exam'));
 $('nextBtn').addEventListener('click',next);
 $('backMenu').addEventListener('click',()=>{if('speechSynthesis'in window)speechSynthesis.cancel();makeMenu();show('menuScene')});
 $('speakQuestion').addEventListener('click',speak);
