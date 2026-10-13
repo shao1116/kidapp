@@ -12,7 +12,7 @@ KidApp 是適合臺灣小朋友使用的免費網頁學習遊戲集合，以繁�
 | 小小認字探險家（Word Explorer） | **v1.4** | 中英自動朗讀、八類 79 張圖卡（新增 10 種水中生物） | [開始認字](https://shao1116.github.io/kidapp/apps/word-explorer/) |
 | 一年級數學大冒險（Grade 1 Math Adventure）| **v2.1（正式版）** | **65 題、右側直排注音、隨機十題測驗下一題靠右** | [開始數學](https://shao1116.github.io/kidapp/apps/math-grade1/) |
 | **小一英語冒險島（Grade 1 English Adventure）** | **v1.1** | 10 組生活對話支援多個正確回答，測驗皆能正確計分 | [開始英語](https://shao1116.github.io/kidapp/apps/english-grade1/) |
-| **小小幫手：波波的日常冒險（Little Helper）** | **v1.1（正式版）** | 四場景 40 個任務、空間位置、兩步驟指令、智慧難度及家長學習紀錄 | [開始幫忙](https://shao1116.github.io/kidapp/apps/little-helper/) |
+| **小小幫手：波波的日常冒險（Little Helper）** | **v1.1.1（正式版）** | 四場景 40 個任務、空間位置、兩步驟指令、智慧難度及家長學習紀錄 | [開始幫忙](https://shao1116.github.io/kidapp/apps/little-helper/) |
 | 一年級數學・注音測試版（保留作比較） | beta | 最初 50 題注音排版測試（不再作為正式入口） | [查看舊測試版](https://shao1116.github.io/kidapp/apps/math-grade1-zhuyin-preview/) |
 
 ## 📁 目錄
@@ -28,7 +28,7 @@ kidapp/
 │   ├── english-grade1/
 │   │   └── index.html                 # 小一英語冒險島【正式版 v1.0】
 │   ├── little-helper/
-│   │   └── index.html                 # 小小幫手【正式版 v1.1】
+│   │   └── index.html                 # 小小幫手【正式版 v1.1.1】
 │   └── math-grade1-zhuyin-preview/
 │       └── index.html                 # 注音排版歷史測試版
 ├── .nojekyll
@@ -167,6 +167,7 @@ kidapp/
 | --- | --- |
 | **v1.0｜2026-10-13** | 第四款獨立 KidApp 遊戲推出：房間與野餐場景合計 20 題、Level 1–3、中文語音、點選與拖曳、逐步提示、5／10 題選擇。 |
 | **v1.1｜2026-10-13** | 正式擴充「水中生物回家」與「車車一起來幫忙」兩場景，總題庫 **20→40 題**；新增空間位置及兩步驟指令、智慧難度、家長本機學習紀錄。同步優化玩具箱、椅子及車輛插畫、更新首頁與測試。 |
+| **v1.1.1｜2026-10-13** | 修正海洋場景內辨識度不足的海豚插圖：調整側身輪廓、吻部、背鰭、胸鰭、尾鰭、腹部白色區塊與眼睛；正式 App 的內嵌 SVG 已更新，原有 40 題與所有玩法、家長紀錄維持不變。 |
 
 ### 後續版本方向（未實作）
 
