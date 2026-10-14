@@ -1,0 +1,66 @@
+/* KidApp Life Discovery v1.2 — illustrated festivals, books and reflection */
+.life-v12-scene-svg,.life-diary-scene{display:block;width:100%;max-height:330px;border-radius:22px;filter:drop-shadow(0 5px 12px #58788815)}
+.life-festival-wrap{max-width:890px;margin:12px auto 20px;padding:12px;background:#fff8f1;border:2px solid #f1e2ce;border-radius:24px}
+.life-v12-art-note{font-size:14px;text-align:center;color:#796b5f;font-weight:800;line-height:2;margin:10px auto 0}
+.life-library-lab{margin:10px auto 20px;max-width:900px;border:2px solid #dce6f3;border-radius:24px;background:linear-gradient(145deg,#f7fbff,#e8f1ff);padding:18px}
+.life-library-header{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;color:#536b91;font-size:16px;line-height:2;text-align:center;margin-bottom:14px}
+.life-library-header svg{width:150px;height:58px}
+.life-books-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:5px auto 15px}
+.life-book-option{min-width:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:9px;padding:13px 7px;min-height:230px;background:#fff;border:3px solid #d2e2ee;border-radius:17px;color:#46617f;box-shadow:0 5px 0 #d7e3ed;font-size:16px;line-height:1.85;font-weight:900}
+.life-book-option .life-book-cover{width:100%;height:auto;max-width:125px;max-height:157px;filter:drop-shadow(4px 7px 3px #5167772a)}
+.life-book-option:hover,.life-book-option:focus-visible{border-color:#6e9dcb;background:#f6fcff}
+.life-book-option.picked{border-color:#4ba78a;box-shadow:0 0 0 3px #c6e8d9;background:#eaffe9}
+.life-v12-observation{padding:11px 12px;border-radius:15px;background:#fff;color:#526f80;font-size:15px;line-height:2;text-align:center;font-weight:850}
+.life-library-scene{max-width:870px;margin:12px auto 16px;padding:15px;border-radius:22px;background:linear-gradient(145deg,#eaf4ff,#f9f0de);border:2px solid #d3e0ed}
+.life-library-scene-books{display:flex;justify-content:center;gap:12px}
+.life-library-scene-books svg{width:22%;max-width:135px;height:auto;min-width:0}
+.life-library-scene p{text-align:center;font-size:16px;font-weight:900;color:#5e6c8f;margin:10px 0 0}
+.life-diary-image{max-width:860px;margin:12px auto 18px;padding:10px;border-radius:22px;background:#f0f6ff}
+.life-diary-image p{text-align:center;font-weight:900;color:#6d718f;line-height:2}
+.life-diary-lab{max-width:850px;margin:10px auto 18px;padding:14px;border-radius:22px;border:2px solid #e9d6df;background:linear-gradient(140deg,#fff7fc,#f2f8ff)}
+.life-diary-caption{font-size:14px;color:#756b84;line-height:2;font-weight:800;text-align:center;margin:8px auto 14px}
+.life-diary-title{margin:18px 0 11px;font-size:17px;font-weight:950;color:#6a6b87}
+.life-diary-moods{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.life-mood-option{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;border:3px solid #ecdfea;border-radius:17px;background:#fff;padding:9px 7px;color:#73677f;line-height:1.9;font-size:16px;font-weight:900}
+.life-mood-option .life-mood-svg{display:block;width:80px;height:auto;max-width:100%}
+.life-mood-option.chosen,.life-diary-action.chosen{border-color:#a978c4;background:#f6e9fa;box-shadow:0 0 0 3px #e7c5ef}
+.life-diary-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.life-diary-action{background:#fff;border:3px solid #d8e4ec;border-radius:16px;padding:12px 8px;font-size:16px;line-height:1.9;font-weight:900;color:#526c7e;min-height:76px}
+.life-diary-save{text-align:center;margin:21px auto 6px}
+.life-diary-note{margin:11px auto;text-align:center;background:#fff9;border-radius:15px;padding:11px;color:#746c80;line-height:2;font-size:14px;font-weight:800}
+.life-family-section{margin:28px auto 8px;max-width:1050px}
+.life-family-fold{background:linear-gradient(135deg,#fff8eb,#f0fcf3);border:2px solid #e1e8d8;border-radius:21px;box-shadow:0 5px 18px #587f7020;overflow:hidden}
+.life-family-fold>summary{cursor:pointer;padding:20px 22px;font-size:20px;font-weight:950;color:#477c66;list-style-position:inside}
+.life-family-fold[open]>summary{border-bottom:1px solid #dce9dd}
+.life-family-content{padding:17px 20px 22px}
+#familySummary{font-size:17px;font-weight:950;color:#54826e;margin:0 0 8px}
+#familyProgressNote,.life-family-privacy{font-size:13px;line-height:2;color:#70897c;font-weight:750}
+.life-family-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0}
+.life-family-item{display:flex;align-items:center;gap:11px;padding:13px 11px;border:2px solid #e4ece0;background:white;border-radius:14px;min-width:0;cursor:pointer}
+.life-family-item input{width:23px;height:23px;accent-color:#56a780;flex:none}
+.life-family-icon{font-size:28px;flex:none}
+.life-family-item strong,.life-family-item small{display:block;line-height:1.8}
+.life-family-item strong{font-size:15px;color:#426e5d}
+.life-family-item small{font-size:12px;color:#71857b;font-weight:650}
+@media(max-width:700px){
+ .life-books-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .life-book-option{min-height:202px;padding:10px 5px}
+ .life-book-option .life-book-cover{max-width:117px;max-height:135px}
+ .life-library-lab{padding:11px}
+ .life-family-grid{grid-template-columns:1fr}
+ .life-diary-actions{grid-template-columns:1fr}
+ .life-diary-action{min-height:59px}
+}
+@media(max-width:420px){
+ .life-v12-scene-svg{max-height:220px}
+ .life-festival-wrap{padding:7px}
+ .life-library-header svg{width:125px}
+ .life-book-option{font-size:14px;min-height:195px}
+ .life-book-option .life-book-cover{max-height:122px}
+ .life-diary-lab{padding:9px}
+ .life-diary-moods{gap:5px}
+ .life-mood-option{padding:6px 3px;font-size:13px;border-width:2px}
+ .life-diary-title{font-size:15px}
+ .life-family-fold>summary{font-size:17px;padding:15px}
+ .life-family-content{padding:12px}
+}
