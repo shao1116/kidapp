@@ -128,8 +128,7 @@ function lifeFestivalArt(scene){
  '<g stroke="#639aa2" stroke-width="7"><path d="M185 132l-22 46M267 132l-15 47M349 132l-13 48M431 132l-14 48"/></g>'+
  '<g stroke="#aa7451" stroke-width="9"><path d="M166 144l-24 80 M256 144l-17 80 M346 144l-17 80 M433 144l-17 80"/></g>'+
  '<g fill="#e6ad6a"><path d="M134 207l33 13-10 15-23-13z M230 208l33 13-10 15-23-13z M322 208l33 13-10 15-23-13z"/></g>'+
- '<path d="M500 40L555 28 577 65 523 79Z" fill="#6ca77b" stroke="#377e62" stroke-width="6"/><path d="M529 38L557 58M548 30L526 76" stroke="#c7de93" stroke-width="5"/>'+
- '<g stroke="#557e57" stroke-width="5"><path d="M552 64l22 23"/></g></svg>';
+ '<g transform="translate(489 13)"><path d="M6 72L55 11 103 77Q54 106 6 72Z" fill="#6cac76" stroke="#3b835c" stroke-width="6"/><path d="M55 11Q80 47 103 77L58 75Q48 40 55 11Z" fill="#8cc68c"/><path d="M6 72Q45 64 58 75L103 77Q56 106 6 72Z" fill="#459969"/><path d="M23 65Q48 49 78 64L87 76Q53 83 28 76Z" fill="#e9d3a2" stroke="#bfad87" stroke-width="3"/><path d="M19 50Q53 68 91 58M55 15Q56 58 54 91" stroke="#f5ecce" stroke-width="6" fill="none"/><path d="M55 85q12 11 20 0" fill="none" stroke="#f5ecce" stroke-width="5"/></g></svg>';
  return base+
  '<rect width="620" height="286" rx="24" fill="#253e72"/><g fill="#f6e5a4"><circle cx="79" cy="58" r="3"/><circle cx="136" cy="90" r="3"/><circle cx="473" cy="62" r="4"/><circle cx="543" cy="104" r="3"/><circle cx="393" cy="24" r="3"/></g>'+
  '<circle cx="307" cy="99" r="73" fill="#ffe3a2" stroke="#ffeab9" stroke-width="10"/><circle cx="286" cy="76" r="11" fill="#f4d49c"/><circle cx="331" cy="118" r="17" fill="#f4d49c"/><circle cx="291" cy="135" r="10" fill="#f4d49c"/>'+
