@@ -32,7 +32,7 @@ kidapp/
 │   ├── little-helper/
 │   │   └── index.html                 # 小小幫手【正式版 v1.1.1】
 │   ├── life-grade1/
-│   │   └── index.html                 # 小一生活探索樂園【正式版 v1.2】
+│   │   ├── index.html                 # 小一生活探索樂園【正式版 v1.2】
 │   │   ├── life-v12.js                # 節慶／圖書館／日記題庫、互動與 SVG 插畫
 │   │   └── life-v12.css               # 新增三款遊戲的響應式介面
 │   ├── starlight-island/
