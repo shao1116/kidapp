@@ -235,6 +235,11 @@ function lifeV12RenderDiary(t){
   if(!selected.mood||selected.action===null){feedback('先選一個心情，再選一件生活小事，就能保存。','retry');return;}
   if(!saved.diaryEntries)saved.diaryEntries={};
   saved.diaryEntries[t.id]={mood:selected.mood,action:selected.action};
+  if(!Array.isArray(saved.diaryHistory))saved.diaryHistory=[];
+  const day=new Date().toLocaleDateString('sv-SE');
+  const record={id:t.id,date:day,mood:selected.mood,action:selected.action};
+  saved.diaryHistory=saved.diaryHistory.filter(x=>!(x.id===record.id&&x.date===record.date));
+  saved.diaryHistory.push(record);saved.diaryHistory=saved.diaryHistory.slice(-90);
   persist();if(!solved)markDone();
   setMarkup('lifeDiaryNote','已保存今天的選擇，改變心情或行動也可以再存一次。');
   feedback('已記下自己的小發現！心情沒有對錯。可以繼續調整，或按下一題。','good');
@@ -249,6 +254,7 @@ function lifeV12RenderParent(){
  $('familySummary').textContent='遊戲已探索 '+totalDone+' / 150 個任務　｜　親子實作 '+completed+' / '+LIFE_V12_FAMILY.length+' 項';
  const countNote=$('familyProgressNote');if(countNote)countNote.textContent='這是家庭陪伴紀錄，不是孩子能力評分；進度只儲存在本機。';
  target.innerHTML=LIFE_V12_FAMILY.map(x=>'<label class="life-family-item"><input type="checkbox" data-family="'+x.id+'" '+(saved.familyDone.includes(x.id)?'checked':'')+'/><span class="life-family-icon" aria-hidden="true">'+x.icon+'</span><span><strong>'+readMarkup(x.name)+'</strong><small>'+readMarkup(x.note)+'</small></span></label>').join('');
+ const history=$('familyDiaryHistory');if(history){const recent=(saved.diaryHistory||[]).slice(-6).reverse();history.innerHTML=recent.length?'<h4>🌟 最近的成長日記</h4>'+recent.map(item=>{const t=TASKS.diary.find(x=>x.id===item.id);const mood=LIFE_V12_MOODS.find(x=>x.id===item.mood);return t&&mood&&t.actions[item.action]!==undefined?'<article class="life-history-item"><small>'+escapeHTML(item.date)+'</small><span> '+readMarkup(mood.name)+' · '+readMarkup(t.actions[item.action])+'</span></article>':'';}).join(''):'<p>還沒有成長日記紀錄，可以先到「我的成長日記」探索。</p>';}
  target.querySelectorAll('[data-family]').forEach(b=>b.onchange=()=>{
   if(b.checked&&!saved.familyDone.includes(b.dataset.family))saved.familyDone.push(b.dataset.family);
   if(!b.checked)saved.familyDone=saved.familyDone.filter(x=>x!==b.dataset.family);
