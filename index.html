@@ -56,6 +56,9 @@ footer{text-align:center;color:#9296ad;font-size:13px;line-height:1.8;margin-top
 @media(max-width:850px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.card:first-child{grid-column:span 2}.art{min-height:160px}.card:first-child .art{min-height:210px}}
 @media(max-width:560px){.wrap{padding:17px 15px 44px}.logo-icon{width:47px;height:47px;font-size:24px;border-radius:15px}.brand{font-size:22px}.pill{font-size:11px;padding:8px 10px}.hero{padding:52px 9px 40px}.hero p{font-size:15px}.star{font-size:21px}.s1{left:5%;top:19px}.s2{right:4%;top:50px}.s3{bottom:12px}.section-head h2{font-size:21px}.cards{display:grid;grid-template-columns:1fr;gap:15px}.card:first-child{grid-column:auto}.card:first-child .art,.art{min-height:166px}.illustration{transform:scale(.85) rotate(-4deg)}.content{padding:20px}.card.coming{display:none}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* Age-group landing layout · desktop 2-column, mobile stack */
+.age-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:start}.age-zone{min-width:0;padding:18px;border:1px solid #e9e7f4;border-radius:28px;background:#fff;box-shadow:0 16px 42px #5757850b}.age-zone.toddlers{background:linear-gradient(160deg,#fff5ed 0%,#fff 29%)}.age-zone.gradeone{background:linear-gradient(160deg,#eaf2ff 0%,#fff 29%)}.age-header{display:flex;align-items:center;gap:12px;margin-bottom:17px;min-height:70px}.age-icon{width:55px;height:55px;flex-shrink:0;display:grid;place-items:center;border-radius:18px;font-size:28px;background:#ffe8d7}.gradeone .age-icon{background:#dce8ff}.age-header h2{font-size:23px;line-height:1.3;margin:0;font-weight:950}.age-header p{font-size:12px;color:var(--muted);line-height:1.65;margin:5px 0 0}.age-count{font-size:11px;color:#7666a4;background:#f1ecff;border-radius:99px;padding:7px 9px;white-space:nowrap;margin-left:auto;font-weight:850;align-self:flex-start}.age-cards{display:grid;grid-template-columns:1fr;gap:14px}.age-cards .card{display:grid;grid-template-columns:128px minmax(0,1fr);border-radius:19px;min-height:172px}.age-cards .art,.age-cards .card:first-child .art{min-height:100%;height:100%;overflow:hidden}.age-cards .illustration{display:flex;flex-direction:column;gap:4px;transform:rotate(-5deg)}.age-cards .tile{width:47px;height:47px;font-size:26px;border-width:2px;border-radius:13px}.age-cards .tile:nth-child(2){transform:rotate(9deg) translateX(10px)}.age-cards .tile:nth-child(3){transform:rotate(-7deg)}.age-cards .number{font-size:10px;padding:5px 8px;top:9px;left:8px}.age-cards .content{padding:15px 14px;gap:7px;min-width:0}.age-cards h3{font-size:18px;line-height:1.4}.age-cards .desc{font-size:12px;line-height:1.62}.age-cards .en{font-size:11px}.age-cards .tag{font-size:10px;padding:5px 8px}.age-cards .cta{font-size:13px;min-height:39px;margin-top:5px}.age-cards .card:first-child{grid-column:auto}@media(max-width:900px){.age-groups{grid-template-columns:1fr;gap:18px}.age-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.age-cards .card{grid-template-columns:1fr}.age-cards .art,.age-cards .card:first-child .art{height:132px;min-height:132px}.age-cards .illustration{flex-direction:row}.age-cards .card:last-child:nth-child(odd){grid-column:span 2}.age-cards .card:last-child:nth-child(odd) .art{height:140px}}@media(max-width:560px){.age-zone{padding:13px;border-radius:22px}.age-header{gap:10px}.age-header h2{font-size:21px}.age-icon{width:49px;height:49px;font-size:24px}.age-count{font-size:10px}.age-cards{grid-template-columns:1fr;gap:12px}.age-cards .card,.age-cards .card:last-child:nth-child(odd){grid-column:auto;grid-template-columns:105px minmax(0,1fr);min-height:160px}.age-cards .art,.age-cards .card:first-child .art,.age-cards .card:last-child:nth-child(odd) .art{height:100%;min-height:100%}.age-cards .illustration{flex-direction:column;gap:3px;transform:scale(.85) rotate(-5deg)}.age-cards .content{padding:13px 11px}.age-cards h3{font-size:16px}.age-cards .desc{font-size:11px}.age-cards .tag{font-size:10px}.age-cards .cta{min-height:40px;font-size:12px}}@media(max-width:375px){.age-cards .card{grid-template-columns:85px minmax(0,1fr)}.age-cards .tile{width:42px;height:42px;font-size:24px}.age-cards .content{padding:11px 9px}.age-cards h3{font-size:15px}}
 </style></head>
 <body>
 <main class="wrap">
@@ -69,14 +72,14 @@ footer{text-align:center;color:#9296ad;font-size:13px;line-height:1.8;margin-top
 <h1 id="welcome">小小探索家，<br><span>一起玩遊戲！</span></h1>
 <p>每一天都能發現新知識。<br>挑一個喜歡的小遊戲，開始今天的冒險吧！</p>
 </section>
-<section aria-labelledby="games-title">
-<div class="section-head"><div><h2 id="games-title">🎮 選一個遊戲</h2><p>點選下方卡片就能開始玩！</p></div><div class="count">5 個遊戲上線中</div></div>
-<div class="cards">
-<a class="card available" href="./apps/word-explorer/" aria-label="開始玩小小認字探險家">
+<section aria-labelledby="games-title"><div class="section-head"><div><h2 id="games-title">🎮 選一個遊戲</h2><p>先找到適合的年齡樂園，再開始冒險！</p></div><div class="count">5 個遊戲上線中</div></div><div class="age-groups"><section class="age-zone toddlers" aria-labelledby="toddlers-title"><header class="age-header"><div class="age-icon" aria-hidden="true">🧸</div><div><h2 id="toddlers-title">幼幼探索樂園</h2><p>2–3 歲｜聽一聽、認一認、動動手</p></div><span class="age-count">2 款遊戲</span></header><div class="age-cards"><a class="card available" href="./apps/word-explorer/" aria-label="開始玩小小認字探險家">
 <div class="art word"><span class="number">GAME 01</span><div class="illustration" aria-hidden="true"><span class="tile">🚒</span><span class="tile">🍎</span><span class="tile">🥕</span></div></div>
 <div class="content"><h3>小小認字探險家</h3><div class="en">Word Explorer</div><p class="desc">每題自動朗讀中文與英文，六張圖片選出答案！新增 10 種水中生物，共八大分類，包含常見動物、交通工具、水果等。</p><div class="tags"><span class="tag">📚 中英雙語</span><span class="tag">🖼️ 79 張圖卡</span><span class="tag">🔊 中英自動朗讀</span></div><div class="cta">開始玩遊戲 →</div></div>
 </a>
-<a class="card available" href="./apps/math-grade1/" aria-label="開始玩一年級數學大冒險">
+<a class="card available" href="./apps/little-helper/" aria-label="開始玩小小幫手波波的日常冒險">
+<div class="art" style="background:linear-gradient(135deg,#fff0d9,#def5e8)"><span class="number">GAME 04</span><div class="illustration" aria-hidden="true"><span class="tile">🐻</span><span class="tile">🧸</span><span class="tile">🧺</span></div></div>
+<div class="content"><h3>小小幫手：波波的日常冒險</h3><div class="en">Little Helper · Listen & Play</div><p class="desc">適合約 3 歲幼兒，跟著波波聽中文指令，動手選取和放置物品！四大場景共 40 個任務，新增海洋、車輛、兩步驟挑戰、智慧難度和家長紀錄。</p><div class="tags"><span class="tag">🎧 聽力理解</span><span class="tag">🐻 40 個任務</span><span class="tag">🧠 智慧難度</span></div><div class="cta">和波波一起幫忙 →</div></div>
+</a></div></section><section class="age-zone gradeone" aria-labelledby="gradeone-title"><header class="age-header"><div class="age-icon" aria-hidden="true">🎒</div><div><h2 id="gradeone-title">小一闖關學院</h2><p>國小一年級｜學習、思考、勇敢挑戰</p></div><span class="age-count">3 款遊戲</span></header><div class="age-cards"><a class="card available" href="./apps/math-grade1/" aria-label="開始玩一年級數學大冒險">
 <div class="art" style="background:linear-gradient(135deg,#fff0d8,#e2f5e9)"><span class="number">GAME 02</span><div class="illustration" aria-hidden="true"><span class="tile">🔢</span><span class="tile">🪙</span><span class="tile">🕒</span></div></div>
 <div class="content"><h3>一年級數學大冒險</h3><div class="en">Grade 1 Math Adventure</div><p class="desc">85 題臺灣小一數學，包含 15 題進階題與新增的 20 題高階挑戰；保留右側直排注音、10 題隨機測驗與 100 分評分。</p><div class="tags"><span class="tag">✏️ 一年級數學</span><span class="tag">⭐ 85 題</span><span class="tag">📖 注音輔助</span></div><div class="cta">開始數學冒險 →</div></div>
 </a>
@@ -84,24 +87,10 @@ footer{text-align:center;color:#9296ad;font-size:13px;line-height:1.8;margin-top
 <div class="art" style="background:linear-gradient(135deg,#e9e4ff,#dff6ec)"><span class="number">GAME 03</span><div class="illustration" aria-hidden="true"><span class="tile">🔤</span><span class="tile">🐶</span><span class="tile">🎧</span></div></div>
 <div class="content"><h3>小一英語冒險島</h3><div class="en">Grade 1 English Adventure</div><p class="desc">ABC 字母、68 個生活單字、20 組自然對話與進階英語挑戰，透過聽音選圖快樂學英文！保留隨機十題滿分 100 分測驗。</p><div class="tags"><span class="tag">🔤 26 個字母</span><span class="tag">🎧 68 個生活單字</span><span class="tag">🏆 10 題測驗</span></div><div class="cta">開始英語冒險 →</div></div>
 </a>
-<a class="card available" href="./apps/little-helper/" aria-label="開始玩小小幫手波波的日常冒險">
-<div class="art" style="background:linear-gradient(135deg,#fff0d9,#def5e8)"><span class="number">GAME 04</span><div class="illustration" aria-hidden="true"><span class="tile">🐻</span><span class="tile">🧸</span><span class="tile">🧺</span></div></div>
-<div class="content"><h3>小小幫手：波波的日常冒險</h3><div class="en">Little Helper · Listen & Play</div><p class="desc">適合約 3 歲幼兒，跟著波波聽中文指令，動手選取和放置物品！四大場景共 40 個任務，新增海洋、車輛、兩步驟挑戰、智慧難度和家長紀錄。</p><div class="tags"><span class="tag">🎧 聽力理解</span><span class="tag">🐻 40 個任務</span><span class="tag">🧠 智慧難度</span></div><div class="cta">和波波一起幫忙 →</div></div>
-</a>
 <a class="card available" href="./apps/life-grade1/" aria-label="開始玩小一生活探索樂園">
 <div class="art" style="background:linear-gradient(135deg,#e0f5e8,#e8f3ff)"><span class="number">GAME 05</span><div class="illustration" aria-hidden="true"><span class="tile">🏫</span><span class="tile">🤝</span><span class="tile">🌬️</span></div></div>
 <div class="content"><h3>小一生活探索樂園</h3><div class="en">Grade 1 Life Discovery Adventure</div><p class="desc">小一生活課七大互動遊戲！新增植物小園丁、水資源守護者及創意玩具工坊，從觀察、預測到動手實驗，共 105 個任務。支援右側直排注音及中文朗讀。</p><div class="tags"><span class="tag">🌱 7 款遊戲</span><span class="tag">🧩 105 個任務</span><span class="tag">📖 右側注音</span></div><div class="cta">開始生活探索 →</div></div>
-</a>
-<div class="card coming" aria-label="未來會推出更多遊戲">
-<div class="art more"><span class="number">COMING SOON</span><span class="more-symbol" aria-hidden="true">🧩</span></div>
-<div class="content"><h3>新的冒險準備中</h3><div class="en">More fun to come</div><p class="desc">下一個好玩的遊戲，將在這裡與你見面。</p><div class="cta">敬請期待 ✨</div></div>
-</div>
-<div class="card coming" aria-label="預留未來遊戲位置">
-<div class="art more two"><span class="number">COMING SOON</span><span class="more-symbol" aria-hidden="true">🎨</span></div>
-<div class="content"><h3>更多遊戲陸續加入</h3><div class="en">Keep exploring</div><p class="desc">一起認字、動動腦，探索更多小小世界。</p><div class="cta">敬請期待 ✨</div></div>
-</div>
-</div>
-</section>
+</a></div></section></div></section>
 <footer>用遊戲陪伴每一次成長 🌱<br>KidApp · Play, Learn & Grow</footer>
 </main>
 </body></html>
