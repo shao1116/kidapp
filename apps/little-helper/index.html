@@ -187,6 +187,7 @@ function stopVoice(){spokenVersion++;if(supported)try{speechSynthesis.cancel()}c
 function say(text){if(!supported)return;stopVoice();try{const u=new SpeechSynthesisUtterance(text);u.lang='zh-TW';u.rate=.84;u.pitch=1.05;const a=speechSynthesis.getVoices();u.voice=a.find(x=>x.lang.toLowerCase()==='zh-tw')||a.find(x=>x.lang.toLowerCase().startsWith('zh'))||null;speechSynthesis.speak(u)}catch{}}
 function prepare(scene){stopVoice();chosenScene=scene;chosenLevel='mix';chosenCount=5;$('setupName').textContent=SCENES[scene].label;renderSettings();show('setupScreen')}
 function renderSettings(){
+ document.querySelector('[data-count="10"]').textContent=chosenScene==='vehicles'?'⭐ 挑戰 10 個任務':'⭐ 玩完整個場景';
  for(const b of document.querySelectorAll('[data-level]')){const allowed=b.dataset.level==='mix'||TASKS.some(t=>t.scene===chosenScene&&t.level===Number(b.dataset.level));b.disabled=!allowed;const active=b.dataset.level===String(chosenLevel);b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))}
  for(const b of document.querySelectorAll('[data-count]')){const on=Number(b.dataset.count)===chosenCount;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));b.disabled=chosenLevel!=='mix'}
  $('levelDesc').textContent=chosenLevel==='mix'?'混合練習生活指令，可依孩子的表現調整下一題難度。':chosenLevel==='1'?'聽懂物品名稱，找到後點一下。':chosenLevel==='2'?'聽懂物品與放置位置。':chosenLevel==='3'?'辨認特徵及位置。':'先聽完整指令，再依序完成兩個動作。';
