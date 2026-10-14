@@ -215,7 +215,45 @@ function testWind(t){
 function finish(){let m=MODES.find(x=>x.id===mode);stopVoice();resetAudio();$('missionQuestion').textContent='';$('introText').textContent='';$('visualArea').innerHTML='';$('choiceArea').innerHTML='';$('feedback').textContent='';$('hintBtn').hidden=true;$('nextBtn').hidden=true;$('trackFill').style.width='100%';$('missionType').textContent='🏆 探索完成';$('doneCount').textContent=`⭐ ${saved.done[mode].length} / ${TASKS[mode].length}`;$('visualArea').innerHTML=`<div class="finished"><div class="trophy">🏆 🌈</div><h2>${m.name} 完成啦！</h2><p>今天又多學會了好多生活中的小發現。<br>下一次可以再挑戰，或和家人一起去實際觀察！</p><button type="button" class="primary" id="restart">從頭再玩一次 ↻</button><button type="button" class="small-btn" id="chooseOther">選別的遊戲 →</button></div>`;$('restart').onclick=()=>{index=0;renderMission()};$('chooseOther').onclick=goHome;}
 // 不使用外部音效檔，透過 Web Audio 產生短小、低音量的示意音。
 function playSound(name){stopVoice();resetAudio();const CTX=window.AudioContext||window.webkitAudioContext;if(!CTX){feedback('這個瀏覽器無法播放模擬音效，可以請大人協助換個裝置。','retry');return;}try{audioCtx=audioCtx||new CTX();if(audioCtx.state==='suspended')audioCtx.resume();}catch{feedback('這個裝置暫時無法播放聲音，請先檢查音量。','retry');return;}let ctx=audioCtx,now=ctx.currentTime+.03;function tone(freq,start,dur,volume=.12,type='sine',freqEnd){let o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.setValueAtTime(freq,now+start);if(freqEnd)o.frequency.exponentialRampToValueAtTime(freqEnd,now+start+dur);g.gain.setValueAtTime(.0001,now+start);g.gain.exponentialRampToValueAtTime(volume,now+start+.015);g.gain.exponentialRampToValueAtTime(.0001,now+start+dur);o.connect(g).connect(ctx.destination);o.start(now+start);o.stop(now+start+dur+.03);activeSounds.push(o)}function noise(start,dur,vol=.06,cutoff=950){let len=Math.round(ctx.sampleRate*dur),buffer=ctx.createBuffer(1,len,ctx.sampleRate),data=buffer.getChannelData(0);for(let i=0;i<len;i++)data[i]=(Math.random()*2-1)*.75;let src=ctx.createBufferSource(),filter=ctx.createBiquadFilter(),gain=ctx.createGain();src.buffer=buffer;filter.type='lowpass';filter.frequency.value=cutoff;gain.gain.setValueAtTime(.0001,now+start);gain.gain.linearRampToValueAtTime(vol,now+start+.07);gain.gain.linearRampToValueAtTime(.0001,now+start+dur);src.connect(filter).connect(gain).connect(ctx.destination);src.start(now+start);src.stop(now+start+dur);activeSounds.push(src)}
- switch(name){case'bell':for(let i=0;i<3;i++){tone(890,i*.55,.37,.13);tone(1335,i*.55,.30,.025)}break;case'bird':for(let i=0;i<5;i++){tone(1450,.13+i*.33,.15,.12,'sine',2050);tone(1850,.29+i*.33,.10,.09,'sine',1200)}break;case'rain':noise(0,2.2,.08,2600);for(let i=0;i<9;i++)tone(420+i*67,i*.22,.065,.012);break;case'wind':noise(0,2.4,.14,330);tone(190,.2,2,.018,'sine',155);break;case'water':for(let i=0;i<7;i++)tone(860,i*.32,.22,.085,'sine',390);break;case'knock':for(let i=0;i<4;i++){tone(185,i*.48,.12,.19,'triangle',75);noise(i*.48,.09,.04,420)}break;case'step':for(let i=0;i<5;i++){tone(115,i*.41,.16,.14,'triangle',65);noise(i*.41,.12,.027,260)}break;}}
+
+ // Drips: short pitched plinks with a tiny splash, deliberately irregular (not a musical beep).
+ function drip(t,scale=1){
+  const at=now+t,osc=ctx.createOscillator(),gain=ctx.createGain();
+  osc.type='sine';osc.frequency.setValueAtTime(620+scale*95,at);
+  osc.frequency.exponentialRampToValueAtTime(950+scale*145,at+.045);
+  gain.gain.setValueAtTime(.0001,at);gain.gain.exponentialRampToValueAtTime(.12*scale,at+.004);
+  gain.gain.exponentialRampToValueAtTime(.0001,at+.165);
+  osc.connect(gain).connect(ctx.destination);osc.start(at);osc.stop(at+.175);activeSounds.push(osc);
+  // A very short bright water impact, never a long sine sweep.
+  const length=Math.max(1,Math.round(ctx.sampleRate*.052)),buffer=ctx.createBuffer(1,length,ctx.sampleRate);
+  const samples=buffer.getChannelData(0);for(let i=0;i<length;i++)samples[i]=(Math.random()*2-1)*.7;
+  const splash=ctx.createBufferSource(),band=ctx.createBiquadFilter(),env=ctx.createGain();
+  splash.buffer=buffer;band.type='bandpass';band.frequency.value=2300;band.Q.value=.85;
+  env.gain.setValueAtTime(.0001,at);env.gain.linearRampToValueAtTime(.016*scale,at+.003);
+  env.gain.exponentialRampToValueAtTime(.0001,at+.048);
+  splash.connect(band).connect(env).connect(ctx.destination);
+  splash.start(at);splash.stop(at+.052);activeSounds.push(splash);
+ }
+ // Steps: alternating heel impact followed by a soft shoe scuff. No repeated tonal knocks.
+ function stepSound(t,side){
+  const pan=(source)=>{if(typeof ctx.createStereoPanner==='function'){
+   const stereo=ctx.createStereoPanner();stereo.pan.value=side;source.connect(stereo).connect(ctx.destination);
+  }else source.connect(ctx.destination);};
+  const layer=(offset,duration,frequency,volume,type)=>{
+   const at=now+t+offset,count=Math.max(1,Math.round(ctx.sampleRate*duration));
+   const buffer=ctx.createBuffer(1,count,ctx.sampleRate),samples=buffer.getChannelData(0);
+   for(let i=0;i<count;i++)samples[i]=(Math.random()*2-1)*.7;
+   const source=ctx.createBufferSource(),filter=ctx.createBiquadFilter(),env=ctx.createGain();
+   source.buffer=buffer;filter.type=type;filter.frequency.value=frequency;
+   env.gain.setValueAtTime(.0001,at);env.gain.linearRampToValueAtTime(volume,at+.009);
+   env.gain.exponentialRampToValueAtTime(.0001,at+duration-.003);
+   source.connect(filter).connect(env);pan(env);
+   source.start(at);source.stop(at+duration);activeSounds.push(source);
+  };
+  layer(0,.145,460,.15,'lowpass'); // cushioned heel hitting the ground
+  layer(.073,.185,1350,.065,'highpass'); // short, airy shoe-sole scuff
+ }
+ switch(name){case'bell':for(let i=0;i<3;i++){tone(890,i*.55,.37,.13);tone(1335,i*.55,.30,.025)}break;case'bird':for(let i=0;i<5;i++){tone(1450,.13+i*.33,.15,.12,'sine',2050);tone(1850,.29+i*.33,.10,.09,'sine',1200)}break;case'rain':noise(0,2.2,.08,2600);for(let i=0;i<9;i++)tone(420+i*67,i*.22,.065,.012);break;case'wind':noise(0,2.4,.14,330);tone(190,.2,2,.018,'sine',155);break;case'water':for(const [i,t] of [.07,.41,.89,1.19,1.73,2.05].entries())drip(t,[.86,1.04,.9,1.1,.96,1.01][i]);break;case'knock':for(let i=0;i<4;i++){tone(185,i*.48,.12,.19,'triangle',75);noise(i*.48,.09,.04,420)}break;case'step':for(const [i,t] of [.09,.58,1.07,1.61,2.13].entries())stepSound(t,i%2?.37:-.37);break;}}
 $('bopoToggle').onclick=()=>{saved.bopo=!saved.bopo;persist();applyToggles()};$('voiceToggle').onclick=()=>{saved.voice=!saved.voice;if(!saved.voice)stopVoice();persist();applyToggles()};$('readAgain').onclick=()=>{if(mode&&current())speak(current().q)};$('returnMenu').onclick=goHome;$('hintBtn').onclick=()=>{if(mode&&current()&&!solved)feedback('💡 '+current().hint,'')};$('nextBtn').onclick=()=>{if(!solved)return;if(index>=TASKS[mode].length-1){finish();return}index++;renderMission()};$('resetProgress').onclick=()=>{if(!confirm('要清除這個瀏覽器的生活探索紀錄嗎？這個動作無法復原。'))return;for(const m of MODES)saved.done[m.id]=[];persist();updateHome()};
 applyToggles();updateHome();scene('homeScene');
 </script></body></html>
