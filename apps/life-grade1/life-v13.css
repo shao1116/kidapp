@@ -1,0 +1,85 @@
+/* KidApp Life v1.3 - fully local SVG interactive lessons */
+.life13-zone{margin:14px auto 22px;max-width:890px;border:2px solid #d6e8dd;border-radius:23px;padding:18px;background:linear-gradient(165deg,#fffdf6,#ebf8ee);box-shadow:0 8px 20px #527c6220;overflow:hidden}
+.life13-zone button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.life13-zone button:focus-visible{outline:3px solid #449876;outline-offset:3px}
+.life13-head{font-size:17px;text-align:center;font-weight:900;color:#36785e;margin-bottom:16px}
+.life13-sparkle{font-size:25px;color:#db9b4c}
+.life13-zone .life13-svg{width:100%;max-height:126px;display:block;object-fit:contain}
+.life13-card{display:flex;align-items:center;flex-direction:column;justify-content:center;min-width:0;min-height:155px;padding:8px 5px;gap:5px;border:3px solid #d5e3da;background:#fff;border-radius:18px;box-shadow:0 4px 0 #e0e8df;color:#344f4b;font-size:16px;font-weight:900;line-height:1.7;overflow-wrap:anywhere}
+.life13-card:hover,.life13-card:focus-visible{background:#f5fff3;border-color:#78b99d}
+.life13-card.picked,.life13-zone button.picked{border-color:#2d9270!important;background:#dcf6e8!important;box-shadow:0 0 0 2px #a3dac1}
+.life13-card.matched{border-color:#5ba97d;background:#e5f8e8;opacity:.75}
+.life13-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:9px auto}
+.life13-columns{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.life13-columns>div{min-width:0}
+.life13-columns>div>b{display:block;color:#60816d;text-align:center;font-size:15px}
+.life13-columns .life13-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.life13-columns .life13-card{min-height:134px}
+.life13-status{background:#fff;border:2px dashed #b7d9be;padding:12px;border-radius:14px;margin-top:14px;color:#4d725c;font-size:15px;font-weight:850;text-align:center;line-height:1.85}
+.life13-links{display:flex;flex-wrap:wrap;gap:7px}
+.life13-pill{border-radius:40px;background:#d7f3df;padding:6px 13px;color:#367d58;font-size:14px;font-weight:900}
+.life13-seq-picked{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-bottom:12px}
+.life13-slot{min-width:0;min-height:112px;border:2px dashed #9dcab0;border-radius:15px;background:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:4px;font-weight:800;color:#547964}
+.life13-slot svg{height:80px}
+.life13-empty{display:grid;place-items:center;font-size:30px;color:#9ebfa9}
+.life13-seq-cards{grid-template-columns:repeat(4,minmax(0,1fr))}
+.life13-seq-cards .life13-card{min-height:125px}
+.life13-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}
+.life13-actions button{border:2px solid #95c6a6;border-radius:14px;min-height:48px;padding:9px 16px;background:white;font-weight:900;color:#397b5d;box-shadow:0 2px 0 #d4e6d8}
+.life13-actions button.primary{background:#3e9973;border-color:#3e9973;color:white}
+.life13-cutaway{display:flex;justify-content:center;align-items:center;flex-direction:column;gap:5px;margin:8px auto 18px;padding:9px;background:#e7f2e6;border-radius:20px;max-width:420px;font-size:16px;color:#57745f;font-weight:800}
+.life13-cutaway svg{width:180px;height:154px}
+.life13-bee-scene{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr) minmax(0,1fr);gap:6px;align-items:end;padding:13px 7px;border-radius:18px;background:linear-gradient(#f4faff,#e8f9ed)}
+.life13-flower{border:2px solid #c7dfc9;border-radius:15px;background:white;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 3px;font-weight:900;color:#486c56}
+.life13-flower svg{width:100%;max-width:160px}
+.life13-bee-center{align-self:center;text-align:center;font-size:13px;color:#6b7057;font-weight:900}
+.life13-bee{width:100%;max-width:134px}
+.life13-experiment{background:white;border-radius:16px;padding:14px}
+.life13-pots{display:flex;justify-content:center;align-items:center;gap:14px;font-weight:900;color:#567a63}
+.life13-pots svg{max-width:126px;min-width:0}
+.life13-ex-row{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #dfebe1;padding:10px 4px;font-weight:900}
+.life13-toggle,.life13-selector button,.life13-option-list button{background:#fff;border:2px solid #a6cbb2;border-radius:13px;min-height:48px;padding:10px 13px;font-weight:850;color:#446a54}
+.life13-two-pots{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.life13-pot-button{padding:12px 6px;border:3px solid #cde4d4;border-radius:19px;background:#fff;display:flex;flex-direction:column;align-items:center;font-size:16px;font-weight:900;color:#51735a}
+.life13-pot-svg{width:100%;max-width:220px}
+.life13-rain-result{margin:10px auto;text-align:center;color:#477258;font-weight:900}
+.life13-rain-pic{display:flex;flex-direction:column;align-items:center;background:#e2f4ff;border-radius:18px;padding:8px}
+.life13-rain-pic svg{max-width:170px;width:100%}
+.life13-drips{font-size:22px;color:#4ca6d4}
+.life13-lantern-preview{max-width:450px;margin:10px auto}
+.life13-lantern-preview svg{width:100%;border-radius:16px}
+.life13-selector{margin:12px auto;max-width:650px}
+.life13-selector>b{display:block;color:#527261;margin-bottom:7px;font-size:15px}
+.life13-selector>div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.life13-story-card{border:4px solid #f3d59d;background:#fff8e8;max-width:420px;min-height:170px;margin:0 auto 18px;padding:12px;border-radius:19px;text-align:center;color:#8b5a32}
+.life13-story-card strong{display:block;font-size:23px;margin:8px auto}
+.life13-story-card p{font-size:17px;font-weight:900}
+.life13-story-sky{font-size:28px;letter-spacing:14px;color:#c39a4f}
+.life13-coin-track{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px;margin:4px auto 15px}
+.life13-coin{display:grid;place-items:center;width:100%;max-width:52px;aspect-ratio:1;border-radius:50%;border:3px solid #dda83e;background:#ffe29d;color:#9d762b;font-size:20px;font-weight:900}
+.life13-coin.used{opacity:.3;background:#e3e8e1;border-color:#becaba}
+.life13-jar-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.life13-jar{min-height:150px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;border:3px solid #c8deb8;border-radius:17px;background:linear-gradient(#f6fffb,#deeee1);color:#45745b}
+.life13-jar-icon{font-size:25px;border-radius:50%;background:#ffe7a1;padding:4px 10px}
+.life13-jar strong{font-size:15px}
+.life13-jar b{font-size:27px}
+.life13-boat{max-width:560px;margin:auto;transition:transform .23s ease}
+.life13-boat svg{width:100%;display:block}
+.life13-beats{display:flex;justify-content:center;gap:14px}
+.life13-beats span{width:45px;height:45px;display:grid;place-items:center;border-radius:50%;border:2px solid #bed4c2;background:#fff;font-weight:900;color:#55765b}
+.life13-beats span.hit{background:#f4d787;border-color:#d2a143;color:#855d23}
+.life13-moon-svg{max-width:340px;margin:auto}
+.life13-moon-svg svg{width:100%}
+.life13-dough-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.life13-dough{background:white;border:2px solid #edd6b8;border-radius:15px;min-height:125px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:#926e51;font-weight:850}
+.life13-dough-shape{display:grid;place-items:center;width:62px;height:58px;background:#f8e1d0;border:4px solid #d9b494;border-radius:33% 48% 35% 46%;font-size:40px;color:#bd896f;line-height:1}
+.life13-dough.round .life13-dough-shape{border-radius:50%;background:#f9f0e6;color:#fafafa;text-shadow:0 2px 3px #bc9d91}
+.life13-bowl{display:grid;place-items:center;min-height:140px;margin:12px auto;background:#e5f3f5;border-radius:24px;max-width:420px;font-size:75px;color:#569cb2;line-height:1}
+.life13-bowl span{font-size:40px;color:#eed8c1;text-shadow:0 2px 3px #b49c85}
+.life13-bowl span span{display:block}
+.life13-culture-scene{max-width:600px;margin:0 auto 14px;background:white;border-radius:18px;text-align:center;padding:8px;font-weight:900;color:#566a5a}
+.life13-culture-scene svg{width:100%}
+.life13-option-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.life13-zone button:disabled{cursor:default}
+@media(max-width:650px){.life13-zone{padding:12px;border-radius:19px}.life13-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.life13-card{min-height:142px;font-size:15px}.life13-columns{gap:7px}.life13-columns .life13-grid{grid-template-columns:1fr}.life13-columns .life13-card{min-height:107px;flex-direction:row;text-align:left;padding:5px}.life13-columns .life13-card .life13-svg{width:46%;min-width:0;max-height:85px}.life13-seq-picked{gap:4px}.life13-seq-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.life13-slot{min-height:85px;font-size:12px;text-align:center}.life13-slot svg{height:65px}.life13-coin-track{grid-template-columns:repeat(5,minmax(0,1fr))}.life13-jar{min-height:120px}.life13-jar strong{font-size:13px}.life13-jar-icon{font-size:19px}.life13-option-list{grid-template-columns:1fr}.life13-dough-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.life13-dough{min-height:115px}.life13-experiment{padding:9px}}
+@media(max-width:390px){.life13-card{font-size:13px;min-height:122px}.life13-status{padding:8px;font-size:13px}.life13-head{font-size:15px}.life13-bee-scene{grid-template-columns:1fr 1fr}.life13-bee-center{grid-column:1/-1;grid-row:1}.life13-flower svg{max-height:118px}.life13-actions button{font-size:13px;padding:8px 12px}.life13-jar strong{font-size:12px}.life13-selector button{font-size:14px;padding:8px}}
