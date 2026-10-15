@@ -72,3 +72,50 @@
 .water14-stage{border-width:2px}
 }
 @media(prefers-reduced-motion:reduce){.water14-lab button{transition:none}}
+
+/* v1.3.3 iPhone Safari hotfix: annotated SVG and proper per-character bopomofo line breaks.
+   A flex container makes EVERY .bopo character a separate flex item and prevents
+   proper sentence wrapping. Give the letters an inline formatting context instead. */
+.water14-lab,.water14-lab *{box-sizing:border-box}
+.water14-lab{min-width:0;max-width:100%;overflow:hidden}
+.water14-stage{width:100%;min-width:0;isolation:isolate}
+.water14-stage .water14-svg{display:block;width:100%;height:auto;max-width:100%;min-height:0;max-height:none;aspect-ratio:620/290}
+.water14-scene-caption{font-size:clamp(13px,3.4vw,16px);font-weight:900;line-height:2;max-width:100%;text-align:center;color:#357387;background:#fff;border-radius:14px;padding:5px 12px;margin:0 0 12px;overflow-wrap:anywhere}
+.water14-choice-grid{min-width:0;max-width:100%}
+.water14-choice-grid>.water14-choice,
+.water14-pair-grid .water14-pair,
+.water14-lab .water14-source{
+  display:block;
+  min-width:0;width:100%;height:auto;white-space:normal;
+  word-break:normal;overflow-wrap:anywhere;
+  line-height:2;text-align:center;
+}
+.water14-lab .water14-choice,
+.water14-lab .water14-pair,
+.water14-lab .water14-source{font-size:clamp(14px,2.4vw,17px)}
+.water14-lab .water14-choice-num{display:inline-grid;vertical-align:middle;margin-right:6px}
+.water14-lab .water14-mini-art{display:block;min-width:0;width:56px;height:auto;margin:3px auto 5px;font-size:28px}
+.water14-lab .water14-source-icon{display:block;margin:2px auto 7px}
+.water14-lab .bopo{display:inline-flex;white-space:nowrap;vertical-align:middle;max-width:100%}
+.water14-lab .water14-choice:disabled{opacity:1}
+.water14-lab .water14-choice.water14-done:disabled{opacity:.68}
+.water14-feedback{overflow-wrap:anywhere;word-break:normal}
+.water14-pair-grid,.water14-source-grid{min-width:0}
+.water14-pledge-foot>*{min-width:0;max-width:100%}
+@media(max-width:650px){
+  .water14-choice-grid{grid-template-columns:minmax(0,1fr);gap:10px}
+  .water14-lab .water14-choice{padding:10px 10px;min-height:57px;font-size:16px}
+  .water14-lab .water14-pair{padding:10px 5px;font-size:14px}
+  .water14-pair-grid{gap:10px}
+  .water14-lab .water14-source{padding:8px 3px;min-height:135px;font-size:12px}
+  .water14-lab .water14-action{max-width:100%;font-size:14px;line-height:2}
+  .water14-title{font-size:16px}
+}
+@media(max-width:385px){
+  .water14-lab .water14-choice{font-size:15px}
+  .water14-pair-grid{gap:7px}
+  .water14-lab .water14-pair{font-size:12px}
+  .water14-source-grid{grid-template-columns:minmax(0,1fr)}
+  .water14-lab .water14-source{min-height:78px;padding:8px 6px}
+  .water14-lab .water14-source-icon{font-size:30px;display:inline-block;margin-right:9px}
+}
