@@ -1,0 +1,74 @@
+/* v1.3.2 Water Rescue Team: lively, accessible scenario-based learning.
+   All art is original inline SVG; no external data or images. */
+.water14-lab{border:2px solid #bcdcec;background:linear-gradient(150deg,#f4fcff 0%,#edf9f4 68%,#fff8ea 100%);border-radius:25px;padding:17px;max-width:900px;margin:10px auto 24px;box-shadow:0 9px 23px #4d8fae23;overflow:hidden}
+.water14-title{text-align:center;color:#2b7488;font-size:19px;font-weight:900;line-height:1.8;letter-spacing:.03em;margin-bottom:8px}
+.water14-stage{position:relative;max-width:810px;margin:0 auto 14px;background:#fff;border:3px solid #c3e3e9;border-radius:21px;overflow:hidden;box-shadow:0 5px 13px #5b9db425}
+.water14-svg{display:block;width:100%;height:auto;max-height:335px}
+.water14-lab button{font:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;min-width:0;overflow-wrap:anywhere}
+.water14-lab button:focus-visible{outline:3px solid #158eac;outline-offset:3px}
+.water14-lab button:disabled{cursor:default;opacity:.64}
+.water14-feedback{border:2px dashed #83c3d0;border-radius:15px;padding:11px 13px;margin-top:15px;background:#fff;color:#377387;font-weight:850;line-height:2;text-align:center;font-size:15px}
+.water14-choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:12px auto}
+.water14-choice{display:flex;align-items:center;justify-content:center;gap:8px;border:3px solid #c5dee5;border-radius:17px;background:#fff;padding:15px 12px;min-height:76px;box-shadow:0 4px 0 #d8e9eb;color:#30556a;font-size:16px;font-weight:900;line-height:1.8;text-align:center;transition:background .16s,border-color .16s,transform .16s}
+.water14-choice:not(:disabled):active,.water14-action:active,.water14-source:active,.water14-pair:active{transform:scale(.98)}
+.water14-choice:hover:not(:disabled),.water14-source:hover,.water14-pair:hover{background:#eafffd;border-color:#64b9cb}
+.water14-choice.selected,.water14-pair.selected,.water14-source.selected{background:#e0f7e9;border-color:#3aa882;box-shadow:0 4px 0 #b5d7c4}
+.water14-choice.water14-done,.water14-pair.water14-done{background:#d9f4e2;border-color:#54b18b;color:#2b805a}
+.water14-choice-num{display:grid;place-items:center;flex:none;min-width:32px;height:32px;border-radius:50%;background:#ddf0fb;color:#377c9b;font-size:17px}
+.water14-meter{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin:8px 0 13px;padding:9px 12px;background:#e1f4f9;border-radius:15px;color:#2f758a;font-weight:900}
+.water14-reset,.water14-action{border:2px solid #a2ccda;border-radius:13px;padding:11px 15px;min-height:49px;color:#286e87;background:#fff;font-weight:900;box-shadow:0 2px 0 #bedce2}
+.water14-action.good{border-color:#51ac90;background:#3e9a83;color:white;box-shadow:0 3px 0 #2c7d68}
+.water14-action:disabled{background:#d6e7e4;color:#668c85}
+.water14-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin:14px auto}
+.water14-fill-meter{display:flex;flex-direction:column;align-items:center;gap:8px;color:#336a82}
+.water14-level-track{display:flex;gap:7px;justify-content:center}
+.water14-level-track span{display:block;width:32px;height:15px;border:2px solid #b4d6e5;border-radius:8px;background:white}
+.water14-level-track span.filled{background:#56b9d9;border-color:#3fa3c9}
+.water14-bubbles{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;margin:13px 0}
+.water14-pill{border-radius:30px;padding:8px 16px;background:#dbf6e7;color:#377e5d;font-size:15px;font-weight:900}
+.water14-pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.water14-pair-grid>div{display:grid;gap:10px;align-content:start}
+.water14-pair-grid>div>b{color:#39788c;font-size:15px;text-align:center}
+.water14-pair{display:flex;gap:10px;align-items:center;justify-content:center;background:#fff;border:3px solid #c6dce1;border-radius:16px;min-height:94px;padding:12px;color:#30586e;font-weight:900;font-size:16px;line-height:1.7}
+.water14-mini-art{display:grid;place-items:center;font-size:35px;min-width:52px;height:52px;border-radius:12px;background:#e4f7f8}
+.water14-route-label{color:#39738b;font-weight:900;text-align:center;margin:10px auto}
+.water14-route{max-width:410px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:10px auto}
+.water14-tile{display:grid;place-items:center;aspect-ratio:1;border:3px solid #a8cbb9;border-radius:15px;background:#edf7e8;font-size:29px;box-shadow:0 3px 0 #c4d9c3;color:#367454;font-weight:900}
+.water14-tile.wet{background:#a4deeb;border-color:#71bdd5;color:#3689a2}
+.water14-tile.current{background:#e5d89c;border-color:#c9a963}
+.water14-tile.goal{background:#cdebc0;border-color:#80bf70}
+.water14-tile.visited{background:#c1e8cf;border-color:#77c396}
+.water14-source-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.water14-source{border:3px solid #c6dce5;background:#fff;border-radius:20px;min-height:176px;padding:15px 9px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;color:#34647c;font-size:15px;font-weight:900;text-align:center}
+.water14-source-icon{font-size:57px;line-height:1.5}
+.water14-reuse-card{padding:16px 14px;min-height:150px;border-radius:19px;background:#fff;border:3px solid #aed9e5;color:#346c82;text-align:center}
+.water14-reuse-card strong{font-size:19px}
+.water14-reuse-card p{font-size:16px;line-height:1.9;font-weight:850}
+.water14-case-num{display:inline-block;border-radius:30px;padding:3px 12px;background:#d2f0f6;margin-bottom:10px;font-size:13px}
+.water14-win{font-size:21px;color:#4a996e;font-weight:900;padding:27px 6px}
+.water14-pledge{text-align:center;background:#fff;border-radius:19px;padding:7px 10px;margin-bottom:15px;font-size:16px;font-weight:900;color:#587569}
+.water14-badge{font-size:80px;line-height:1.5}
+.water14-pledge-foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:11px;margin:15px auto;padding:10px;border-radius:14px;background:#e1f4e7;color:#35825b;font-weight:900}
+#water14DetectNext:not([hidden]),#water14HazardFinal:not([hidden]){padding:9px;margin:12px 0;border:2px dashed #7bbdc9;background:#edf9f6;border-radius:17px}
+#water14DetectNext[hidden],#water14HazardFinal[hidden]{display:none!important}
+@media(max-width:650px){
+.water14-lab{border-radius:19px;padding:10px;margin:8px auto 16px}
+.water14-title{font-size:16px}
+.water14-choice-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.water14-choice{font-size:14px;min-height:67px;padding:8px 6px}
+.water14-choice-num{min-width:26px;height:26px;font-size:14px}
+.water14-pair-grid{gap:8px}.water14-pair{font-size:14px;min-height:83px;padding:8px 5px;flex-wrap:wrap}
+.water14-mini-art{font-size:24px;min-width:43px;height:43px}
+.water14-source-grid{gap:8px}.water14-source{min-height:144px;font-size:12px;padding:9px 4px}
+.water14-source-icon{font-size:39px}
+.water14-tile{border-radius:9px;font-size:22px}
+.water14-reset,.water14-action{font-size:14px;padding:8px 11px}
+}
+@media(max-width:385px){
+.water14-choice-grid{grid-template-columns:1fr}
+.water14-choice{min-height:56px;padding:9px 7px}
+.water14-source-icon{font-size:30px}.water14-source{min-height:121px;font-size:11px}
+.water14-feedback{font-size:13px;padding:8px}
+.water14-stage{border-width:2px}
+}
+@media(prefers-reduced-motion:reduce){.water14-lab button{transition:none}}
