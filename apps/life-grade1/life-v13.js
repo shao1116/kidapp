@@ -8,7 +8,7 @@ plant:[
 {id:'P20',kind:'life13',game:'bee',q:'花朵快遞員：幫蜜蜂把花粉帶到另一朵花！',hint:'先拜訪左邊的花，再到右邊的花。',explain:'蜜蜂可能將一朵花的花粉帶到同種另一朵花的柱頭，幫助傳粉；傳粉不一定成功結果。',level:2},
 {id:'P21',kind:'life13',game:'spot',q:'葉子小偵探：這片葉子的缺口，可能是誰咬的？',hint:'仔細看葉子上的小動物。',explain:'這張示意圖中毛毛蟲正在啃食葉片，因此是合理的線索。',level:2,items:['caterpillar','raindrop','sun'],answer:'caterpillar'},
 {id:'P22',kind:'life13',game:'match',q:'蔬菜身體猜猜樂：我們吃的是哪個部分？',hint:'紅蘿蔔在土裡，菠菜有綠葉，番茄是果實。',explain:'紅蘿蔔主要吃根，菠菜吃葉，番茄吃果實。',level:2,pairs:[['carrot','rootPart'],['spinach','leafPart'],['tomato','fruitPart']]},
-{id:'P23',kind:'life13',game:'experiment',q:'公平實驗：想比較土壤，就只改變土壤！',hint:'水分和陽光一樣，只有土壤不一樣。',explain:'公平比較時要盡量只改變一個條件。本題比較土壤，不表示某種土一定比較好。',level:3},
+{id:'P23',kind:'life13',game:'flowerWater',q:'花朵喝水變色：兩朵白色康乃馨，喝不同顏色的水會怎樣？',hint:'看看清水杯和有色水杯的花瓣，哪一杯變色了？',explain:'水可以沿著花莖往上運送。白色康乃馨放入加了食用色素的水，花瓣可能慢慢出現顏色；變化所需時間和程度會因花朵而異。',level:3},
 {id:'P24',kind:'life13',game:'drain',q:'花盆排水工程師：下雨後，哪個花盆比較不會積水？',hint:'找一找花盆底部的排水孔。',explain:'有適當排水孔的盆器通常更容易排出多餘的水，但還要留意土壤和環境。',level:2},
 {id:'P25',kind:'life13',game:'sequence',q:'大樹的四季衣櫃：排出落葉樹的四季變化！',hint:'春天長嫩芽，夏天葉子茂盛。',explain:'某些落葉樹會隨季節萌芽、長葉、變色和落葉；不是所有樹都如此。',level:3,order:['springtree','summertree','autumntree','wintertree']}
 ],
@@ -101,6 +101,8 @@ if(g==='sequence')return life13Sequence(t);
 if(g==='spot')return life13Spot(t);
 if(g==='bee')return life13Bee(t);
 if(g==='experiment')return life13Experiment(t);
+if(g==='flowerWater')return life13FlowerWater(t);
+if(g==='springTidy')return life13SpringTidy(t);
 if(g==='drain')return life13Drain(t);
 if(g==='lantern')return life13Lantern(t);
 if(g==='coins')return life13Coins(t);
@@ -143,12 +145,103 @@ const bee='<svg class="life13-bee" viewBox="0 0 130 85" aria-label="蜜蜂" role
 life13Shell(t,'<div class="life13-bee-scene">'+flower(1)+'<div class="life13-bee-center">'+bee+'<div id="beePollen">'+readMarkup('還沒沾到花粉')+'</div></div>'+flower(2)+'</div>','先點第一朵花，幫蜜蜂沾上花粉。');
 document.querySelectorAll('[data-flower]').forEach(b=>b.onclick=()=>{const n=Number(b.dataset.flower);if(stage===0&&n===1){stage=1;$('beePollen').innerHTML=readMarkup('蜜蜂沾到花粉啦！');life13Status('再拜訪右邊的同種花。');b.classList.add('picked');}else if(stage===1&&n===2){stage=2;b.classList.add('picked');$('beePollen').innerHTML=readMarkup('花粉送到了！');life13Status('傳粉任務成功！');life13Complete(t);}else if(stage===2){stage=0;document.querySelectorAll('[data-flower]').forEach(x=>x.classList.remove('picked'));$('beePollen').innerHTML=readMarkup('重新開始');life13Status('再來一次，先點左邊。');}else life13Status('先拜訪左邊的花喔！');});
 }
-function life13Experiment(t){
-const vals={water:'same',light:'same',soil:'same'};
-const rows=[['water','澆水量'],['light','日照'],['soil','土壤']];
-life13Shell(t,'<div class="life13-experiment"><div class="life13-pots">'+life13Art('seedling')+'<span>'+readMarkup('A 盆　　B 盆')+'</span>'+life13Art('seedling')+'</div>'+rows.map(([id,label])=>'<div class="life13-ex-row"><strong>'+readMarkup(label)+'</strong><button type="button" class="life13-toggle" data-variable="'+id+'" aria-pressed="false">'+readMarkup('保持一樣')+'</button></div>').join('')+'</div><div class="life13-lab-result" id="life13ExperimentResult"></div><div class="life13-actions"><button type="button" class="primary" id="life13Test">'+readMarkup('開始比較')+'</button></div>','點按鈕切換「保持一樣」或「改變條件」。');
-document.querySelectorAll('[data-variable]').forEach(b=>b.onclick=()=>{const k=b.dataset.variable;vals[k]=vals[k]==='same'?'different':'same';b.innerHTML=readMarkup(vals[k]==='same'?'保持一樣':'改變條件');b.classList.toggle('picked',vals[k]==='different');b.setAttribute('aria-pressed',String(vals[k]==='different'));});
-$('life13Test').onclick=()=>{const ok=vals.water==='same'&&vals.light==='same'&&vals.soil==='different';if(ok){$('life13ExperimentResult').innerHTML='<div class="life13-soils"><div><span class="life13-sand">'+life13Art('seedling')+'</span><b>'+readMarkup('A：砂土')+'</b></div><div><span class="life13-clay">'+life13Art('seedling')+'</span><b>'+readMarkup('B：黏土')+'</b></div></div><p>'+readMarkup('現在只差在土壤，可以繼續觀察排水、保水與成長。')+'</p>';life13Status('太好了！只有土壤不同，就能公平比較。');life13Complete(t);}else{life13Status('試試讓澆水量和日照一樣，只改變土壤。');feedback('要比較土壤，就不能同時改變太多條件。','retry');}};
+/* P23 (v1.3.1): the same two white carnations in clear vs tinted water.
+   Scientific demonstration only; dye uptake/visible timing varies with the flower. */
+function life13CarnationSVG(hue,dyed=false){
+ const tint=hue==='pink'?'#f9a2b6':'#86bce9';
+ const color=dyed?tint:'#fffdf6';
+ const petal=Array.from({length:12},(_,i)=>{
+   const a=i*30,rad=i%3===0?33:28;
+   return '<ellipse cx="105" cy="'+(91-rad)+'" rx="15" ry="30" transform="rotate('+a+' 105 91)" fill="'+color+'" stroke="'+(dyed?(hue==='pink'?'#d45d87':'#659bcd'):'#d7dfcf')+'" stroke-width="2.3"/>';
+ }).join('');
+ const water=dyed?'#afd4ec':'#b9e7ee';
+ return '<svg viewBox="0 0 210 280" role="img" aria-label="'+(dyed?'花瓣呈現淡淡的'+(hue==='pink'?'粉紅':'藍色')+'，玻璃杯裝有色水':'白色康乃馨插在玻璃杯裡')+'"><rect x="2" y="2" width="206" height="276" rx="18" fill="#f6fbf8"/>'+
+ '<ellipse cx="105" cy="260" rx="61" ry="8" fill="#d6dfdc"/>'+
+ '<path d="M105 115Q101 160 105 245" stroke="#448d59" stroke-width="8" fill="none"/>'+
+ '<path d="M105 177Q65 129 46 161Q57 184 105 177Z" fill="#5ba86a" stroke="#43895b" stroke-width="3"/>'+
+ '<path d="M105 195Q139 151 167 173Q159 194 105 195Z" fill="#64b477" stroke="#43895b" stroke-width="3"/>'+
+ '<path d="M58 169L152 169L144 253Q104 265 66 253Z" fill="#edf9ff" fill-opacity=".42" stroke="#79b3c6" stroke-width="5"/>'+
+ '<path d="M62 205H148L144 249Q104 259 67 249Z" fill="'+water+'" fill-opacity=".7"/>'+
+ '<path d="M63 203Q105 196 147 203" stroke="#73b4ce" stroke-width="3.4" fill="none"/>'+
+ '<path d="M89 174L82 242" stroke="#ffffff" stroke-width="5" opacity=".8"/>'+
+ '<g>'+petal+'<circle cx="105" cy="91" r="18" fill="'+color+'" stroke="#c7d3bf" stroke-width="2"/>'+
+ '<path d="M99 82Q106 75 113 82" fill="none" stroke="'+(dyed?'#ecf4fc':'#f1eee5')+'" stroke-width="5"/></g>'+
+ '</svg>';
+}
+function life13FlowerWater(t){
+ let color=null,observed=false;
+ const field='<div class="life13-flower-compare"><div class="life13-flower-card"><b>'+readMarkup('A 杯：清水')+'</b><div id="life13FlowerA">'+life13CarnationSVG('blue',false)+'</div></div><div class="life13-flower-card"><b>'+readMarkup('B 杯：有色水')+'</b><div id="life13FlowerB">'+life13CarnationSVG('blue',false)+'</div></div></div>';
+ const controls='<div class="life13-lab-steps"><strong>'+readMarkup('第一步：挑選加入 B 杯的食用色素')+'</strong><div class="life13-color-options"><button type="button" data-flower-color="blue" aria-pressed="false"><span class="life13-color-dot blue"></span>'+readMarkup('藍色')+'</button><button type="button" data-flower-color="pink" aria-pressed="false"><span class="life13-color-dot pink"></span>'+readMarkup('粉紅色')+'</button></div><div class="life13-actions"><button type="button" class="primary" id="life13FlowerObserve">'+readMarkup('觀察隔天的花朵')+'</button></div></div>'+
+ '<div class="life13-after-observe" id="life13FlowerQuestion" hidden><b>'+readMarkup('第二步：哪一杯的白花瓣出現了顏色？')+'</b><div class="life13-quiz-options"><button type="button" data-flower-answer="a">'+readMarkup('A 杯：清水')+'</button><button type="button" data-flower-answer="b">'+readMarkup('B 杯：有色水')+'</button><button type="button" data-flower-answer="both">'+readMarkup('兩杯都變色了')+'</button></div></div>';
+ life13Shell(t,field+controls,'一開始兩朵都是白色的。選色素加入 B 杯，再觀察隔天的樣子。');
+ document.querySelectorAll('[data-flower-color]').forEach(b=>b.onclick=()=>{
+   color=b.dataset.flowerColor;observed=false;
+   document.querySelectorAll('[data-flower-color]').forEach(x=>{const on=x===b;x.classList.toggle('picked',on);x.setAttribute('aria-pressed',String(on));});
+   $('life13FlowerA').innerHTML=life13CarnationSVG(color,false);
+   $('life13FlowerB').innerHTML=life13CarnationSVG(color,false);
+   $('life13FlowerQuestion').hidden=true;
+   life13Status('選好了！按下觀察隔天的花朵，看看變化。');
+ });
+ $('life13FlowerObserve').onclick=()=>{
+   if(!color){life13Status('先選一種食用色素，再觀察。');return;}
+   observed=true;
+   $('life13FlowerA').innerHTML=life13CarnationSVG(color,false);
+   $('life13FlowerB').innerHTML=life13CarnationSVG(color,true);
+   $('life13FlowerQuestion').hidden=false;
+   life13Status('模擬觀察：A 杯還是白花；B 杯的花瓣出現'+(color==='pink'?'粉紅色':'藍色')+'。');
+ };
+ document.querySelectorAll('[data-flower-answer]').forEach(b=>b.onclick=()=>{
+   if(!observed){life13Status('先觀察花朵的變化，再回答喔。');return;}
+   if(b.dataset.flowerAnswer==='b'){
+      b.classList.add('picked');life13Status('答對了！B 杯的花莖把有色水往上運送，花瓣可能因此變色。還可以換顏色再試一次。');life13Complete(t);
+   }else{
+      life13Status('看看兩杯的花瓣：一杯仍是白色，另一杯有顏色。');feedback('請看圖片的差別，再選一次！','retry');
+   }
+ });
+}
+/* FES05 (v1.3.1): realistic two-step New Year entryway tidy-up. */
+function life13TidyArt(id){
+ if(id==='shoes')return '<svg viewBox="0 0 150 108" role="img" aria-label="一雙亂放的藍色鞋子"><path d="M13 68Q21 41 49 49L69 72L71 86H9Q6 77 13 68Z" fill="#72a3c2" stroke="#43728e" stroke-width="4"/><path d="M81 58Q93 36 115 47L139 71L140 88H78Q76 75 81 58Z" fill="#89b4d0" stroke="#43728e" stroke-width="4"/><path d="M10 82H70M79 84H139" stroke="white" stroke-width="8"/><path d="M36 56L51 64M103 54L119 61" stroke="#ecf5f9" stroke-width="3"/></svg>';
+ if(id==='paper')return '<svg viewBox="0 0 150 108" role="img" aria-label="地上有三張乾淨的彩色紙屑"><path d="M15 65L50 45L64 82L27 97Z" fill="#f1c568" stroke="#d99c49" stroke-width="3"/><path d="M69 17L107 29L95 66L61 53Z" fill="#f7afba" stroke="#d27d90" stroke-width="3"/><path d="M111 52L145 63L130 96L101 78Z" fill="#aed7ed" stroke="#83b4d0" stroke-width="3"/></svg>';
+ if(id==='rack')return '<svg viewBox="0 0 150 108" role="img" aria-label="有兩層架板的木製鞋架"><path d="M15 17V99M136 17V99M15 42H136M15 78H136" stroke="#b78056" stroke-width="11" fill="none"/><path d="M31 18Q41 11 56 19L63 29H28Z" fill="#eabf82" stroke="#9b7353" stroke-width="2"/><path d="M75 17Q89 7 101 17L111 30H73Z" fill="#e6ad84" stroke="#9b7353" stroke-width="2"/></svg>';
+ if(id==='recycle')return '<svg viewBox="0 0 150 108" role="img" aria-label="綠色的紙類回收箱"><rect x="31" y="30" width="87" height="72" rx="8" fill="#6ab69f" stroke="#3a947d" stroke-width="4"/><path d="M26 30H124L115 15H35Z" fill="#468f79"/><path d="M64 52H92V80H64Z" fill="#f4ffff"/><path d="M68 59H87M68 67H87M68 75H82" stroke="#4fa18e" stroke-width="3.5"/></svg>';
+ return '';
+}
+function life13TidyScene(done){
+ const shoes=done.has('shoes'),paper=done.has('paper');
+ return '<svg viewBox="0 0 620 248" role="img" aria-label="'+(done.size===2?'整理好的年節家門口':'有鞋子和紙屑待整理的年節家門口')+'"><rect width="620" height="248" rx="20" fill="#eaf6fc"/><rect x="25" y="12" width="570" height="172" rx="12" fill="#f9e5c6"/>'+
+ '<rect x="222" y="16" width="170" height="166" rx="8" fill="#c98554" stroke="#96603f" stroke-width="7"/><circle cx="365" cy="110" r="6" fill="#f5d48b"/>'+
+ '<path d="M235 44H260V152H235ZM355 44H378V152H355Z" fill="#b43838"/>'+
+ '<path d="M278 90L306 60L335 90L307 122Z" fill="#c94b48" stroke="#f3d28a" stroke-width="4"/>'+
+ '<path d="M0 177H620V248H0Z" fill="#d7d2bb"/><rect x="251" y="194" width="113" height="40" rx="8" fill="#96bda7"/>'+
+ '<g transform="translate(31 88) scale(.94)">'+life13TidyArt('rack').replace(/<\/?svg[^>]*>/g,'')+'</g>'+
+ '<g transform="translate(441 94) scale(.95)">'+life13TidyArt('recycle').replace(/<\/?svg[^>]*>/g,'')+'</g>'+
+ (shoes?'':'<g transform="translate(168 175) scale(.62) rotate(-9 75 54)">'+life13TidyArt('shoes').replace(/<\/?svg[^>]*>/g,'')+'</g>')+
+ (paper?'':'<g transform="translate(379 187) scale(.55)">'+life13TidyArt('paper').replace(/<\/?svg[^>]*>/g,'')+'</g>')+
+ '<rect x="8" y="8" width="150" height="39" rx="13" fill="white" fill-opacity=".94"/>'+
+ '<text x="23" y="34" fill="#845c3d" font-weight="bold" font-size="18">新年迎客</text></svg>';
+}
+function life13SpringTidy(t){
+ let chosen=null;const done=new Set();
+ life13Shell(t,'<div class="life13-tidy-scene" id="life13TidyScene">'+life13TidyScene(done)+'</div>'+
+ '<p class="life13-tidy-note">'+readMarkup('先選左邊的物品，再選右邊要放的位置。')+'</p>'+
+ '<div class="life13-columns life13-tidy-columns"><div><b>'+readMarkup('要整理的物品')+'</b><div class="life13-grid">'+[['shoes','一雙鞋子'],['paper','乾淨紙屑']].map(([id,label])=>'<button type="button" class="life13-card" data-tidy-item="'+id+'">'+life13TidyArt(id)+'<span>'+readMarkup(label)+'</span></button>').join('')+'</div></div>'+
+ '<div><b>'+readMarkup('要放在哪裡')+'</b><div class="life13-grid">'+[['rack','鞋架'],['recycle','紙類回收箱']].map(([id,label])=>'<button type="button" class="life13-card" data-tidy-target="'+id+'">'+life13TidyArt(id)+'<span>'+readMarkup(label)+'</span></button>').join('')+'</div></div></div>'+
+ '<div class="life13-links" id="life13TidyDone"></div>','新年家門口有一雙鞋子和乾淨紙屑，幫忙把它們放好。');
+ const correct={shoes:'rack',paper:'recycle'};
+ function redraw(){
+   $('life13TidyScene').innerHTML=life13TidyScene(done);
+   document.querySelectorAll('[data-tidy-item]').forEach(b=>{const active=chosen===b.dataset.tidyItem;b.classList.toggle('picked',active);b.classList.toggle('matched',done.has(b.dataset.tidyItem));b.disabled=done.has(b.dataset.tidyItem);b.setAttribute('aria-pressed',String(active));});
+   $('life13TidyDone').innerHTML=[...done].map(id=>'<span class="life13-pill">'+readMarkup(id==='shoes'?'鞋子收好了 ✓':'紙屑回收了 ✓')+'</span>').join('');
+ }
+ document.querySelectorAll('[data-tidy-item]').forEach(b=>b.onclick=()=>{chosen=b.dataset.tidyItem;redraw();life13Status(chosen==='shoes'?'鞋子要放哪裡？':'乾淨紙屑要放哪裡？');});
+ document.querySelectorAll('[data-tidy-target]').forEach(b=>b.onclick=()=>{
+   if(!chosen){life13Status('先點左邊想整理的物品，再選收納處。');return;}
+   if(correct[chosen]!==b.dataset.tidyTarget){life13Status('鞋子放鞋架；乾淨紙屑放到紙類回收箱。再試試！');feedback('找一找合適的位置，就能讓門口整齊。','retry');return;}
+   done.add(chosen);chosen=null;redraw();
+   if(done.size===2){life13Status('門口整理好了！可以安心迎接親友。');life13Complete(t);}
+   else life13Status('整理成功！還有一樣物品需要收好。');
+ });
 }
 function life13Drain(t){
 let choice=null;
