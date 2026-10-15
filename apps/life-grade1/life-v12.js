@@ -1,6 +1,6 @@
 /* KidApp 生活探索樂園 v1.2 extension.  All assets are local/original SVG. */
 const LIFE_V12_MODES=[
- {id:'festival',name:'節慶文化探索',icon:'🎏',summary:'看節慶活動的插畫，觀察年節、端午與中秋的生活文化。',color:'#fff0dc'},
+ {id:'festival',name:'節慶文化探索',icon:'🎏',summary:'認識臺灣節慶，做燈籠、划龍舟、玩月餅分配與文化創作。',color:'#fff0dc'},
  {id:'library',name:'圖書館小幫手',icon:'📚',summary:'看書封找書、分類放書架，再練習借還書與愛護圖書。',color:'#e6efff'},
  {id:'diary',name:'我的成長日記',icon:'🌟',summary:'挑選心情與今日的生活行動，留下自己的小成長，不必擔心選錯。',color:'#fcebf4'}
 ];
@@ -251,7 +251,7 @@ function lifeV12RenderParent(){
  if(!Array.isArray(saved.familyDone))saved.familyDone=[];
  const totalDone=MODES.reduce((n,m)=>n+(saved.done[m.id]?.length||0),0);
  const completed=saved.familyDone.length;
- $('familySummary').textContent='遊戲已探索 '+totalDone+' / 150 個任務　｜　親子實作 '+completed+' / '+LIFE_V12_FAMILY.length+' 項';
+ $('familySummary').textContent='遊戲已探索 '+totalDone+' / '+LIFE_TOTAL+' 個任務　｜　親子實作 '+completed+' / '+LIFE_V12_FAMILY.length+' 項';
  const countNote=$('familyProgressNote');if(countNote)countNote.textContent='這是家庭陪伴紀錄，不是孩子能力評分；進度只儲存在本機。';
  target.innerHTML=LIFE_V12_FAMILY.map(x=>'<label class="life-family-item"><input type="checkbox" data-family="'+x.id+'" '+(saved.familyDone.includes(x.id)?'checked':'')+'/><span class="life-family-icon" aria-hidden="true">'+x.icon+'</span><span><strong>'+readMarkup(x.name)+'</strong><small>'+readMarkup(x.note)+'</small></span></label>').join('');
  const history=$('familyDiaryHistory');if(history){const recent=(saved.diaryHistory||[]).slice(-6).reverse();history.innerHTML=recent.length?'<h4>🌟 最近的成長日記</h4>'+recent.map(item=>{const t=TASKS.diary.find(x=>x.id===item.id);const mood=LIFE_V12_MOODS.find(x=>x.id===item.mood);return t&&mood&&t.actions[item.action]!==undefined?'<article class="life-history-item"><small>'+escapeHTML(item.date)+'</small><span> '+readMarkup(mood.name)+' · '+readMarkup(t.actions[item.action])+'</span></article>':'';}).join(''):'<p>還沒有成長日記紀錄，可以先到「我的成長日記」探索。</p>';}
