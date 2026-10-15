@@ -147,14 +147,14 @@ document.querySelectorAll('[data-flower]').forEach(b=>b.onclick=()=>{const n=Num
 }
 /* P23 (v1.3.1): the same two white carnations in clear vs tinted water.
    Scientific demonstration only; dye uptake/visible timing varies with the flower. */
-function life13CarnationSVG(hue,dyed=false){
+function life13CarnationSVG(hue,dyed=false,waterTinted=false){
  const tint=hue==='pink'?'#f9a2b6':'#86bce9';
  const color=dyed?tint:'#fffdf6';
  const petal=Array.from({length:12},(_,i)=>{
    const a=i*30,rad=i%3===0?33:28;
    return '<ellipse cx="105" cy="'+(91-rad)+'" rx="15" ry="30" transform="rotate('+a+' 105 91)" fill="'+color+'" stroke="'+(dyed?(hue==='pink'?'#d45d87':'#659bcd'):'#d7dfcf')+'" stroke-width="2.3"/>';
  }).join('');
- const water=dyed?'#afd4ec':'#b9e7ee';
+ const water=waterTinted?(hue==='pink'?'#f4b0c0':'#9bc8ea'):'#b9e7ee';
  return '<svg viewBox="0 0 210 280" role="img" aria-label="'+(dyed?'花瓣呈現淡淡的'+(hue==='pink'?'粉紅':'藍色')+'，玻璃杯裝有色水':'白色康乃馨插在玻璃杯裡')+'"><rect x="2" y="2" width="206" height="276" rx="18" fill="#f6fbf8"/>'+
  '<ellipse cx="105" cy="260" rx="61" ry="8" fill="#d6dfdc"/>'+
  '<path d="M105 115Q101 160 105 245" stroke="#448d59" stroke-width="8" fill="none"/>'+
@@ -178,7 +178,7 @@ function life13FlowerWater(t){
    color=b.dataset.flowerColor;observed=false;
    document.querySelectorAll('[data-flower-color]').forEach(x=>{const on=x===b;x.classList.toggle('picked',on);x.setAttribute('aria-pressed',String(on));});
    $('life13FlowerA').innerHTML=life13CarnationSVG(color,false);
-   $('life13FlowerB').innerHTML=life13CarnationSVG(color,false);
+   $('life13FlowerB').innerHTML=life13CarnationSVG(color,false,true);
    $('life13FlowerQuestion').hidden=true;
    life13Status('選好了！按下觀察隔天的花朵，看看變化。');
  });
@@ -186,7 +186,7 @@ function life13FlowerWater(t){
    if(!color){life13Status('先選一種食用色素，再觀察。');return;}
    observed=true;
    $('life13FlowerA').innerHTML=life13CarnationSVG(color,false);
-   $('life13FlowerB').innerHTML=life13CarnationSVG(color,true);
+   $('life13FlowerB').innerHTML=life13CarnationSVG(color,true,true);
    $('life13FlowerQuestion').hidden=false;
    life13Status('模擬觀察：A 杯還是白花；B 杯的花瓣出現'+(color==='pink'?'粉紅色':'藍色')+'。');
  };
