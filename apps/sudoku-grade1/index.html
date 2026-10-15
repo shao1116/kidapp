@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-Hant-TW"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#ecf7f1"><meta name="description" content="KidApp 小小數獨探險島：4×4、6×6、9×9 七級難度，適合臺灣國小低年級的數字與邏輯冒險。">
+<title>小小數獨探險島｜KidApp</title><link rel="stylesheet" href="./style.css"></head>
+<body>
+<div class="shell">
+<header class="top"><a class="backlink" href="../../" aria-label="返回 KidApp 首頁">← KidApp 首頁</a><span class="topbrand">🧩 小小數獨探險島</span><span class="version">v1.0</span></header>
+<main>
+<section class="hero"><div class="hero-copy"><div class="eyebrow">🌈 小一闖關學院 · 數字邏輯冒險</div><h1>動動腦，<br><span>找出數字的祕密！</span></h1><p>從小小的 4×4 開始，學會觀察、排除和推理。慢慢玩，想到了再填！</p></div>
+<div class="hero-art" aria-hidden="true"><div class="mascot">🦊<span>✨</span></div><div class="mini-grid"><b>1</b><b>2</b><b>3</b><b>4</b><b>3</b><b>4</b><b>1</b><b>2</b><b>2</b><b>1</b><b>4</b><b>3</b><b>4</b><b>3</b><b>2</b><b>1</b></div></div></section>
+<section id="home" class="screen">
+<div class="mode-tabs" role="tablist" aria-label="選擇遊戲模式">
+<button class="tab active" data-mode="adventure" role="tab" aria-selected="true">🗺️ 冒險闖關</button>
+<button class="tab" data-mode="free" role="tab" aria-selected="false">🎲 自由練習</button>
+<button class="tab" data-mode="daily" role="tab" aria-selected="false">🌟 每日三題</button>
+</div>
+<section id="adventurePanel" class="panel" aria-label="冒險闖關">
+<div class="section-title"><div><h2>選一座數字島 🏝️</h2><p>每座島有 30 題，可以重玩、也可以挑戰新題！</p></div><span class="soft-pill" id="adventureSummary">完成 0 / 210 題</span></div>
+<div id="levelCards" class="level-cards"></div>
+</section>
+<section id="freePanel" class="panel hidden" aria-label="自由練習">
+<div class="section-title"><div><h2>自己選難度 🎯</h2><p>不用解鎖，任何難度都能直接玩！</p></div></div>
+<div class="settings-grid"><label>選擇關卡<select id="freeLevel"></select></label><label>選擇題目<select id="freeIndex"></select></label></div>
+<div class="friendly-note">💡 4×4 適合初學者，6×6 練習更多排除法，9×9 是經典挑戰。</div><button id="freeStart" class="primary big">開始自由挑戰 →</button>
+</section>
+<section id="dailyPanel" class="panel hidden" aria-label="每日三題">
+<div class="section-title"><div><h2>今日的三顆星 ⭐</h2><p>每天三道小任務，難度依你的冒險進度安排。</p></div></div><div id="dailyCards" class="daily-cards"></div>
+</section>
+<section class="two-col"><div class="panel how"><h2>📖 先學會三個規則</h2><div class="how-row"><span>↔️</span><p><strong>看橫排</strong><br><span data-bopo="橫排的數字不能重複。">橫排的數字不能重複。</span></p></div><div class="how-row"><span>↕️</span><p><strong>看直排</strong><br><span data-bopo="直排的數字不能重複。">直排的數字不能重複。</span></p></div><div class="how-row"><span>▦</span><p><strong>看小宮格</strong><br><span data-bopo="小宮格裡的數字也不能重複。">小宮格裡的數字也不能重複。</span></p></div><p class="aside">數獨不是比速度，也不用加減法。看到缺少的數字，慢慢想就好。</p></div>
+<div class="panel parent"><h2>🏡 我的學習紀錄</h2><div id="recordBox"></div><button id="resetRecord" class="text-button">清除這個裝置的數獨紀錄</button><p class="aside">只儲存在目前瀏覽器，不收集姓名、不上傳資料，也不作能力診斷。</p></div></section>
+</section>
+<section id="game" class="screen hidden" aria-label="數獨棋盤">
+<div class="game-head"><button id="gameBack" class="secondary">← 回關卡</button><div class="game-meta"><strong id="gameTitle">數字小學徒</strong><span id="gameSub">4×4 · 第 1 題</span></div><span id="gameProgress" class="soft-pill">0 / 30</span></div>
+<div class="game-layout"><div class="game-left">
+<div class="instruction"><div class="instruction-header"><strong>🦊 狐狸小老師</strong><div class="toggles"><button id="bopoToggle" class="mini-toggle" aria-pressed="true">注音 開</button><button id="voiceToggle" class="mini-toggle" aria-pressed="true">語音 開</button><button id="readInstruction" class="mini-toggle" aria-label="朗讀規則">🔊 聽規則</button></div></div><p id="goalText" class="bopo-line"></p><p id="ruleText" class="bopo-line"></p></div>
+<div class="board-frame" id="boardFrame"><div id="board" class="sudoku-board" role="group" aria-label="數獨棋盤"></div></div>
+<div class="board-tools"><label class="notes-switch"><input type="checkbox" id="noteMode"> ✏️ 候選數字筆記</label><button id="zoomBtn" class="mini-toggle">🔎 放大棋盤</button></div>
+<div id="numberPad" class="number-pad" aria-label="輸入數字"></div>
+<div class="edit-tools"><button id="undoBtn" class="secondary">↶ 上一步</button><button id="eraseBtn" class="secondary">⌫ 擦除</button><button id="hintBtn" class="secondary">💡 提示</button></div>
+<div id="feedback" class="feedback" role="status" aria-live="polite">先點一個空格，再選下面的數字。</div>
+<div id="hintBox" class="hint-box hidden" aria-live="polite"></div>
+</div><aside class="game-side"><div class="panel small-panel"><h3>🎯 這一關練什麼？</h3><p id="skillText"></p><div id="learningTip" class="friendly-note"></div></div>
+<div class="panel small-panel"><h3>🧠 你的冒險紀錄</h3><p id="gameStats"></p><button id="restartBtn" class="secondary full">重新開始這題</button><button id="skipBtn" class="secondary full">換一題 →</button><p class="aside">不扣分、沒有倒數。提示會帶你一步步觀察。</p></div></aside></div>
+<div id="winBox" class="win-box hidden" role="status" aria-live="polite"><div class="win-icon">🏆</div><h2>太棒了！這題完成！</h2><p>你找到了所有數字的正確位置。繼續挑戰，或者再玩一次！</p><div class="win-actions"><button id="nextBtn" class="primary">下一題 →</button><button id="replayBtn" class="secondary">再玩一次</button></div></div>
+</section>
+</main>
+<footer>KidApp｜小小遊戲樂園 · 動腦不著急，每次推理都值得鼓勵 🌱<br>本遊戲為邏輯學習輔助，非標準化測驗。</footer>
+</div><script src="./engine.js"></script><script src="./app.js"></script></body></html>
