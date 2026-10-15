@@ -19,7 +19,7 @@ function nextIndex(l){for(let i=0;i<30;i++)if(!data.done[key(l,i)])return i;retu
 function unlocked(){let max=1;for(let l=1;l<=7;l++)if(done(l)>0)max=Math.min(7,l+1);return max}
 function dateId(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
 function hash(s){let h=2166136261>>>0;for(const ch of s){h^=ch.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
-function dailyQuestion(step){return{l:Math.min(7,Math.max(1,unlocked()+step-1)),i:hash(dateId()+':'+step)%30}}
+function dailyQuestion(step){const day=dateId();if(!data.dailyPlan||data.dailyPlan.date!==day||!Array.isArray(data.dailyPlan.tasks)||data.dailyPlan.tasks.length!==3){const base=unlocked();data.dailyPlan={date:day,tasks:Array.from({length:3},(_,j)=>({l:Math.min(7,Math.max(1,base+j-1)),i:hash(day+':'+j)%30}))};save()}return data.dailyPlan.tasks[step]}
 function dailyKey(step){return dateId()+':'+step}
 function puzzle(l,i){const id=key(l,i);if(!bank.has(id))bank.set(id,E.generate(l,i));return bank.get(id)}
 function saveGame(){if(!g)return;data.current={l:g.l,i:g.i,mode:g.mode,step:g.step,board:g.board.slice(),notes:g.notes,hints:g.hints};save()}
@@ -29,7 +29,7 @@ function start(l,i,mode='adventure',step=0,restart=false){
  g={p,l,i,mode,step,board:valid?old.board.slice():p.puzzle.slice(),notes:valid&&old.notes&&typeof old.notes==='object'?old.notes:{},hints:valid?(old.hints||0):0};
  sel=g.board.findIndex((x,j)=>!p.puzzle[j]&&!x);if(sel<0)sel=p.puzzle.findIndex(x=>!x);if(sel<0)sel=0;
  noteMode=false;hintStep=0;hintTarget=null;history=[];
- $('home').classList.add('hidden');$('game').classList.remove('hidden');$('winBox').classList.add('hidden');$('hintBox').classList.add('hidden');$('noteMode').checked=false;$('boardFrame').classList.remove('zoomed');$('zoomBtn').textContent='🔎 放大棋盤';
+ $('home').classList.add('hidden');document.querySelector('.hero').classList.add('hidden');$('game').classList.remove('hidden');$('winBox').classList.add('hidden');$('hintBox').classList.add('hidden');$('noteMode').checked=false;$('boardFrame').classList.remove('zoomed');$('zoomBtn').textContent='🔎 放大棋盤';
  $('gameTitle').textContent=icons[l-1]+' '+L[l-1].name;
  $('gameSub').textContent=p.n+'×'+p.n+' · '+(mode==='daily'?'今日第 '+(step+1)+' 題':'第 '+(i+1)+' 題');
  $('skillText').textContent=L[l-1].skill;$('learningTip').textContent=l<=3?'找一排已經有很多數字的地方開始吧。':l<=5?'先從最容易的一格開始推理。':'可以使用候選數字筆記，記下還可能出現的數字。';
@@ -76,7 +76,7 @@ function updateGame(){if(!g)return;$('gameProgress').textContent=done(g.l)+'/30 
 function win(){const k=key(g.l,g.i);if(!data.done[k])data.done[k]={date:dateId(),hints:g.hints};if(g.mode==='daily')data.daily[dailyKey(g.step)]=true;data.current=null;save();$('winBox').classList.remove('hidden');$('hintBox').classList.add('hidden');message('恭喜完成！你自己找到了所有數字！','good');updateGame();speak('太棒了！你完成數獨了！');$('winBox').scrollIntoView({behavior:'smooth',block:'nearest'})}
 function next(){if(!g)return;if(g.mode==='daily'){if(g.step===2){home();return}const d=dailyQuestion(g.step+1);start(d.l,d.i,'daily',g.step+1)}
  else start(g.l,(g.i+1)%30,g.mode)}
-function home(){stopVoice();g=null;$('game').classList.add('hidden');$('home').classList.remove('hidden');renderHome();window.scrollTo({top:0,behavior:'smooth'})}
+function home(){stopVoice();g=null;$('game').classList.add('hidden');$('home').classList.remove('hidden');document.querySelector('.hero').classList.remove('hidden');renderHome();window.scrollTo({top:0,behavior:'smooth'})}
 function tab(t){activeTab=t;document.querySelectorAll('[data-mode]').forEach(x=>{x.classList.toggle('active',x.dataset.mode===t);x.setAttribute('aria-selected',String(x.dataset.mode===t))});['adventure','free','daily'].forEach(n=>$(n+'Panel').classList.toggle('hidden',t!==n));if(t==='daily')renderDaily()}
 function renderDaily(){const area=$('dailyCards');area.replaceChildren();for(let step=0;step<3;step++){const d=dailyQuestion(step),ok=!!data.daily[dailyKey(step)],div=document.createElement('div');div.className='daily-card';div.innerHTML='<div>⭐ '+(step+1)+' / 3</div><strong>'+esc(L[d.l-1].name)+'</strong><span>'+L[d.l-1].n+'×'+L[d.l-1].n+' · '+(ok?'今天完成了！':'動腦思考')+'</span><button class="'+(ok?'secondary':'primary')+'">'+(ok?'再玩一次':'開始挑戰 →')+'</button>';
  div.querySelector('button').onclick=()=>start(d.l,d.i,'daily',step,ok);area.append(div)}}
