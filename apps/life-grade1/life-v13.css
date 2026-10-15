@@ -98,3 +98,45 @@
 .life13-soils .life13-sand{border-bottom:12px solid #e6c47d}
 .life13-soils .life13-clay{border-bottom:12px solid #a87762}
 .life13-soils svg{width:100%;max-height:130px}
+
+/* v1.3.1: clear experiments & practical spring cleanup, not abstract checkboxes. */
+.life13-flower-compare{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:stretch;margin:2px auto 14px}
+.life13-flower-card{min-width:0;border:3px solid #cee7db;border-radius:20px;background:#fff;padding:10px 9px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
+.life13-flower-card b{color:#39715a;font-size:17px;line-height:1.8}
+.life13-flower-card>div{width:100%;max-width:250px;margin:auto}
+.life13-flower-card svg{display:block;width:100%;height:auto;max-height:325px}
+.life13-lab-steps{padding:12px 6px;text-align:center}
+.life13-lab-steps>strong{color:#4d755c;display:block;font-size:16px;line-height:1.9}
+.life13-color-options{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin:12px 0 5px}
+.life13-color-options button{display:flex;gap:12px;align-items:center;justify-content:center;min-width:140px;min-height:58px;padding:8px 15px;border:3px solid #cfe0d4;border-radius:16px;background:#fff;color:#456d59;font-weight:900;font-size:16px}
+.life13-color-dot{width:29px;height:29px;flex-shrink:0;border:2px solid #ffffff;border-radius:50%;box-shadow:0 0 0 2px #c2d0cb}
+.life13-color-dot.blue{background:#75b4e1}.life13-color-dot.pink{background:#f39db3}
+.life13-after-observe{margin:12px auto 7px;padding:16px 12px;border-radius:17px;background:#e9f4ff;border:2px solid #b5d9eb}
+.life13-after-observe[hidden]{display:none!important}
+.life13-after-observe>b{display:block;text-align:center;font-size:17px;line-height:1.9;margin-bottom:12px;color:#346578}
+.life13-quiz-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.life13-quiz-options button{min-height:58px;border:2px solid #9ec7d8;background:#fff;color:#32667a;border-radius:14px;padding:10px 8px;font-weight:850;line-height:1.8}
+.life13-tidy-scene{margin:0 auto 12px;max-width:720px}
+.life13-tidy-scene svg{display:block;width:100%;height:auto;border-radius:16px}
+.life13-tidy-note{color:#4f765f;font-weight:900;text-align:center;line-height:1.9;margin:10px auto 16px}
+.life13-tidy-columns .life13-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.life13-tidy-columns .life13-card{flex-direction:column;min-height:163px;padding:10px 6px}
+.life13-tidy-columns .life13-card svg{display:block;width:100%;max-width:150px;max-height:107px}
+.life13-tidy-columns>div>b{margin-bottom:8px}
+@media(max-width:650px){
+ .life13-flower-compare{gap:7px}
+ .life13-flower-card{padding:8px 3px;border-width:2px}
+ .life13-flower-card b{font-size:14px}
+ .life13-color-options{gap:8px}
+ .life13-color-options button{min-width:118px}
+ .life13-quiz-options{grid-template-columns:1fr;gap:8px}
+ .life13-tidy-columns .life13-grid{grid-template-columns:1fr;gap:7px}
+ .life13-tidy-columns .life13-card{flex-direction:row;min-height:110px;text-align:left;padding:5px;gap:2px}
+ .life13-tidy-columns .life13-card svg{width:52%;max-width:none;max-height:91px}
+ .life13-tidy-columns .life13-card span{flex:1;font-size:14px}
+}
+@media(max-width:350px){
+ .life13-flower-card b{font-size:12px}
+ .life13-tidy-columns .life13-card svg{width:47%;max-height:80px}
+ .life13-tidy-columns .life13-card span{font-size:12px}
+}
