@@ -36,7 +36,7 @@ function lifeWater14Svg(t,stage=0,opts={}){
  const sink=()=>path('M141 198Q157 254 265 261Q375 260 394 198Z','#e3f0f4','#87a9bb',7)+rect(133,193,270,14,7,'#f7fcff','#a4c8d1')+c(268,227,8,'#6f8d9d');
  const hand=(x,y)=>'<g transform="translate('+x+' '+y+')">'+path('M0 29Q-17 23-19 11Q-17 2-9 5L8 15L9 -31Q13 -41 21 -36L24 -6L26 -41Q33 -48 39 -39L41 -8L43 -39Q51 -45 56 -35L58 -6Q76 -20 81 -8Q89 14 76 37Q69 52 42 55L15 49Z','#f5c9a5','#c88b6d',3)+'</g>';
  const glass=(level=0)=>'<g>'+path('M224 105H381L364 257H241Z','#e8f7ff','#6aa8cb',6)+(level?rect(241,250-level*29,123-3*level,level*29,4,'#77c7e7'):'')+path('M224 105H381','none','#6aa8cb',6)+path('M239 149H370','none','#93bbc5',4)+path('M243 180H366','none','#93bbc5',4)+'</g>';
- const flower=(dry=false,extra=false)=>'<g>'+path('M477 180Q459 139 455 105','none','#477d50',8)+path('M461 151Q404 120 410 165Q437 177 461 151Z',dry?'#aaa96e':'#6bb978','#4f9861',3)+path('M461 139Q516 109 517 155Q481 168 461 139Z',dry?'#acaf6e':'#79cb86','#4f9861',3)+c(456,98,19,dry?'#bcb270':'#f0b3c0')+path('M402 183H510L499 259H415Z','#dba786','#a97357',5)+rect(401,181,111,12,5,'#c47f5f')+rect(414,192,84,12,5,extra?'#74c0de':dry?'#c7a072':'#a27758')+'</g>';
+ const flower=(dry=false,extra=false)=>'<g>'+path('M477 180Q459 139 455 105','none','#477d50',8)+path('M461 151Q404 120 410 165Q437 177 461 151Z',dry?'#aaa96e':'#6bb978','#4f9861',3)+path('M461 139Q516 109 517 155Q481 168 461 139Z',dry?'#acaf6e':'#79cb86','#4f9861',3)+c(456,98,19,dry?'#bcb270':'#f0b3c0')+path('M402 183H510L499 259H415Z','#dba786','#a97357',5)+rect(401,181,111,12,5,'#c47f5f')+rect(414,192,84,12,5,extra?'#6e5740':dry?'#c7a072':'#a27758')+'</g>';
  const shower=(running=false)=>'<g>'+rect(164,30,20,131,8,'#8caebb')+rect(168,28,114,18,8,'#8caebb')+path('M279 46Q319 48 336 75','none','#6a96a9',11)+path('M304 74H362L357 91H309Z','#87b2c5','#4d849a',4)+(running?Array.from({length:7},(_,i)=>drop(309+i*9,111+(i%3)*30,1)).join(''):'')+'</g>';
  const child=()=>'<g>'+c(437,124,34,'#f5c8a6')+path('M411 111Q423 72 454 94Q476 112 467 126Q453 104 429 106Z','#50494a')+path('M410 157Q439 147 465 160L473 238H406Z','#77a8c8','#598bac',4)+path('M414 230L405 273M459 233L469 273','none','#586d8e',11)+path('M416 169L379 197M458 167L492 193','none','#f0c39f',11)+'</g>';
  const brush=()=>'<g>'+path('M460 112L477 242','none','#aa7144',12)+path('M454 113L470 138M447 126L470 145','none','#ffffff',11)+rect(437,86,36,29,4,'#79a5d6')+Array.from({length:6},(_,i)=>path('M'+(438+i*6)+' 88V66','none','#f6f0d4',3)).join('')+'</g>';
@@ -51,7 +51,7 @@ function lifeWater14Svg(t,stage=0,opts={}){
  else if(t.id==='U04')body=bench()+sink()+tap(stage<3)+fruits()+(stage===1?hand(392,187):'')+(stage===3?c(529,80,23,'#7fcd9f')+path('M516 79L527 90L540 69','none','#fff',6):'');
  else if(t.id==='U05')body=bench()+sink()+tap(stage===0,false)+(stage===1?c(467,92,30,'#7ec990')+path('M451 89L467 102L484 78','none','#fff',8):'');
  else if(t.id==='U06')body=bench()+tap(stage<0)+glass(opts.fill||0)+(opts.fill>3?path('M218 258H399','none','#64bde2',7):'')+(opts.fill>=3?c(493,97,22,opts.fill>3?'#e9a67a':'#8fc99e'):'');
- else if(t.id==='U07')body=bench()+flower(stage===0,stage>0)+((opts.soil==='dry'&&stage===0)?path('M416 210L441 215L426 225M471 214L485 222','none','#eed7ab',4):'')+(stage>0?path('M341 99Q377 117 421 155','none','#4cb7d5',8)+drop(384,146,1.4)+drop(407,166,.9):'');
+ else if(t.id==='U07')body=bench()+flower(opts.soil==='dry'&&stage===0,opts.soil==='moist'||stage>0)+((opts.soil==='dry'&&stage===0)?path('M416 210L441 215L426 225M471 214L485 222','none','#eed7ab',4):'')+(stage>0?path('M341 99Q377 117 421 155','none','#4cb7d5',8)+drop(384,146,1.4)+drop(407,166,.9):'');
  else if(t.id==='U08')body=bench()+shower(stage===0||stage>=3)+child()+(stage===2?Array.from({length:12},(_,i)=>bubble(396+i%4*21,174+Math.floor(i/4)*16,7)).join(''):'');
  else if(t.id==='U09')body=bench()+rect(325,171,115,91,12,stage>=1?'#b1cce3':'#d9edf3','#74a9bd')+path('M344 174H418','none','#75a8c5',5)+brush()+rect(72,200,160,45,9,'#f5e5c5','#dabf92')+path('M90 206H217','none','#d5b985',6)+(stage>=2?rect(86,168,92,23,10,'#79bed7'):'');
  else if(t.id==='U10')body=bench()+tap(false,true)+path('M355 231Q365 204 421 208Q465 204 486 234Q476 257 401 259Z','#8ed0e9','#4aa8d0',4)+rect(385,162,18,72,2,'#e2b063')+path('M394 139L370 170H417Z','#f6c96e','#bd9439',3)+(stage?c(524,100,28,'#8ed2a4'):'');
@@ -174,3 +174,5 @@ function lifeWater14Render(t){
  if(!fn)throw Error('Unknown water activity '+t.game);
  fn(t);
 }
+
+Object.assign(LIFE_WATER_V14_ZHUYIN,{"超":"ㄔㄠ","遍":"ㄅㄧㄢˋ","灌":"ㄍㄨㄢˋ","專":"ㄓㄨㄢ","拭":"ㄕˋ","鄰":"ㄌㄧㄣˊ","磚":"ㄓㄨㄢ","踏":"ㄊㄚˋ","渴":"ㄎㄜˇ","溝":"ㄍㄡ","估":"ㄍㄨ","質":"ㄓˊ","救":"ㄐㄧㄡˋ","驟":"ㄗㄡˋ","槽":"ㄘㄠˊ","懂":"ㄉㄨㄥˇ","味":"ㄨㄟˋ","領":"ㄌㄧㄥˇ","踐":"ㄐㄧㄢˋ","獲":"ㄏㄨㄛˋ"});
