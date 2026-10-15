@@ -49,7 +49,7 @@ case 'acorn':return ell(70,65,25,34,'#a86c3b')+path('M42 51Q47 25 71 28Q98 29 98
 case 'melonseed':return ell(70,61,29,40,'#302e33')+path('M69 28Q52 70 69 100','none','#f8edcf',7);
 case 'sunflower':return '<g transform="translate(0,-16)">'+stem+Array.from({length:11},(_,i)=>'<ellipse cx="70" cy="37" rx="12" ry="26" transform="rotate('+(i*360/11)+' 70 47)" fill="#ffca46"/>').join('')+circ(70,47,23,'#784d2f')+'</g>';
 case 'oak':return tree('#62a766',false)+ell(69,105,34,5,'#b5a785');
-case 'watermelon':return circ(70,57,42,'#469e5b')+path('M50 20Q65 55 50 96M80 18Q96 58 80 97','none','#267a43',7);
+case 'watermelon':return circ(70,57,42,'#469e5b')+path('M50 20Q65 55 50 96','none','#267a43',6)+path('M70 17A40 40 0 0 1 70 97Z','#f7e5b9','#357b48',2)+path('M70 26A31 31 0 0 1 70 88Z','#ee6663','#f5ca99',2)+ell(88,41,3,7,'#38332f')+ell(94,60,3,7,'#38332f')+ell(87,78,3,7,'#38332f');
 case 'seed':return ell(70,70,26,19,'#b37b4a')+ell(61,61,7,4,'#e7b57e');
 case 'rooted':return ell(72,55,25,18,'#b47c4e')+path('M75 71Q76 97 57 106','none','#f3e0b9',6);
 case 'sprout':return ell(70,82,21,13,'#b78555')+path('M70 72Q64 42 71 22','none','#73ac63',6)+path('M71 40Q38 13 42 43Z','#77c47e');
@@ -138,7 +138,7 @@ document.querySelectorAll('[data-spot]').forEach(b=>b.onclick=()=>{if(b.dataset.
 }
 function life13Bee(t){
 let stage=0;
-const flower=(n)=>'<button class="life13-flower" type="button" data-flower="'+n+'" aria-label="'+(n===1?'第一朵花':'第二朵花')+'"><svg viewBox="0 0 140 150" role="img" aria-label="清楚的花朵與花粉"><path d="M70 84V141" fill="none" stroke="#579b69" stroke-width="8"/><path d="M69 118Q30 83 18 119Q49 132 69 118Z" fill="#77be82"/><g transform="translate(0,2)">'+Array.from({length:6},(_,i)=>'<ellipse cx="70" cy="37" rx="14" ry="27" transform="rotate('+(i*60)+' 70 64)" fill="'+(n===1?'#f7b8c9':'#b6b0e9')+'"/>').join('')+'<circle cx="70" cy="64" r="16" fill="#f2c34c"/><circle cx="70" cy="64" r="5" fill="#bb8830"/></g></svg><span>'+readMarkup(n===1?'第一朵花':'第二朵花')+'</span></button>';
+const flower=(n)=>'<button class="life13-flower" type="button" data-flower="'+n+'" aria-label="'+(n===1?'第一朵花':'第二朵花')+'"><svg viewBox="0 0 140 150" role="img" aria-label="清楚的花朵與花粉"><path d="M70 84V141" fill="none" stroke="#579b69" stroke-width="8"/><path d="M69 118Q30 83 18 119Q49 132 69 118Z" fill="#77be82"/><g transform="translate(0,2)">'+Array.from({length:6},(_,i)=>'<ellipse cx="70" cy="37" rx="14" ry="27" transform="rotate('+(i*60)+' 70 64)" fill="'+'#f7b8c9'+'"/>').join('')+'<circle cx="70" cy="64" r="16" fill="#f2c34c"/><circle cx="70" cy="64" r="5" fill="#bb8830"/></g></svg><span>'+readMarkup(n===1?'第一朵花':'第二朵花')+'</span></button>';
 const bee='<svg class="life13-bee" viewBox="0 0 130 85" aria-label="蜜蜂" role="img"><ellipse cx="52" cy="25" rx="19" ry="15" fill="#d7eefa"/><ellipse cx="81" cy="25" rx="19" ry="15" fill="#d7eefa"/><ellipse cx="66" cy="51" rx="42" ry="27" fill="#ffcf4c"/><path d="M55 26V77M80 27V76" stroke="#4b433a" stroke-width="11"/><circle cx="100" cy="49" r="4" fill="#3c352f"/></svg>';
 life13Shell(t,'<div class="life13-bee-scene">'+flower(1)+'<div class="life13-bee-center">'+bee+'<div id="beePollen">'+readMarkup('還沒沾到花粉')+'</div></div>'+flower(2)+'</div>','先點第一朵花，幫蜜蜂沾上花粉。');
 document.querySelectorAll('[data-flower]').forEach(b=>b.onclick=()=>{const n=Number(b.dataset.flower);if(stage===0&&n===1){stage=1;$('beePollen').innerHTML=readMarkup('蜜蜂沾到花粉啦！');life13Status('再拜訪右邊的同種花。');b.classList.add('picked');}else if(stage===1&&n===2){stage=2;b.classList.add('picked');$('beePollen').innerHTML=readMarkup('花粉送到了！');life13Status('傳粉任務成功！');life13Complete(t);}else if(stage===2){stage=0;document.querySelectorAll('[data-flower]').forEach(x=>x.classList.remove('picked'));$('beePollen').innerHTML=readMarkup('重新開始');life13Status('再來一次，先點左邊。');}else life13Status('先拜訪左邊的花喔！');});
@@ -189,12 +189,18 @@ function draw(){let content='<svg viewBox="0 0 300 240" role="img" aria-label="�
 document.querySelectorAll('[data-cut]').forEach(b=>b.onclick=()=>{lines.add(b.dataset.cut);draw();if(lines.size===2){life13Status('成功分成四等份！');life13Complete(t);}else life13Status('切出第一條線，再加另一個方向。');});
 $('life13CutReset').onclick=()=>{lines.clear();draw();life13Status('重新設計切線。')};draw();
 }
+function life13DoughArt(round){
+return '<svg viewBox="0 0 130 100" role="img" aria-label="'+(round?'圓形湯圓':'還沒揉圓的麵團')+'"><ellipse cx="65" cy="83" rx="46" ry="8" fill="#c8afa0" opacity=".32"/>'+(round?'<circle cx="65" cy="50" r="34" fill="#fff6eb" stroke="#dbbea7" stroke-width="4"/><path d="M49 31Q59 22 72 30" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/>':'<path d="M30 45Q24 16 53 19Q80 9 89 31Q110 39 99 65Q93 86 67 77Q34 87 30 63Z" fill="#f6e5d2" stroke="#cfae94" stroke-width="4"/><path d="M43 43Q54 38 64 44" fill="none" stroke="#fffaee" stroke-width="6" stroke-linecap="round"/>')+'</svg>';
+}
+function life13BowlArt(filled){
+return '<svg viewBox="0 0 350 155" role="img" aria-label="'+(filled?'碗裡有四顆湯圓':'空的白色瓷碗')+'"><ellipse cx="175" cy="48" rx="136" ry="37" fill="#eef9fc" stroke="#6da6c1" stroke-width="5"/><path d="M39 48Q49 129 175 139Q301 129 311 48Z" fill="#fcfefe" stroke="#6da6c1" stroke-width="5"/><ellipse cx="175" cy="51" rx="115" ry="25" fill="#e4f3e9"/>'+(filled?[[115,49],[155,43],[199,46],[240,51]].map(([x,y],i)=>'<circle cx="'+x+'" cy="'+y+'" r="21" fill="'+(i%2?'#f3c0cd':'#fff3e7')+'" stroke="#d1b49d" stroke-width="2"/><path d="M'+(x-7)+' '+(y-7)+'q8 -8 15 0" fill="none" stroke="#fff" stroke-width="4"/>').join(''):'')+'</svg>';
+}
 function life13Tangyuan(t){
-const done=new Set();let bowled=false;
-life13Shell(t,'<div class="life13-dough-grid">'+Array.from({length:4},(_,i)=>'<button type="button" data-dough="'+i+'" class="life13-dough"><span class="life13-dough-shape">◌</span><span>'+readMarkup('麵團 '+(i+1))+'</span></button>').join('')+'</div><div class="life13-bowl" id="life13Bowl">◡</div><div class="life13-actions"><button class="primary" id="life13BowlBtn" type="button">'+readMarkup('放進碗裡')+'</button><button class="small-btn" id="life13DoughReset" type="button">'+readMarkup('再做一次')+'</button></div>','點四塊麵團，揉成圓形後放進碗。');
-document.querySelectorAll('[data-dough]').forEach(b=>b.onclick=()=>{done.add(Number(b.dataset.dough));b.classList.add('round');b.querySelector('.life13-dough-shape').textContent='●';life13Status('已揉圓 '+done.size+' / 4 顆。');});
-$('life13BowlBtn').onclick=()=>{if(done.size!==4){life13Status('先揉圓四顆小湯圓。');return;}bowled=true;$('life13Bowl').innerHTML='<span>●　●<span>●　●</span></span>';life13Status('四顆湯圓都放進碗了！');life13Complete(t);};
-$('life13DoughReset').onclick=()=>{done.clear();bowled=false;$('life13Bowl').textContent='◡';document.querySelectorAll('[data-dough]').forEach(b=>{b.classList.remove('round');b.querySelector('.life13-dough-shape').textContent='◌'});life13Status('再做一次！');};
+const done=new Set();
+life13Shell(t,'<div class="life13-dough-grid">'+Array.from({length:4},(_,i)=>'<button type="button" data-dough="'+i+'" class="life13-dough"><span class="life13-dough-shape">'+life13DoughArt(false)+'</span><span>'+readMarkup('麵團 '+(i+1))+'</span></button>').join('')+'</div><div class="life13-bowl" id="life13Bowl">'+life13BowlArt(false)+'</div><div class="life13-actions"><button class="primary" id="life13BowlBtn" type="button">'+readMarkup('放進碗裡')+'</button><button class="small-btn" id="life13DoughReset" type="button">'+readMarkup('再做一次')+'</button></div>','點四塊麵團，揉成圓形後放進碗。');
+document.querySelectorAll('[data-dough]').forEach(b=>b.onclick=()=>{done.add(Number(b.dataset.dough));b.classList.add('round');b.querySelector('.life13-dough-shape').innerHTML=life13DoughArt(true);life13Status('已揉圓 '+done.size+' / 4 顆。');});
+$('life13BowlBtn').onclick=()=>{if(done.size!==4){life13Status('先揉圓四顆小湯圓。');return;}$('life13Bowl').innerHTML=life13BowlArt(true);life13Status('四顆湯圓都放進碗了！');life13Complete(t);};
+$('life13DoughReset').onclick=()=>{done.clear();$('life13Bowl').innerHTML=life13BowlArt(false);document.querySelectorAll('[data-dough]').forEach(b=>{b.classList.remove('round');b.querySelector('.life13-dough-shape').innerHTML=life13DoughArt(false)});life13Status('再做一次！');};
 }
 function life13Culture(t){
 const options=[['listen','用心聽族人介紹'],['rules','先詢問並遵守部落的規定'],['copy','沒問就模仿祭儀'],['mock','取笑不同的文化']];
