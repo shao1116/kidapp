@@ -7,7 +7,7 @@ const LIFE_WATER_V14_TASKS=[
 {id:'U04',kind:'lifeWater14',game:'sequence',q:'水果清潔員：怎樣把蘋果安全洗乾淨？',hint:'在流動的乾淨水下輕輕搓洗，不需要肥皂。',explain:'水果要用安全的流動清水洗淨；不使用肥皂清洗水果，洗好記得關水。',level:1,steps:['fruitRinse','fruitRub','fruitOff'],choices:['fruitRub','fruitOff','fruitRinse']},
 {id:'U05',kind:'lifeWater14',game:'faucet',q:'關水守門員：離開洗手台前，先做哪件事？',hint:'看看水龍頭還有沒有水在流。',explain:'用完水檢查水龍頭是否已關緊，避免持續流水或漏水。',level:1,correct:'close',choices:[['leave','直接離開'],['close','把水龍頭關緊'],['play','用水沖地板玩']]},
 {id:'U06',kind:'lifeWater14',game:'fill',q:'飲水剛剛好：幫小杯子裝適量的飲用水！',hint:'裝到杯子的記號附近就停下，不要讓水滿出來。',explain:'先裝自己喝得完的量，需要再補充，避免溢出，也別忘了補充足夠的飲水。',level:2},
-{id:'U07',kind:'lifeWater14',game:'plant',q:'植物澆水員：觀察兩個花盆，決定要不要澆水！',hint:'土壤乾燥要適量澆水；土壤已經濕潤可以先觀察。',explain:'澆水應考慮植物種類與土壤狀況。土乾時適量澆，土仍濕潤時不要再灌大量的水。',level:2},
+{id:'U07',kind:'lifeWater14',game:'plant',q:'植物澆水員：先看看土壤乾濕，再決定要不要澆水！',hint:'土壤乾燥要適量澆水；土壤已經濕潤可以先觀察。',explain:'澆水應考慮植物種類與土壤狀況。土乾時適量澆，土仍濕潤時不要再灌大量的水。',level:2},
 {id:'U08',kind:'lifeWater14',game:'sequence',q:'洗澡小達人：洗乾淨，也別讓水白白流！',hint:'先沖濕、暫時關水抹沐浴乳，最後再沖淨。',explain:'安全的情況下，抹沐浴乳時可暫時關水；身上的泡泡仍要沖乾淨。',level:2,steps:['showerWet','showerOff','showerSoap','showerRinse'],choices:['showerSoap','showerWet','showerRinse','showerOff']},
 {id:'U09',kind:'lifeWater14',game:'sequence',q:'畫筆清潔站：清洗畫筆時，怎麼用水比較好？',hint:'先用專用水杯洗筆，再擦拭，髒水請大人依材料處理。',explain:'可以用專用水杯清洗畫筆、擦拭筆毛；顏料水不要拿來飲用或澆菜，清理方式請大人確認。',level:2,steps:['paintCup','paintWipe','paintAdult'],choices:['paintAdult','paintCup','paintWipe']},
 {id:'U10',kind:'lifeWater14',game:'hazard',q:'濕滑警報！看到漏水和地上積水，怎麼辦？',hint:'先避開積水，再告訴大人。',explain:'水管漏水與地面積水可能造成滑倒，先退到安全處，請老師或家長處理。',level:2},
