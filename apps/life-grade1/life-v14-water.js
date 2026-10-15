@@ -27,8 +27,8 @@ dispenser:'飲水機',drink:'喝乾淨的水',sink:'洗手台',wash:'清洗雙�
 };
 const LIFE_WATER_V14_ZHUYIN={"徽":"ㄏㄨㄟ","章":"ㄓㄤ","濕":"ㄕ","滑":"ㄏㄨㄚˊ","漏":"ㄌㄡˋ","警":"ㄐㄧㄥˇ","報":"ㄅㄠˋ","偵":"ㄓㄣ","探":"ㄊㄢˋ","容":"ㄖㄨㄥˊ","量":"ㄌㄧㄤˋ","蘋":"ㄆㄧㄥˊ","果":"ㄍㄨㄛˇ","搓":"ㄘㄨㄛ","肥":"ㄈㄟˊ","皂":"ㄗㄠˋ","沖":"ㄔㄨㄥ","淨":"ㄐㄧㄥˋ","刷":"ㄕㄨㄚ","漱":"ㄕㄨˋ","背":"ㄅㄟˋ","指":"ㄓˇ","縫":"ㄈㄥˋ","護":"ㄏㄨˋ","員":"ㄩㄢˊ","維":"ㄨㄟˊ","修":"ㄒㄧㄡ","漆":"ㄑㄧ","顏":"ㄧㄢˊ","料":"ㄌㄧㄠˋ","廢":"ㄈㄟˋ","理":"ㄌㄧˇ","洗":"ㄒㄧˇ","澡":"ㄗㄠˇ","抹":"ㄇㄛˇ","沐":"ㄇㄨˋ","浴":"ㄩˋ","擦":"ㄘㄚ","澆":"ㄐㄧㄠ","壺":"ㄏㄨˊ","盆":"ㄆㄣˊ","杯":"ㄅㄟ","泉":"ㄑㄩㄢˊ","飲":"ㄧㄣˇ","夠":"ㄍㄡˋ","餘":"ㄩˊ","髒":"ㄗㄤ","潔":"ㄐㄧㄝˊ","安":"ㄢ","選":"ㄒㄩㄢˇ","擇":"ㄗㄜˊ","鬆":"ㄙㄨㄥ","剛":"ㄍㄤ","桶":"ㄊㄨㄥˇ","飽":"ㄅㄠˇ","透":"ㄊㄡˋ","傾":"ㄑㄧㄥ","斜":"ㄒㄧㄝˊ","倒":"ㄉㄠˋ","戴":"ㄉㄞˋ","提":"ㄊㄧˊ","醒":"ㄒㄧㄥˇ","澡":"ㄗㄠˇ","滴":"ㄉㄧ","省":"ㄕㄥˇ","綠":"ㄌㄩˋ","植":"ㄓˊ","潤":"ㄖㄨㄣˋ","土":"ㄊㄨˇ","壤":"ㄖㄤˇ","嚴":"ㄧㄢˊ","重":"ㄓㄨㄥˋ","飲":"ㄧㄣˇ","漉":"ㄌㄨˋ","污":"ㄨ","染":"ㄖㄢˇ","互":"ㄏㄨˋ","約":"ㄩㄝ"};
 function lifeWater14Svg(t,stage=0,opts={}){
- const c=(x,y,r,f,stroke='none')=>'<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+f+'" stroke="'+stroke+'"/';
- const rect=(x,y,w,h,r,f,stroke='none')=>'<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="'+r+'" fill="'+f+'" stroke="'+stroke+'"/';
+ const c=(x,y,r,f,stroke='none')=>'<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+f+'" stroke="'+stroke+'"/>';
+ const rect=(x,y,w,h,r,f,stroke='none')=>'<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="'+r+'" fill="'+f+'" stroke="'+stroke+'"/>';
  const path=(d,fill,stroke='none',sw=3)=>'<path d="'+d+'" fill="'+fill+'" stroke="'+stroke+'" stroke-width="'+sw+'" stroke-linecap="round" stroke-linejoin="round"/>';
  const drop=(x,y,k=1)=>'<g transform="translate('+x+' '+y+') scale('+k+')">'+path('M0 -12Q-12 2-9 9A10 10 0 0 0 9 9Q12 2 0 -12Z','#4bbbe2','#238fbd',1.5)+'</g>';
  const bubble=(x,y,r)=>c(x,y,r,'#eefaff','#82bad9')+c(x-r*.3,y-r*.32,Math.max(1,r*.19),'#fff');
@@ -63,7 +63,16 @@ function lifeWater14Svg(t,stage=0,opts={}){
  return bg+body+'</svg>';
 }
 function lifeWater14Status(msg){const node=$('water14Status');if(node)node.innerHTML=readMarkup(msg)}
-function lifeWater14Panel(t,body,note){$('visualArea').innerHTML='<section class="water14-lab"><div class="water14-title">'+readMarkup('水資源救援小隊')+'</div><div class="water14-stage" id="water14Picture">'+lifeWater14Svg(t,0)+'</div>'+body+'<div class="water14-feedback" role="status" id="water14Status">'+readMarkup(note||'觀察場景，開始幫忙吧！')+'</div></section>';$('choiceArea').innerHTML='';}
+const LIFE_WATER_V14_SCENE_CAPTIONS={
+U01:'洗手台：把手洗乾淨',U02:'刷牙時記得關水',U03:'找出漏水的水管',U04:'清洗蘋果的小任務',U05:'洗完手記得關水',
+U06:'水杯裝到適量就好',U07:'觀察花盆土壤的乾濕',U08:'洗澡時適時關水',U09:'畫筆與洗筆水杯',U10:'積水的地板要小心',
+U11:'飲水機與洗手台',U12:'走過沒有積水的路',U13:'尋找安全飲水來源',U14:'認識水的再利用',U15:'獲得節水小徽章'
+};
+function lifeWater14Panel(t,body,note){
+  const caption=LIFE_WATER_V14_SCENE_CAPTIONS[t.id]||'看一看這個生活場景';
+  $('visualArea').innerHTML='<section class="water14-lab"><div class="water14-title">'+readMarkup('水資源救援小隊')+'</div><div class="water14-stage" id="water14Picture">'+lifeWater14Svg(t,0)+'</div><div class="water14-scene-caption">'+readMarkup(caption)+'</div>'+body+'<div class="water14-feedback" role="status" id="water14Status">'+readMarkup(note||'觀察場景，開始幫忙吧！')+'</div></section>';
+  $('choiceArea').innerHTML='';
+}
 function lifeWater14Draw(t,step,opts){$('water14Picture').innerHTML=lifeWater14Svg(t,step,opts||{});}
 function lifeWater14Pass(t,text){if(!solved)markDone();feedback(text||('成功！'+t.explain+' 可以按下一題，也可以繼續試試。'),'good');lifeWater14Status(text||t.explain);}
 function lifeWater14Try(msg){feedback(msg,'retry');lifeWater14Status(msg)}
