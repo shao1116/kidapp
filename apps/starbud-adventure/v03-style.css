@@ -1,0 +1,151 @@
+/* Starbud Islands v0.3 — adaptive storybook UI; inherits existing button/dialog styles. */
+:root{--v03-ink:#31594d;--v03-gold:#a77946;--v03-mint:#6aba8f}
+html,body{overflow-x:clip}body{background:radial-gradient(ellipse at 24% -10%,#f6eac8 0,transparent 35%),radial-gradient(ellipse at 90% 0%,#d6f4e6 0,transparent 35%),#edf7ec}
+body .topbar{max-width:1350px;margin:0 auto;padding:12px clamp(12px,2.3vw,27px);background:transparent;box-shadow:none}
+body main{max-width:1350px;margin:0 auto;padding:0 clamp(12px,2.3vw,28px) 24px}
+body .brand{gap:11px}body .brand>span{background:#d7f2d6;border:2px solid #fffaf2;box-shadow:0 5px 13px #688b6a30}
+body .brand strong{font-size:clamp(18px,2.15vw,25px);letter-spacing:.04em;color:#317e6b}
+body .topbar .back,body .topbar .top-btn{border-color:#d5e7d3;background:#fffdf8;box-shadow:0 3px 8px #355d4220}
+body .hud{border:1px solid #d7e9d1;background:#fffff9e8;box-shadow:0 7px 22px #638f7020;padding:10px 15px;margin:4px 0 14px;border-radius:22px}
+body .world-wrap{border:2px solid #c9e0c6;box-shadow:0 18px 45px #386b5230;border-radius:24px;min-width:0;background:#fcfff7}
+body .world-header{padding:12px 17px;background:#fbfff9;min-height:66px}
+body .world-header strong{font-size:clamp(15px,1.6vw,21px);color:#327b66}
+body .world-header small{font-size:12px;color:#668c7e;line-height:1.5}
+body .world-tools button{min-height:42px;border-radius:14px}
+body .world-frame{aspect-ratio:auto;height:clamp(380px,46vw,610px);min-height:320px;border-block:2px solid #bcdbd2;position:relative;background:linear-gradient(135deg,#a7ddad,#bde5b0)}
+#world{width:100%;height:100%;cursor:crosshair;touch-action:manipulation}
+#world .target-label{font:900 14px ui-rounded,"Noto Sans TC",system-ui,sans-serif;fill:#285648;paint-order:stroke;stroke:#fffcde;stroke-width:4.5px;stroke-linejoin:round;pointer-events:none}
+#world .clickable:focus-visible .focusring,#world .clickable:hover .focusring{opacity:.92;stroke:#ffe6a1;stroke-width:4}
+#world .clickable .focusring{fill:#fff8d2;stroke:#d1dd94;opacity:.08;transition:opacity .2s}
+#world .v03-tree .v03-sway{transform-box:fill-box;transform-origin:50% 90%;animation:v03-sway 5.5s ease-in-out infinite alternate}
+#world .v03-tree:nth-of-type(3n) .v03-sway{animation-delay:-3s;animation-duration:6.6s}
+#world .v03-butterfly{animation:v03-flutter 3.1s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+#world .v03-glint{animation:v03-glow 2.8s ease-in-out infinite alternate}
+#world .v03-water-wave{animation:v03-wave 2.3s ease-in-out infinite alternate}
+#world .v03-npc,#world .v03-player{animation:v03-idle 2.5s ease-in-out infinite alternate}
+@keyframes v03-sway{0%{transform:rotate(-2.3deg)}100%{transform:rotate(3.3deg)}}
+@keyframes v03-flutter{0%{transform:translate(0,-3px) rotate(-6deg)}100%{transform:translate(5px,5px) rotate(6deg)}}
+@keyframes v03-glow{from{opacity:.35}to{opacity:1}}
+@keyframes v03-wave{from{opacity:.23}to{opacity:.8}}
+@keyframes v03-idle{from{transform:translateY(0)}to{transform:translateY(-2px)}}
+/* The map decorations float above WebGL but do not intercept taps. */
+#worldFx{z-index:0;position:absolute;inset:0;pointer-events:none}
+.world-frame #world{position:relative;z-index:1}
+.world-frame .mini-map{position:absolute;z-index:3;top:12px;right:12px;padding:5px;border-radius:15px;background:#fffef3ec;border:2px solid #fff;box-shadow:0 5px 16px #1e635b33;color:#396f5c;cursor:pointer;min-width:115px;min-height:83px;display:flex;flex-direction:column;align-items:center;gap:0;backdrop-filter:blur(7px)}
+.mini-map svg{width:112px;height:66px;display:block;border-radius:8px}
+.mini-map span{font-size:10px;font-weight:900;color:#427968;line-height:1.4}
+.world-frame .objective{position:absolute;left:14px;top:14px;z-index:3;display:flex;align-items:center;gap:7px;max-width:calc(100% - 165px);background:#fffef0e8;color:#47735d;box-shadow:0 4px 12px #48745630;border:1px solid #fff9df;border-radius:99px;padding:7px 11px;font-size:12px;font-weight:900;pointer-events:none}
+.world-frame .objective strong{font-size:13px;color:#b27f47}
+body .movement{padding:7px 12px;min-height:50px;background:#f4fbf0}
+body .movement span{font-size:12px;color:#698575}
+body .dpad button{min-width:43px;min-height:35px;border-radius:12px;background:#e4f4e8}
+body .mission-box{padding:15px 18px;background:linear-gradient(158deg,#fffdf1,#fff3dd);border:2px solid #f0e5c5;box-shadow:0 7px 22px #b19e6540;border-radius:21px;margin:13px 0;min-width:0}
+body .mission-box>strong{font-size:18px;line-height:1.45;margin:6px 0;color:#776039;word-break:keep-all}
+body .mission-box p{line-height:1.6;font-size:14px;font-weight:650;word-break:normal;color:#826744}
+body .mission-box .mission-head{color:#987540;font-size:12px}
+body .mission-progress span{font-size:11px}
+body .bottom-nav{margin:0 0 8px;box-shadow:0 6px 20px #548f6120}
+body .bottom-nav button{min-height:63px}
+body .dialog-backdrop{padding:clamp(10px,2vw,24px)}
+body .dialog{width:min(650px,100%);border:2px solid #d2e6cd;box-shadow:0 28px 75px #143d3655}
+body .dialog-body{line-height:1.65;font-size:16px}
+body .dialog-body p{line-height:1.7}
+body .dialog .zhchar{vertical-align:middle}
+/* Phonetic syllables must be bound to their Han glyph. Default clean text, optional annotated display. */
+body .zhchar{display:inline-flex;align-items:center;justify-content:flex-start;vertical-align:baseline;white-space:nowrap;line-height:1.4;margin:0 .005em;break-inside:avoid}
+body .zhchar .han{display:inline-block;line-height:1.3;font-size:1em}
+body .zhchar .zy{display:none!important;position:relative;align-self:center;flex-direction:column;justify-content:center;align-items:center;width:.72em;min-width:.72em;height:2.4em;flex:0 0 .72em;font-size:.48em;line-height:1.0;color:#8267a6;margin:0 .03em 0 .13em}
+body.bopo-on .zhchar .zy{display:inline-flex!important}
+body.bopo-on .mission-box p,body.bopo-on .mission-box>strong{line-height:2.7}
+body.bopo-on .dialog-body p,body.bopo-on .dialog-body .note{line-height:2.5}
+body.bopo-on .mission-box p,body.bopo-on .dialog-body p{word-break:normal}
+body .zhchar .zy span{display:block;text-align:center}
+body .zhchar .zy .tone{position:absolute;left:100%;top:48%;transform:translateY(-50%);font-size:1.15em}
+body .zhchar .zy .light{position:absolute;left:0;top:-.5em;font-size:.9em}
+body .bopo-toggle{background:#f0edff!important;border:1px solid #dfd3f8!important;color:#7a5b9b!important}
+body .bopo-toggle[aria-pressed=true]{background:#e8defb!important;color:#6d499c!important}
+/* Desktop: world occupies left column, compact quest panel on right. */
+@media (min-width:1060px){
+ #gameScreen{display:grid;grid-template-columns:minmax(0,1fr) 310px;grid-template-areas:'hud hud' 'world quest' 'nav quest';gap:0 18px;align-items:start}
+ #gameScreen[hidden]{display:none}
+ .hud{grid-area:hud}
+ .world-wrap{grid-area:world}
+ .mission-box{grid-area:quest;position:sticky;top:12px;margin:0;min-height:265px}
+ .bottom-nav{grid-area:nav;margin:14px 0}
+ .world-frame{height:clamp(420px,46vw,640px)}
+ .world-header{min-height:70px}
+}
+/* Tablet: large panoramic map and generous touch targets */
+@media (min-width:601px) and (max-width:1059px){
+ body main{padding:0 18px 36px}
+ body .world-frame{height:clamp(440px,62vw,625px)}
+ body .movement{min-height:55px}
+ body .mission-box{padding:15px 20px}
+ body .bottom-nav button{min-height:69px}
+}
+/* Portrait phone: prioritize playable map and collapse excessive explanation. */
+@media(max-width:600px){
+ body .topbar{gap:7px;padding:9px 10px}
+ body .topbar .back{font-size:11px;min-width:0;padding:7px 9px}
+ body .topbar .top-btn{font-size:10px;padding:8px 6px}
+ body .brand strong{font-size:18px;white-space:nowrap}
+ body .brand small{font-size:10px}
+ body main{padding:0 9px 70px}
+ body .hud{margin:3px 0 9px;border-radius:18px;padding:7px 10px}
+ body .portrait{width:44px;height:44px;font-size:28px;border-radius:13px}
+ body .profile-info strong{font-size:14px}
+ body .world-wrap{border-radius:19px}
+ body .world-header{padding:9px 10px;min-height:58px;gap:5px}
+ body .world-header strong{font-size:15px}
+ body .world-header small{font-size:10px;max-width:225px}
+ body .world-tools{gap:4px}
+ body .world-tools button{min-height:34px;font-size:10px!important;padding:5px 7px!important}
+ body .world-frame{aspect-ratio:auto!important;height:clamp(355px,107vw,535px);min-height:355px}
+ .world-frame .mini-map{top:9px;right:9px;min-width:76px;min-height:66px;padding:3px;border-radius:12px}
+ .world-frame .mini-map svg{width:83px;height:50px}
+ .world-frame .mini-map span{font-size:9px}
+ .world-frame .objective{top:10px;left:9px;max-width:calc(100% - 111px);font-size:11px;padding:6px 9px}
+ body .movement{padding:5px 8px;background:#f5faee}
+ body .movement span{font-size:10px;max-width:140px}
+ body .dpad button{min-width:43px;min-height:41px;font-size:15px}
+ body .mission-box{padding:12px 14px;margin:10px 0;border-radius:17px}
+ body .mission-box>strong{font-size:16px;margin:4px 0}
+ body .mission-box p{font-size:13px;line-height:1.5}
+ body .mission-progress{margin-top:6px}
+ body .mission-progress span{font-size:10px;padding:4px 8px}
+ body .bottom-nav{position:sticky;bottom:6px;z-index:7;background:#fffef9f2;backdrop-filter:blur(12px);border:1px solid #d4e7d5;border-radius:18px;overflow:hidden}
+ body .bottom-nav button{min-height:53px;font-size:22px}
+ body .bottom-nav button span{font-size:11px}
+ body .dialog-backdrop{padding:8px;align-items:end}
+ body .dialog{width:100%;max-height:min(84svh,720px);border-radius:24px 24px 14px 14px;padding:15px}
+ body .dialog-body{font-size:15px}
+}
+@media(max-width:360px){
+ body main{padding-inline:6px}
+ body .world-header small{max-width:155px;font-size:9px}
+ body .world-tools button{font-size:9px!important;padding:5px!important}
+ body .world-frame{height:385px}
+ body .world-frame .objective{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){#world .v03-sway,#world .v03-glint,#world .v03-butterfly,#world .v03-water-wave,#world .v03-npc,#world .v03-player{animation:none!important}}
+
+/* Large interactive world atlas: tablet/desktop centered, mobile bottom sheet. */
+.v03-map-dialog{border:2px solid #b4d8b8;border-radius:24px;background:#fffdf2;color:#3b6b5b;box-shadow:0 28px 75px #163e375c;width:min(700px,calc(100vw - 26px));max-width:700px;padding:22px;max-height:88dvh;overflow:auto}
+.v03-map-dialog::backdrop{background:#163d36af;backdrop-filter:blur(5px)}
+.v03-map-dialog .map-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.v03-map-dialog .map-dialog-head h2{font-size:clamp(17px,3vw,23px);margin:0;color:#397b64}
+.v03-map-dialog #mapClose{width:45px;height:45px;border:1px solid #cfe4cc;border-radius:13px;background:#eef8eb;color:#4a7f6a;font-size:23px;flex-shrink:0;cursor:pointer}
+.v03-map-dialog #largeMap{display:block;width:100%;height:auto;aspect-ratio:180/108;border:4px solid #fff;border-radius:17px;box-shadow:0 8px 26px #6a946b28;margin:17px auto;background:#b9dfad}
+.v03-map-dialog #mapNote{font-size:14px;font-weight:800;line-height:1.65}
+.v03-map-dialog .map-help{font-size:12px;color:#789080}
+.v03-map-dialog button:focus-visible{outline:3px solid #e6be65;outline-offset:3px}
+body .mini-map:focus-visible{outline:3px solid #f7be6d;outline-offset:3px}
+@media(max-width:600px){.v03-map-dialog{padding:15px;border-radius:20px;margin:auto}.v03-map-dialog #mapClose{width:41px;height:41px}.v03-map-dialog #mapNote{font-size:13px}}
+@media(max-width:360px){body .brand>span{display:none}body .topbar .back{padding:6px 5px}body .topbar .top-btn{font-size:9px;padding:6px 4px}.world-header .world-tools{gap:2px}.world-header .world-tools button{padding:4px!important}}
+
+/* Consistent illustrated hero portraits in avatar picker and HUD. */
+body .portrait{overflow:hidden;display:grid;place-items:center}
+body .portrait .v03-avatar-portrait{display:block;width:calc(100% - 5px);height:calc(100% - 5px);max-height:72px;overflow:visible}
+body .picker .face{display:flex;justify-content:center;align-items:center;max-height:78px;min-height:47px}
+body .picker .face svg{width:min(70px,100%);height:68px;display:block;overflow:visible}
+@media(max-width:600px){body .picker .face svg{height:55px;width:54px}}

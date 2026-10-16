@@ -16,7 +16,7 @@ KidApp 是適合臺灣小朋友使用的免費網頁學習遊戲集合，以繁�
 | **小一生活探索樂園（Grade 1 Life Discovery Adventure）** | **v1.3.3（正式版）** | 十款遊戲共 170 任務；水資源 15 題重製場景互動，植物／節慶新增關卡，保留既有進度及親子紀錄 | [開始探索](https://shao1116.github.io/kidapp/apps/life-grade1/) |
 | **星光小小探險隊（Little Explorers）** | **v1.1（正式版）** | 八款遊戲、96 任務；工程師短規則及右側注音，新增英語、自然、情緒與音樂互動玩法 | [前往星光島](https://shao1116.github.io/kidapp/apps/starlight-island/) |
 | **小小數獨探險島（Sudoku Adventure）** | **v1.0（正式版）** | 4×4／6×6／9×9，七級各 30 題共 210 題；唯一解、逐步提示、候選筆記、自由練習與每日挑戰 | [開始數獨](https://shao1116.github.io/kidapp/apps/sudoku-grade1/) |
-| **星芽群島：小小冒險家（Starbud Islands RPG）** | **v0.2（WebGL 畫面升級）** | 角色建立、俯視角自由探索、居民對話、5 階段故事、材料與裝備製作、修橋拼圖、洞穴機關、花園、星芽幣、經驗與自動存檔 | [開始冒險](https://shao1116.github.io/kidapp/apps/starbud-adventure/) |
+| **星芽群島：小小冒險家（Starbud Islands RPG）** | **v0.3（跨裝置繪本世界）** | 角色建立、俯視角自由探索、居民對話、5 階段故事、材料與裝備製作、修橋拼圖、洞穴機關、花園、星芽幣、經驗與自動存檔 | [開始冒險](https://shao1116.github.io/kidapp/apps/starbud-adventure/) |
 | 一年級數學・注音測試版（保留作比較） | beta | 最初 50 題注音排版測試（不再作為正式入口） | [查看舊測試版](https://shao1116.github.io/kidapp/apps/math-grade1-zhuyin-preview/) |
 
 ## 📁 目錄
@@ -47,7 +47,10 @@ kidapp/
 │   │   ├── index.html               # 星芽群島獨立 RPG【v0.1 原型】
 │   │   ├── game.js                  # 地圖、NPC、任務、解謎、背包與進度
 │   │   ├── world-fx.js              # WebGL2 水流光影與粒子物理、SVG 場景插畫
-│   │   ├── world-fx.css             # 動畫、美術與手機樣式
+│   │   ├── world-fx.css             # v0.2 WebGL 基礎樣式
+│   │   ├── world-art-v03.js          # v0.3 原創場景、NPC、角色及物件 SVG
+│   │   ├── v03-style.css             # v0.3 手機、平板、桌面適應版面
+│   │   ├── ui-v03.js                 # v0.3 地圖、目標導航與注音開關
 │   │   ├── phonetics.js             # 國字右側直排注音對照
 │   │   └── style.css                # 手機與桌面響應式畫面
 │   ├── sudoku-grade1/
@@ -94,6 +97,16 @@ kidapp/
 ## 🌱 App 8：星芽群島｜小小冒險家
 
 **網址：** https://shao1116.github.io/kidapp/apps/starbud-adventure/
+
+**v0.3｜2026-10-16：童話繪本美術、跨裝置探索介面**
+
+- 重製一致的繪本式 SVG 畫面：森林樹種、岩石、蘑菇、花叢、河岸、村莊小屋、工作台、修復前後的木橋、狐狸／兔子／工程師，以及三種自訂角色、裝備帽子、資源、寶箱和洞穴。
+- **手機**：主地圖增高成直向場景、簡化角色及任務區塊；**平板**：較大的探索地圖與觸控範圍；**電腦**：寬地圖與右側任務面板、滑鼠和方向鍵並用。
+- 依地圖實際容器寬高比選擇 SVG/WebGL 的共同 viewBox，跟隨角色並防止座標點擊偏移；新增常駐迷你地圖、全區地圖彈窗和任務方向提示。
+- 修正中文注音字元群組的 CSS，預設乾淨文字；可點「ㄅ 注音」顯示國字右側直排注音。注音偏好獨立存於本機；原有朗讀保留。
+- 保留 WebGL2 流水與粒子效果；GPU 不支援或動態關閉時使用**完整 SVG 草地及溪流後備畫面**。圖層場景依狀態快取以減少行走時的繪圖負擔。
+- 既有任務、獎勵、角色背包、成就與本機存檔鍵 `kidapp-starbud-adventure-v1` 不變。新增靜態程式測試 `node tests/starbud-v03-smoke.cjs`。
+- 已執行原創 SVG 結構與主要程式語法檢查；真實 iPhone/iPad Safari 的效果仍待實機視覺驗收。
 
 **v0.2｜2026-10-16：WebGL 精緻場景與物理動畫**
 
