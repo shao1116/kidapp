@@ -16,7 +16,7 @@ KidApp 是適合臺灣小朋友使用的免費網頁學習遊戲集合，以繁�
 | **小一生活探索樂園（Grade 1 Life Discovery Adventure）** | **v1.3.3（正式版）** | 十款遊戲共 170 任務；水資源 15 題重製場景互動，植物／節慶新增關卡，保留既有進度及親子紀錄 | [開始探索](https://shao1116.github.io/kidapp/apps/life-grade1/) |
 | **星光小小探險隊（Little Explorers）** | **v1.1（正式版）** | 八款遊戲、96 任務；工程師短規則及右側注音，新增英語、自然、情緒與音樂互動玩法 | [前往星光島](https://shao1116.github.io/kidapp/apps/starlight-island/) |
 | **小小數獨探險島（Sudoku Adventure）** | **v1.0（正式版）** | 4×4／6×6／9×9，七級各 30 題共 210 題；唯一解、逐步提示、候選筆記、自由練習與每日挑戰 | [開始數獨](https://shao1116.github.io/kidapp/apps/sudoku-grade1/) |
-| **星芽群島：小小冒險家（Starbud Islands RPG）** | **v0.1（可玩原型）** | 角色建立、俯視角自由探索、居民對話、5 階段故事、材料與裝備製作、修橋拼圖、洞穴機關、花園、星芽幣、經驗與自動存檔 | [開始冒險](https://shao1116.github.io/kidapp/apps/starbud-adventure/) |
+| **星芽群島：小小冒險家（Starbud Islands RPG）** | **v0.2（WebGL 畫面升級）** | 角色建立、俯視角自由探索、居民對話、5 階段故事、材料與裝備製作、修橋拼圖、洞穴機關、花園、星芽幣、經驗與自動存檔 | [開始冒險](https://shao1116.github.io/kidapp/apps/starbud-adventure/) |
 | 一年級數學・注音測試版（保留作比較） | beta | 最初 50 題注音排版測試（不再作為正式入口） | [查看舊測試版](https://shao1116.github.io/kidapp/apps/math-grade1-zhuyin-preview/) |
 
 ## 📁 目錄
@@ -46,6 +46,8 @@ kidapp/
 │   ├── starbud-adventure/
 │   │   ├── index.html               # 星芽群島獨立 RPG【v0.1 原型】
 │   │   ├── game.js                  # 地圖、NPC、任務、解謎、背包與進度
+│   │   ├── world-fx.js              # WebGL2 水流光影與粒子物理、SVG 場景插畫
+│   │   ├── world-fx.css             # 動畫、美術與手機樣式
 │   │   ├── phonetics.js             # 國字右側直排注音對照
 │   │   └── style.css                # 手機與桌面響應式畫面
 │   ├── sudoku-grade1/
@@ -92,6 +94,16 @@ kidapp/
 ## 🌱 App 8：星芽群島｜小小冒險家
 
 **網址：** https://shao1116.github.io/kidapp/apps/starbud-adventure/
+
+**v0.2｜2026-10-16：WebGL 精緻場景與物理動畫**
+
+- 加入原生 WebGL2 shader：柔和地形材質、彎曲小路、河水流動與折射感波紋、水面焦散高光、沙灘與自然光照；不需 CDN/外部函式庫。
+- 物理粒子：依風向、重力、阻力與碰撞反彈推進落葉、水滴及漂浮光點；低階裝置自動減少粒子數，尊重系統「減少動態效果」設定。
+- 精緻 SVG 前景：多層漸層樹冠、村莊小屋、花圃、彩虹橋修復前後、動物 NPC、收集資源、洞穴與冒險家造型；可保留鍵盤、觸控互動。
+- 手機地圖 viewport 改為 450×270（和畫面等比例），角色移動時會同步橫向／縱向跟隨，避免過去 450×540 的留白及取景比例問題。
+- 加入「動態：開／關」按鈕；WebGL2 不能使用、初始化失敗或使用者手動關閉時，回到原本 SVG 地圖，玩法不受影響。
+- **不更動** `kidapp-starbud-adventure-v1` 存檔內容、任務旗標、道具獎勵及原始角色。
+- 測試：`node tests/starbud-adventure-smoke.cjs`、`node tests/starbud-webgl-v02-smoke.cjs`。SVG 語法與 WebGL 管線已完成模擬檢查；因測試環境無法啟用 GPU context，正式瀏覽器 GPU 畫質／真實 iPhone Safari 仍待裝置確認。「物理效果」是遊戲友善的簡化粒子模型，非完整剛體或流體模擬。
 
 **v0.1｜2026-10-16：角色扮演遊戲可玩原型**
 
