@@ -2,20 +2,21 @@
 
 KidApp 是適合臺灣小朋友使用的免費網頁學習遊戲集合，以繁體中文為主，設計適用於電腦、手機和平板。各遊戲放在獨立目錄，由首頁進入，方便後續擴充。
 
-> **更新日期：2026-10-15。** 本 README 將**每個 App 的演進紀錄分開管理**。更新功能時，請同步修改下方對應 App 的紀錄、版本與首頁描述。
+> **更新日期：2026-10-16。** 本 README 將**每個 App 的演進紀錄分開管理**。更新功能時，請同步修改下方對應 App 的紀錄、版本與首頁描述。
 
 ## 🎮 遊戲入口與版本
 
 | App / 頁面 | 目前版本 | 功能 | 網址 |
 | --- | --- | --- | --- |
-| KidApp 導覽首頁 | v2.6 | 兩大年齡分類、七款遊戲；新增小小數獨探險島（七級難度、210 題） | [進入 KidApp](https://shao1116.github.io/kidapp/) |
+| KidApp 導覽首頁 | v2.7 | 兩大年齡分類、八款遊戲；新增獨立探索 RPG「星芽群島」 | [進入 KidApp](https://shao1116.github.io/kidapp/) |
 | 小小認字探險家（Word Explorer） | **v1.4** | 中英自動朗讀、八類 79 張圖卡（新增 10 種水中生物） | [開始認字](https://shao1116.github.io/kidapp/apps/word-explorer/) |
 | 一年級數學大冒險（Grade 1 Math Adventure）| **v2.2（正式版）** | **85 題（新增 20 題高階挑戰）、右側直排注音、10 題測驗滿分 100 分** | [開始數學](https://shao1116.github.io/kidapp/apps/math-grade1/) |
 | **小一英語冒險島（Grade 1 English Adventure）** | **v1.2** | 68 個單字、20 組自然對話，新增進階十題挑戰 | [開始英語](https://shao1116.github.io/kidapp/apps/english-grade1/) |
 | **小小幫手：波波的日常冒險（Little Helper）** | **v1.2.1（正式版）** | 四場景 55 個任務（車車 25 題）、修正消防局插圖、五題連續抽題減少重複 | [開始幫忙](https://shao1116.github.io/kidapp/apps/little-helper/) |
-| **小一生活探索樂園（Grade 1 Life Discovery Adventure）** | **v1.3.2（正式版）** | 十款遊戲共 170 任務；水資源 15 題重製場景互動，植物／節慶新增關卡，保留既有進度及親子紀錄 | [開始探索](https://shao1116.github.io/kidapp/apps/life-grade1/) |
+| **小一生活探索樂園（Grade 1 Life Discovery Adventure）** | **v1.3.3（正式版）** | 十款遊戲共 170 任務；水資源 15 題重製場景互動，植物／節慶新增關卡，保留既有進度及親子紀錄 | [開始探索](https://shao1116.github.io/kidapp/apps/life-grade1/) |
 | **星光小小探險隊（Little Explorers）** | **v1.1（正式版）** | 八款遊戲、96 任務；工程師短規則及右側注音，新增英語、自然、情緒與音樂互動玩法 | [前往星光島](https://shao1116.github.io/kidapp/apps/starlight-island/) |
 | **小小數獨探險島（Sudoku Adventure）** | **v1.0（正式版）** | 4×4／6×6／9×9，七級各 30 題共 210 題；唯一解、逐步提示、候選筆記、自由練習與每日挑戰 | [開始數獨](https://shao1116.github.io/kidapp/apps/sudoku-grade1/) |
+| **星芽群島：小小冒險家（Starbud Islands RPG）** | **v0.1（可玩原型）** | 角色建立、俯視角自由探索、居民對話、5 階段故事、材料與裝備製作、修橋拼圖、洞穴機關、花園、星芽幣、經驗與自動存檔 | [開始冒險](https://shao1116.github.io/kidapp/apps/starbud-adventure/) |
 | 一年級數學・注音測試版（保留作比較） | beta | 最初 50 題注音排版測試（不再作為正式入口） | [查看舊測試版](https://shao1116.github.io/kidapp/apps/math-grade1-zhuyin-preview/) |
 
 ## 📁 目錄
@@ -42,6 +43,11 @@ kidapp/
 │   │   └── life-v14-water.css         # 水資源場景、動線與觸控版面
 │   ├── starlight-island/
 │   │   └── index.html                 # 星光小小探險隊【正式版 v1.1】
+│   ├── starbud-adventure/
+│   │   ├── index.html               # 星芽群島獨立 RPG【v0.1 原型】
+│   │   ├── game.js                  # 地圖、NPC、任務、解謎、背包與進度
+│   │   ├── phonetics.js             # 國字右側直排注音對照
+│   │   └── style.css                # 手機與桌面響應式畫面
 │   ├── sudoku-grade1/
 │   │   ├── index.html               # 小小數獨探險島【正式版 v1.0】
 │   │   ├── style.css                # 響應式棋盤與小一友善介面
@@ -79,6 +85,24 @@ kidapp/
 - **v2.5｜2026-10-14**：更新小小幫手首頁卡片，介紹車車場景 25 題、全 App 55 題及重複抽題改善；保留原本年齡分區與六款遊戲。
 
 - **v2.6｜2026-10-15**：加入第七款遊戲「小小數獨探險島」，提供 4×4／6×6／9×9、七級共 210 道數獨、三段式提示與每日三題；小一闖關學院更新為五款遊戲，幼幼探索樂園保留兩款。
+
+
+- **v2.7｜2026-10-16**：國小遊戲區新增第六款「星芽群島：小小冒險家」，全站共八款遊戲；不影響原有遊戲、學習紀錄。
+
+## 🌱 App 8：星芽群島｜小小冒險家
+
+**網址：** https://shao1116.github.io/kidapp/apps/starbud-adventure/
+
+**v0.1｜2026-10-16：角色扮演遊戲可玩原型**
+
+- 自由建立角色（暱稱、三種造型、三種專長），2D 可探索村莊與森林，點擊移動，也可用方向鍵。
+- 與兔子波波、工程師木木、狐狸米米對話。五段主線：認識朋友 → 蒐集物品與修橋 → 尋找狐狸 → 製作提燈並解開洞穴機關 → 栽種星芽花園。
+- 背包材料、星芽幣、經驗值與升級、工作台道具、星芽帽子、一次性寶箱和收藏圖鑑。解謎錯誤可重試，不扣分、不限時。
+- 修橋須比較不同木板長度；洞穴須找出圖形規律；花圃強調適量澆水。
+- 文字採繁體中文，支援國字右側直排注音及可選中文語音朗讀。已使用 Chromium 驗證 320／375／390／430px 與桌面寬度。
+- 本機自動存檔鍵 `kidapp-starbud-adventure-v1`，不共用 `kidapp-life-grade1-v1`；不需要 D1 或任何帳號。
+- 基礎回歸測試：`node tests/starbud-adventure-smoke.cjs`。真實 iPhone Safari 的視覺與觸控仍需裝置驗收。
+- 下一階段：角色專長實際技能、更多島嶼與支線、動物夥伴、家園家具與更多可辨識 SVG 美術。
 
 ## 📚 App 1：小小認字探險家
 

@@ -1,0 +1,20 @@
+/** Run: node tests/starbud-adventure-smoke.cjs (no dependencies). */
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const base=path.join(__dirname,'../apps/starbud-adventure');
+const js=fs.readFileSync(path.join(base,'game.js'),'utf8');
+const html=fs.readFileSync(path.join(base,'index.html'),'utf8');
+const css=fs.readFileSync(path.join(base,'style.css'),'utf8');
+const phonetics=fs.readFileSync(path.join(base,'phonetics.js'),'utf8');
+new vm.Script(js);new vm.Script(phonetics);
+assert.match(js,/kidapp-starbud-adventure-v1/);
+for(const id of ['rabbit','maker','bridge','treeA','treeB','treeC','ropeA','fox','treeD','crystalA','seedA','chest','cave','garden'])assert.match(js,new RegExp("id:'"+id+"'"));
+for(const name of ['bridgeIntro','showBridgePuzzle','craftLamp','caveAction','gardenAction','pathTo','awardOnce','load','save'])assert.match(js,new RegExp('function '+name+'\\('));
+for(const flag of ['rabbitTalk','bridge','foxTalk','lantern','treasure','garden'])assert.match(js,new RegExp("'"+flag+"'"));
+for(const id of ['world','createBtn','questTitle','dialogBackdrop','xpFill','dialogBody','avatarPicker'])assert.match(html,new RegExp('id="'+id+'"'));
+assert.match(html,/phonetics.js\?v=/);assert.match(html,/game.js\?v=/);
+assert.match(css,/@media\(max-width:600px\)/);
+assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
+const rootHtml=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
+assert.match(rootHtml,/apps\/starbud-adventure\//);
+console.log('Starbud Adventure smoke checks passed.');
