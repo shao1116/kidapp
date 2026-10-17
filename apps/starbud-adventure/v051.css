@@ -1,0 +1,136 @@
+/* 星芽群島 v0.5.1: tone marks beside 注音, not at bottom.
+   Uses a dedicated body/tone grid; visually deterministic on WebKit and Blink. */
+body:not(.bopo-on) .zhchar .zy{display:none!important}
+body.bopo-on .zhchar{
+  display:inline-grid!important;
+  grid-template-columns:1.05em .78em!important;
+  grid-template-rows:auto!important;
+  align-items:center!important;
+  justify-items:center!important;
+  width:auto!important;
+  margin:0 .02em 0 0!important;
+  padding:0!important;
+  white-space:nowrap!important;
+  vertical-align:middle!important;
+  line-height:1!important;
+  break-inside:avoid!important;
+}
+body.bopo-on .zhchar .han{
+  display:block!important;
+  grid-column:1!important;
+  grid-row:1!important;
+  line-height:1.15!important;
+  align-self:center!important;
+  justify-self:center!important;
+}
+body.bopo-on .zhchar .zy{
+  display:grid!important;
+  grid-column:2!important;
+  grid-row:1!important;
+  position:static!important;
+  grid-template-columns:.91em .43em!important;
+  grid-template-rows:auto!important;
+  width:1.34em!important;
+  min-width:0!important;
+  height:auto!important;
+  margin:0!important;
+  padding:0!important;
+  align-items:center!important;
+  justify-items:center!important;
+  overflow:visible!important;
+  transform:none!important;
+  font-size:.55em!important;
+  line-height:1!important;
+  color:#71539f!important;
+}
+body.bopo-on .zhchar .zy-body{
+  display:flex!important;
+  grid-column:1!important;
+  grid-row:1!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  height:auto!important;
+  min-height:0!important;
+  white-space:nowrap!important;
+  line-height:1!important;
+}
+body.bopo-on .zhchar .zy-body > span{
+  display:block!important;
+  position:static!important;
+  transform:none!important;
+  font-size:1em!important;
+  height:auto!important;
+  min-height:0!important;
+  line-height:1.03!important;
+  margin:0!important;
+  padding:0!important;
+}
+body.bopo-on .zhchar .zy > .tone{
+  display:block!important;
+  grid-column:2!important;
+  grid-row:1!important;
+  position:static!important;
+  top:auto!important;
+  left:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  transform:none!important;
+  justify-self:center!important;
+  align-self:center!important;
+  width:auto!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  font-size:1.04em!important;
+  line-height:1!important;
+  font-family:"Bopomofo Ruby","PingFang TC","Noto Sans TC",sans-serif!important;
+}
+body.bopo-on .zhchar .zy > .tone-third{transform:translateY(.08em)!important}
+body.bopo-on .zhchar .zy > .tone-second{transform:translateY(-.03em)!important}
+body.bopo-on .zhchar .zy > .tone-fourth{transform:translateY(-.08em)!important}
+body.bopo-on .zhchar .zy-body > .light{font-size:1.0em!important;line-height:.75!important;transform:none!important;position:static!important}
+body.bopo-on .dialog-body p{
+  line-height:2.8!important;
+  margin:.45em 0 .85em!important;
+  letter-spacing:0!important;
+  word-break:normal!important;
+  overflow-wrap:break-word!important;
+}
+body.bopo-on .mission-box p{line-height:2.75!important;letter-spacing:0!important}
+body.bopo-on .dialog-body .note{line-height:2.55!important}
+body.bopo-on .dialog-body{letter-spacing:0!important}
+.v051-dialog-portrait{
+  width:192px;
+  height:178px;
+  max-width:62%;
+  margin:8px auto 9px;
+  display:grid;
+  place-items:center;
+  position:relative;
+  overflow:hidden;
+  border-radius:45% 42% 46% 40%;
+  background:radial-gradient(ellipse at 54% 35%,#fffdfa 0%,#fff9e8 42%,#e4f5e4 79%,transparent 80%);
+}
+.v051-dialog-portrait svg{width:138px;height:158px;overflow:visible;filter:drop-shadow(0 6px 3px #45604b18)}
+.v051-dialog-portrait .v051-portrait-sparkle{position:absolute;top:18px;right:20px;font-size:20px;color:#e2b55f}
+.v051-character{transform-box:fill-box;transform-origin:center 80%;animation:v051-breathe 3.3s ease-in-out infinite alternate}
+.v051-player{animation-duration:2.3s}
+@keyframes v051-breathe{0%{transform:translateY(0)}100%{transform:translateY(-1.8px)}}
+body .v051-dialog-portrait + p{margin-top:.45em}
+body .portrait .v03-avatar-portrait .v051-character{animation:none}
+body .picker .face svg .v051-character{animation:none}
+body .v051-dialog-portrait + .dialog-body{margin-top:0}
+@media(max-width:600px){
+ .v051-dialog-portrait{width:158px;height:148px;margin:0 auto 4px}
+ .v051-dialog-portrait svg{width:120px;height:135px}
+ body.bopo-on .dialog-body{font-size:clamp(16px,4.2vw,19px)!important}
+ body.bopo-on .dialog-body p{line-height:2.95!important;margin:.4em 0 .7em!important}
+ body.bopo-on .mission-box p{line-height:2.85!important}
+}
+@media(max-width:360px){
+ body.bopo-on .dialog-body{font-size:16px!important}
+ body.bopo-on .zhchar{grid-template-columns:1.03em .78em!important}
+}
+@media(prefers-reduced-motion:reduce){.v051-character{animation:none!important}}

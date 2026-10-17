@@ -16,7 +16,7 @@ KidApp 是適合臺灣小朋友使用的免費網頁學習遊戲集合，以繁�
 | **小一生活探索樂園（Grade 1 Life Discovery Adventure）** | **v1.3.3（正式版）** | 十款遊戲共 170 任務；水資源 15 題重製場景互動，植物／節慶新增關卡，保留既有進度及親子紀錄 | [開始探索](https://shao1116.github.io/kidapp/apps/life-grade1/) |
 | **星光小小探險隊（Little Explorers）** | **v1.1（正式版）** | 八款遊戲、96 任務；工程師短規則及右側注音，新增英語、自然、情緒與音樂互動玩法 | [前往星光島](https://shao1116.github.io/kidapp/apps/starlight-island/) |
 | **小小數獨探險島（Sudoku Adventure）** | **v1.0（正式版）** | 4×4／6×6／9×9，七級各 30 題共 210 題；唯一解、逐步提示、候選筆記、自由練習與每日挑戰 | [開始數獨](https://shao1116.github.io/kidapp/apps/sudoku-grade1/) |
-| **星芽群島：小小冒險家（Starbud Islands RPG）** | **v0.5（核心系統升級）** | 角色建立、俯視角自由探索、居民對話、5 階段故事、材料與裝備製作、修橋拼圖、洞穴機關、花園、星芽幣、經驗與自動存檔 | [開始冒險](https://shao1116.github.io/kidapp/apps/starbud-adventure/) |
+| **星芽群島：小小冒險家（Starbud Islands RPG）** | **v0.5.1（注音與原創角色美術）** | 角色建立、俯視角自由探索、居民對話、5 階段故事、材料與裝備製作、修橋拼圖、洞穴機關、花園、星芽幣、經驗與自動存檔 | [開始冒險](https://shao1116.github.io/kidapp/apps/starbud-adventure/) |
 | 一年級數學・注音測試版（保留作比較） | beta | 最初 50 題注音排版測試（不再作為正式入口） | [查看舊測試版](https://shao1116.github.io/kidapp/apps/math-grade1-zhuyin-preview/) |
 
 ## 📁 目錄
@@ -52,6 +52,8 @@ kidapp/
 │   │   ├── v03-style.css             # v0.3 手機、平板、桌面適應版面
 │   │   ├── ui-v03.js                 # v0.3 地圖、目標導航與注音開關
 │   │   ├── v05-core.js              # v0.5 裝備、職業、商店、小屋與存檔
+│   │   ├── v051-art.js               # v0.5.1 原創人物與 NPC SVG 肖像
+│   │   └── v051.css                  # v0.5.1 直排注音與對話框肖像樣式
 │   │   └── v05.css                  # v0.5 注音布局修復與介面
 │   │   ├── phonetics.js             # 國字右側直排注音對照
 │   │   └── style.css                # 手機與桌面響應式畫面
@@ -99,6 +101,13 @@ kidapp/
 ## 🌱 App 8：星芽群島｜小小冒險家
 
 **網址：** https://shao1116.github.io/kidapp/apps/starbud-adventure/
+
+**v0.5.1｜2026-10-17：注音聲調定位、原創角色重繪**
+
+- 注音排版精修：每個國字分別由「漢字」與「注音本體＋**獨立聲調欄**」組成。第二聲（ˊ）、第三聲（ˇ）、第四聲（ˋ）固定在注音右側，不再成為直排欄最後一個字元；輕聲（˙）保留注音欄上方。額外兼顧 iPhone Safari、小螢幕、平板、桌機與注音開關。
+- 以全新**原創 SVG 角色素材**替換主角（3 款造型）、兔子波波、狐狸米米與工程師木木：耳朵、毛色、五官、腮紅、服裝、圍巾、背包、帽子、工程工具等細節。人物造型同時用於地圖、角色選擇及頭像；三名 NPC 對話框改用一致風格的大張 SVG 肖像，不再僅使用 emoji。
+- 新增 `v051-art.js`、`v051.css` 和 `tests/starbud-v051-art-bopo-smoke.cjs`，不依賴 CDN 或外部授權素材。玩家原有 `kidapp-starbud-adventure-v1` 存檔、等級、任務、裝備與家具不變。
+- 程式碼已驗證 SVG 標籤完整、角色 3 款與 NPC 3 款、注音聲調結構及載入順序。**iPhone Safari 實機的字距與字形仍以實際遊玩畫面驗收為準**。
 
 **v0.5｜2026-10-16：核心系統升級、注音排版修復**
 
