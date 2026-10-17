@@ -1,0 +1,74 @@
+/* Starbud v1.0 Island Adventures — scalable phone, tablet, desktop UI. */
+:root{--v10-ink:#315c54;--v10-mint:#eaf9eb;--v10-cream:#fffbeb;--v10-line:#d1e7d5}
+.v10-banner{padding:12px 14px;margin:10px 0 15px;background:linear-gradient(110deg,#f1fae7,#e9f8f4);border:1px solid #d3e9d8;border-radius:15px;font-size:clamp(14px,1.55vw,17px);font-weight:900;color:#477e63;text-align:center;line-height:1.65}
+.v10-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:12px 0 6px}
+.v10-options>div{display:flex;align-items:center;background:#f8fcf6;border:1px solid #ddebd5;border-radius:14px;min-height:54px;padding:9px 11px;line-height:1.65;font-size:clamp(15px,1.6vw,18px)}
+.v10-event-list,.v10-journal{display:grid;gap:7px;max-height:30dvh;overflow:auto;padding:4px}
+.v10-event-list>div{font-size:15px;line-height:1.75;border-radius:13px;background:#f8fcf8;border:1px solid #dfebde;padding:9px 11px;color:#487765}
+.v10-journal>div{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:15px;line-height:1.6;border-radius:12px;background:#f8fcf8;border:1px solid #dfebde;padding:9px 12px}
+.v10-journal small{font-size:12px;color:#638e7b;font-weight:900;flex-shrink:0}
+.v10-home-room{background:linear-gradient(#fff8e4 0 44%,#e7c89e 44% 45%,#d6ae83 45% 100%);border:6px solid #fff4dc;border-radius:24px;box-shadow:inset 0 -15px 25px #7f5e3e1c,0 6px 16px #39785e18;padding:18px 15px 15px;max-width:690px;margin:8px auto}
+.v10-room-window{height:65px;display:flex;align-items:center;justify-content:center;font-size:38px;letter-spacing:1.1em;padding-left:1em;text-shadow:0 5px 10px #d6bf9550}
+.v10-home-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;max-width:510px;margin:6px auto 0;transform:perspective(800px) rotateX(8deg)}
+.v10-home-slot{display:grid;justify-items:center;align-content:center;gap:4px;border:2px solid #d4ae86;border-radius:14px;background:linear-gradient(#fbe4c5,#edc49b);min-height:95px;min-width:0;color:#806046;padding:10px;box-shadow:inset 0 0 0 2px #fff4d2,0 3px 0 #b8926a}
+.v10-home-slot span{font-size:32px;line-height:1.25}
+.v10-home-slot small{font-size:12px;font-weight:900;line-height:1.4;overflow-wrap:anywhere}
+.v10-home-slot:hover,.v10-home-slot:focus-visible{background:#fff1d8;outline:3px solid #8fcdb4;outline-offset:2px}
+.v10-hint{font-size:clamp(15px,1.6vw,18px);line-height:2}
+.v10-shop-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}
+.v10-shop-item{display:flex;flex-direction:column;justify-content:center;gap:3px;border:1px solid #d9e8d9;border-radius:15px;background:#f9fdf7;padding:12px;min-height:70px;font-weight:900;color:#4c806e;font-size:17px}
+.v10-shop-item small{font-size:12px;color:#8b815e}
+.v10-pet-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.v10-pet-grid span{display:grid;place-items:center;font-size:52px;background:#f1faec;border-radius:17px;border:1px solid #d3e9d7;padding:12px 5px}
+.v10-pet-grid small{font-size:14px;font-weight:900;color:#467c62}
+.v10-pet-hero{text-align:center;background:linear-gradient(110deg,#fcf7de,#e9f8ec);border-radius:22px;padding:12px;font-size:92px;line-height:1.2}
+.v10-islands{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.v10-islands span{padding:14px 12px;border-radius:15px;background:#f2faeb;border:1px solid #d4ead6;font-size:16px;font-weight:900;color:#548066}
+.v10-companion{animation:v10-companion-bounce 2.1s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center bottom}
+.v10-tree-top{animation:v10-sway 5.3s ease-in-out infinite alternate;transform-origin:center}
+.v10-stream{animation:v10-ripple 3.4s ease-in-out infinite alternate}
+@keyframes v10-companion-bounce{from{transform:translateY(0)}to{transform:translateY(-4px)}}
+@keyframes v10-sway{from{transform:rotate(-2.3deg)}to{transform:rotate(2.3deg)}}
+@keyframes v10-ripple{from{stroke-opacity:.25;stroke-dashoffset:0}to{stroke-opacity:.86;stroke-dashoffset:-90}}
+body .dialog-body{overscroll-behavior:contain}
+body .dialog-actions{row-gap:10px}
+body .dialog-actions button{line-height:1.5;min-height:47px}
+body .mission-box{position:relative}
+body .world-wrap{position:relative}
+body .bottom-nav{z-index:4}
+@media(min-width:1050px){
+ body .dialog{width:min(810px,95vw)}
+ body .v10-home-room{max-width:610px}
+ body .v10-options{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(min-width:601px) and (max-width:1049px){
+ .v10-home-slot{min-height:105px}
+ .v10-event-list,.v10-journal{max-height:34dvh}
+}
+@media(max-width:600px){
+ body .dialog{width:calc(100vw - 16px);max-width:none;padding:14px}
+ .v10-banner{font-size:14px;padding:9px}
+ .v10-options{grid-template-columns:1fr;gap:7px}
+ .v10-options>div{min-height:43px;font-size:15px;padding:7px 10px}
+ .v10-event-list,.v10-journal{max-height:28dvh}
+ .v10-event-list>div,.v10-journal>div{font-size:14px}
+ .v10-home-room{padding:13px 9px 9px;border-width:4px;border-radius:18px}
+ .v10-room-window{height:45px;font-size:28px}
+ .v10-home-tiles{gap:5px}
+ .v10-home-slot{min-height:77px;padding:5px;border-radius:11px}
+ .v10-home-slot span{font-size:26px}
+ .v10-home-slot small{font-size:10px}
+ .v10-shop-grid{grid-template-columns:1fr 1fr;gap:6px}
+ .v10-shop-item{font-size:14px;min-height:60px;padding:9px}
+ .v10-pet-grid{gap:6px}
+ .v10-pet-grid span{font-size:32px;padding:8px 3px}
+ .v10-pet-grid small{font-size:11px}
+ .v10-islands{grid-template-columns:1fr}
+ .v10-islands span{font-size:14px;padding:10px}
+ body.bopo-on .dialog-body p{line-height:2.9!important}
+}
+@media(max-width:355px){
+ .v10-shop-grid{grid-template-columns:1fr}
+ .v10-journal>div{flex-wrap:wrap}
+}
+@media(prefers-reduced-motion:reduce){.v10-companion,.v10-tree-top,.v10-stream{animation:none!important}}
