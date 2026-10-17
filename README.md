@@ -16,7 +16,7 @@ KidApp 是適合臺灣小朋友使用的免費網頁學習遊戲集合，以繁�
 | **小一生活探索樂園（Grade 1 Life Discovery Adventure）** | **v1.3.3（正式版）** | 十款遊戲共 170 任務；水資源 15 題重製場景互動，植物／節慶新增關卡，保留既有進度及親子紀錄 | [開始探索](https://shao1116.github.io/kidapp/apps/life-grade1/) |
 | **星光小小探險隊（Little Explorers）** | **v1.1（正式版）** | 八款遊戲、96 任務；工程師短規則及右側注音，新增英語、自然、情緒與音樂互動玩法 | [前往星光島](https://shao1116.github.io/kidapp/apps/starlight-island/) |
 | **小小數獨探險島（Sudoku Adventure）** | **v1.0（正式版）** | 4×4／6×6／9×9，七級各 30 題共 210 題；唯一解、逐步提示、候選筆記、自由練習與每日挑戰 | [開始數獨](https://shao1116.github.io/kidapp/apps/sudoku-grade1/) |
-| **星芽群島：小小冒險家（Starbud Islands RPG）** | **v0.3（跨裝置繪本世界）** | 角色建立、俯視角自由探索、居民對話、5 階段故事、材料與裝備製作、修橋拼圖、洞穴機關、花園、星芽幣、經驗與自動存檔 | [開始冒險](https://shao1116.github.io/kidapp/apps/starbud-adventure/) |
+| **星芽群島：小小冒險家（Starbud Islands RPG）** | **v0.5（核心系統升級）** | 角色建立、俯視角自由探索、居民對話、5 階段故事、材料與裝備製作、修橋拼圖、洞穴機關、花園、星芽幣、經驗與自動存檔 | [開始冒險](https://shao1116.github.io/kidapp/apps/starbud-adventure/) |
 | 一年級數學・注音測試版（保留作比較） | beta | 最初 50 題注音排版測試（不再作為正式入口） | [查看舊測試版](https://shao1116.github.io/kidapp/apps/math-grade1-zhuyin-preview/) |
 
 ## 📁 目錄
@@ -51,6 +51,8 @@ kidapp/
 │   │   ├── world-art-v03.js          # v0.3 原創場景、NPC、角色及物件 SVG
 │   │   ├── v03-style.css             # v0.3 手機、平板、桌面適應版面
 │   │   ├── ui-v03.js                 # v0.3 地圖、目標導航與注音開關
+│   │   ├── v05-core.js              # v0.5 裝備、職業、商店、小屋與存檔
+│   │   └── v05.css                  # v0.5 注音布局修復與介面
 │   │   ├── phonetics.js             # 國字右側直排注音對照
 │   │   └── style.css                # 手機與桌面響應式畫面
 │   ├── sudoku-grade1/
@@ -97,6 +99,16 @@ kidapp/
 ## 🌱 App 8：星芽群島｜小小冒險家
 
 **網址：** https://shao1116.github.io/kidapp/apps/starbud-adventure/
+
+**v0.5｜2026-10-16：核心系統升級、注音排版修復**
+
+- 保留 v0.3 的原創 SVG／WebGL、跨手機平板電腦地圖、角色建立、修橋拼圖、洞穴規律與花圃；非破壞性擴充。
+- **注音排版**：漢字和注音以不可拆散的雙欄單元顯示，移除聲調的絕對定位，增大對話及任務行距；解決 iPhone Safari 看到的文字交疊問題。注音可開關。
+- **裝備和金幣商店**：星光放大鏡、探險指南針（提供目標及距離）、輕快探險靴（加快行走）；同一裝備不可重複購買。
+- **小屋家具**：盆栽、書架、暖光小燈，可花費星芽幣收藏、顯示於小屋及永久保存。
+- **職業專長**：探索家首次收集材料獲額外星芽幣；工程師首次製作提燈有獎勵；自然守護者完成花圃有獎勵。
+- **存檔完全相容**：沿用 localStorage 鍵 `kidapp-starbud-adventure-v1`，新增可選的 `v05` 欄位；保留舊角色、經驗、道具、任務與獎勵，避免回檔。
+- 本地測試：`node tests/starbud-v05-smoke.cjs`。手機 Safari 實機仍需再次檢查注音視覺顯示。
 
 **v0.3｜2026-10-16：童話繪本美術、跨裝置探索介面**
 

@@ -1,0 +1,125 @@
+/* 星芽群島 v0.5: iPhone Safari bopomofo collision fix + responsive core panels */
+body:not(.bopo-on) .zhchar{display:inline!important;white-space:normal!important;line-height:inherit!important;margin:0!important;padding:0!important;vertical-align:baseline!important}
+body:not(.bopo-on) .zhchar .han{display:inline!important;line-height:inherit!important}
+body:not(.bopo-on) .zhchar .zy{display:none!important}
+/* Each annotation is a non-breaking two-column glyph: no positioned tones, no overlay. */
+body.bopo-on .dialog-body .zhchar,
+body.bopo-on .mission-box .zhchar,
+body.bopo-on .note .zhchar,
+body.bopo-on .list-card .zhchar{
+ display:inline-grid!important;
+ grid-template-columns:1.03em .82em!important;
+ align-items:center!important;
+ justify-items:center!important;
+ width:auto!important;
+ min-height:2.25em!important;
+ vertical-align:middle!important;
+ white-space:nowrap!important;
+ line-height:1!important;
+ margin:0 .065em 0 .015em!important;
+ padding:0!important;
+ break-inside:avoid!important;
+}
+body.bopo-on .zhchar .han{
+ grid-column:1;grid-row:1;
+ display:block!important;
+ align-self:center!important;
+ justify-self:center!important;
+ width:1.03em!important;
+ line-height:1.15!important;
+ font-size:1em!important;
+ white-space:nowrap!important;
+}
+body.bopo-on .zhchar .zy{
+ grid-column:2;grid-row:1;
+ display:flex!important; flex-direction:column!important;
+ position:static!important;
+ justify-content:center!important;align-items:center!important;
+ align-self:center!important;justify-self:center!important;
+ flex:none!important;
+ width:.82em!important; min-width:.82em!important; height:auto!important;
+ font-size:.54em!important;
+ line-height:1!important;
+ margin:0!important;
+ padding:0!important;
+ overflow:visible!important;
+ transform:none!important;
+ color:#7153a1!important;
+}
+body.bopo-on .zhchar .zy span{
+ display:block!important;
+ position:static!important;
+ width:auto!important;
+ min-height:1.05em!important;
+ height:auto!important;
+ text-align:center!important;
+ line-height:1.05!important;
+ letter-spacing:0!important;
+ transform:none!important;
+}
+body.bopo-on .zhchar .zy .tone{
+ font-size:.87em!important;
+ min-height:.72em!important;
+ line-height:.75!important;
+}
+body.bopo-on .zhchar .zy .light{
+ font-size:.85em!important;
+ min-height:.75em!important;
+ line-height:.75!important;
+}
+body.bopo-on .dialog-body p,
+body.bopo-on .dialog-body .note{
+ line-height:2.9!important;
+ margin-block:.8em!important;
+ word-break:normal!important;
+ overflow-wrap:break-word!important;
+}
+body.bopo-on .mission-box p,
+body.bopo-on .mission-box>strong{
+ line-height:2.8!important;
+ word-break:normal!important;
+ overflow-wrap:break-word!important;
+}
+body.bopo-on .story-actions button,
+body.bopo-on .dialog-actions button{line-height:1.8}
+body.bopo-on .dialog-body{font-size:clamp(17px,2.2vw,21px)!important;letter-spacing:.005em}
+body .dialog{max-height:min(87dvh,850px);overflow-y:auto;overscroll-behavior:contain}
+body .dialog-body{overflow-wrap:anywhere}
+body .dialog-body .art-emoji{line-height:1.1}
+body .v05-summary{padding:12px 14px;margin:10px 0 16px;border-radius:16px;font-weight:900;background:#edf8e9;color:#478468;text-align:center}
+body .v05-shop-heading{margin:20px 0 12px;font-size:19px;color:#37765e}
+body .v05-shop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:11px;margin:13px 0}
+body .v05-shop-item{display:flex;align-items:flex-start;gap:10px;padding:14px 10px;border:1px solid #dcebd9;background:#f9fff9;border-radius:16px;min-width:0}
+body .v05-shop-icon{font-size:28px;line-height:1.2;flex-shrink:0}
+body .v05-shop-copy{min-width:0;flex:1}
+body .v05-shop-copy strong{font-size:16px;color:#346d57}
+body .v05-shop-copy p{font-size:13px!important;line-height:1.8!important;margin:4px 0!important}
+body .v05-shop-copy small{font-weight:800;color:#9a804f}
+body .v05-owned{font-size:11px;white-space:nowrap;align-self:flex-start;border-radius:9px;padding:4px 5px;background:#e8f4ec;color:#4b8b69}
+body .v05-home-preview{background:linear-gradient(145deg,#edf8d6,#e4f6ed);border-radius:18px;padding:15px;text-align:center;margin:10px 0}
+body .v05-home-preview>div{font-size:36px;line-height:1.4;word-break:break-word}
+body .v05-home-preview p{font-size:14px!important;line-height:1.8!important;color:#5a8069}
+body .dialog-actions{gap:9px}
+body .dialog-actions button{min-height:44px;white-space:normal}
+body .dialog-actions .primary{background:#35a67a;color:#fff}
+@media(min-width:1060px){
+ body .dialog{width:min(760px,96vw)}
+ body .v05-shop-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(min-width:601px) and (max-width:1059px){
+ body .dialog{width:min(770px,96vw)}
+ body .dialog-body{font-size:19px}
+}
+@media(max-width:600px){
+ body .dialog{padding:16px 14px 20px}
+ body.bopo-on .dialog-body{font-size:18px!important}
+ body.bopo-on .dialog-body p{line-height:3.0!important;margin-block:.9em!important}
+ body.bopo-on .mission-box p{line-height:3.05!important}
+ body .v05-shop-grid{grid-template-columns:1fr}
+ body .v05-shop-item{padding:12px}
+ body .dialog-actions button{font-size:15px;padding:11px 12px}
+}
+@media(max-width:360px){
+ body.bopo-on .dialog-body{font-size:17px!important}
+ body .v05-home-preview>div{font-size:29px}
+}
