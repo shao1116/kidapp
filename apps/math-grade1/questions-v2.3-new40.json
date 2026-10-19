@@ -1,0 +1,912 @@
+{
+  "version": "v2.3",
+  "created": "2026-10-19",
+  "description": "40 new higher-level grade-one math questions, eight per category; authoritative source remains inline in index.html",
+  "questions": [
+    {
+      "id": "N18",
+      "cat": "number",
+      "question": "38、40、42、□、46，每次都增加 2，空格要填多少？",
+      "options": [
+        "43",
+        "44",
+        "45",
+        "48"
+      ],
+      "answer": "44",
+      "explain": "每次往後數 2：38、40、42、44、46。",
+      "visual": {
+        "type": "sequence",
+        "tokens": [
+          "38",
+          "40",
+          "42",
+          "❓",
+          "46"
+        ]
+      },
+      "hint": "從 42 往後多數 2。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "N19",
+      "cat": "number",
+      "question": "91、88、85、□、79，每次都減少 3，空格要填多少？",
+      "options": [
+        "80",
+        "81",
+        "82",
+        "83"
+      ],
+      "answer": "82",
+      "explain": "每次減少 3：91、88、85、82、79。",
+      "visual": {
+        "type": "sequence",
+        "tokens": [
+          "91",
+          "88",
+          "85",
+          "❓",
+          "79"
+        ]
+      },
+      "hint": "從 85 往前數 3。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "N20",
+      "cat": "number",
+      "question": "哪個數比 65 大、比 69 小，而且是單數？",
+      "options": [
+        "64",
+        "66",
+        "67",
+        "70"
+      ],
+      "answer": "67",
+      "explain": "66、67、68 介於 65 和 69 之間，其中 67 是單數。",
+      "visual": {
+        "type": "sequence",
+        "tokens": [
+          "64",
+          "66",
+          "67",
+          "70"
+        ]
+      },
+      "hint": "先找 66、67、68，再想哪個是單數。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "N21",
+      "cat": "number",
+      "question": "6 個十和 13 個一，合起來是多少？",
+      "options": [
+        "63",
+        "73",
+        "76",
+        "83"
+      ],
+      "answer": "73",
+      "explain": "6 個十是 60，13 個一是 13，合起來是 73。",
+      "visual": {
+        "type": "place",
+        "tens": 6,
+        "ones": 13
+      },
+      "hint": "10 個一也能組成 1 個十。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "N22",
+      "cat": "number",
+      "question": "哪個數的十位是 6，而且比 63 大、比 68 小？",
+      "options": [
+        "59",
+        "62",
+        "65",
+        "69"
+      ],
+      "answer": "65",
+      "explain": "十位是 6，又介於 63 和 68 之間，只有 65 符合選項。",
+      "visual": {
+        "type": "sequence",
+        "tokens": [
+          "59",
+          "62",
+          "65",
+          "69"
+        ]
+      },
+      "hint": "先看十位，再比較大小。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "N23",
+      "cat": "number",
+      "question": "49 先增加 10，再減少 1，最後變成多少？",
+      "options": [
+        "48",
+        "50",
+        "58",
+        "60"
+      ],
+      "answer": "58",
+      "explain": "49 加 10 得到 59，再減 1 就是 58。",
+      "visual": {
+        "type": "equation",
+        "text": "49 ＋ 10 − 1 ＝ ？"
+      },
+      "hint": "增加一個十，再往前數一個。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "N24",
+      "cat": "number",
+      "question": "28、82、46、64，從小到大排，第三個數是多少？",
+      "options": [
+        "28",
+        "46",
+        "64",
+        "82"
+      ],
+      "answer": "64",
+      "explain": "從小到大是 28、46、64、82，第三個是 64。",
+      "visual": {
+        "type": "sequence",
+        "tokens": [
+          "28",
+          "82",
+          "46",
+          "64"
+        ]
+      },
+      "hint": "先比較十位，再找排第三的數。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "N25",
+      "cat": "number",
+      "question": "67、74、65、76，哪個數最接近 70？",
+      "options": [
+        "67",
+        "74",
+        "65",
+        "76"
+      ],
+      "answer": "67",
+      "explain": "67 距離 70 差 3；其他數分別差 4、5、6，所以 67 最接近。",
+      "visual": {
+        "type": "sequence",
+        "tokens": [
+          "67",
+          "74",
+          "65",
+          "76"
+        ]
+      },
+      "hint": "比較每個數與 70 相差多少。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "A18",
+      "cat": "add",
+      "question": "7 ＋ 8 ＋ 4 ＝ ？",
+      "options": [
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "answer": "19",
+      "explain": "7 加 8 等於 15，再加 4 得到 19。",
+      "visual": {
+        "type": "equation",
+        "text": "7 ＋ 8 ＋ 4 ＝ ？"
+      },
+      "hint": "先算 7 加 8。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "A19",
+      "cat": "add",
+      "question": "6 ＋ □ ＋ 4 ＝ 17，□ 是多少？",
+      "options": [
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "answer": "7",
+      "explain": "6 加 4 等於 10，17 還差 7，所以空格是 7。",
+      "visual": {
+        "type": "equation",
+        "text": "6 ＋ □ ＋ 4 ＝ 17"
+      },
+      "hint": "把 6 和 4 先合起來。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "A20",
+      "cat": "add",
+      "question": "小安有 5 張卡片，小美比小安多 6 張，兩人合起來有幾張？",
+      "options": [
+        "15 張",
+        "16 張",
+        "17 張",
+        "18 張"
+      ],
+      "answer": "16 張",
+      "explain": "小美有 5 加 6 等於 11 張，兩人合起來有 5 加 11，共 16 張。",
+      "visual": {
+        "type": "equation",
+        "text": "5 ＋（5 ＋ 6）＝ ？"
+      },
+      "hint": "先算小美有幾張，再加上小安的。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "A21",
+      "cat": "add",
+      "question": "小莉有 9 顆珠子，又得到 6 顆，再得到 3 顆，現在有幾顆？",
+      "options": [
+        "16 顆",
+        "17 顆",
+        "18 顆",
+        "19 顆"
+      ],
+      "answer": "18 顆",
+      "explain": "9 加 6 是 15，再加 3 是 18。",
+      "visual": {
+        "type": "equation",
+        "text": "9 ＋ 6 ＋ 3 ＝ ？"
+      },
+      "hint": "可以先用 6 和 3 湊成 9。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "A22",
+      "cat": "add",
+      "question": "哪一道加法的答案比較大？",
+      "options": [
+        "8 ＋ 7",
+        "9 ＋ 5",
+        "6 ＋ 6",
+        "7 ＋ 6"
+      ],
+      "answer": "8 ＋ 7",
+      "explain": "8 加 7 等於 15，另外三題分別是 14、12、13，所以 8 加 7 最大。",
+      "visual": {
+        "type": "sequence",
+        "tokens": [
+          "8 ＋ 7",
+          "9 ＋ 5",
+          "6 ＋ 6",
+          "7 ＋ 6"
+        ]
+      },
+      "hint": "把四道加法都算一遍，再比大小。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "A23",
+      "cat": "add",
+      "question": "小美有 3 顆糖，小安比小美多 4 顆，小莉比小美多 2 顆。三人共有幾顆？",
+      "options": [
+        "13 顆",
+        "14 顆",
+        "15 顆",
+        "16 顆"
+      ],
+      "answer": "15 顆",
+      "explain": "小美 3 顆，小安 7 顆，小莉 5 顆，3 加 7 加 5 是 15 顆。",
+      "visual": {
+        "type": "equation",
+        "text": "3 ＋ 7 ＋ 5 ＝ ？"
+      },
+      "hint": "先算出另外兩人各有幾顆。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "A24",
+      "cat": "add",
+      "question": "6 ＋ 6 ＋ □ ＝ 19，□ 應填幾？",
+      "options": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "7",
+      "explain": "6 加 6 是 12，12 再加 7 就是 19。",
+      "visual": {
+        "type": "equation",
+        "text": "6 ＋ 6 ＋ □ ＝ 19"
+      },
+      "hint": "先把兩個 6 相加。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "A25",
+      "cat": "add",
+      "question": "8 ＋ 5 ＋ □ ＝ 20，□ 是多少？",
+      "options": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "7",
+      "explain": "8 加 5 是 13，距離 20 還差 7。",
+      "visual": {
+        "type": "equation",
+        "text": "8 ＋ 5 ＋ □ ＝ 20"
+      },
+      "hint": "先算出 8 加 5，再想還差幾。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "S18",
+      "cat": "subtract",
+      "question": "20 − 9 − 4 ＝ ？",
+      "options": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "7",
+      "explain": "20 減 9 剩 11，再減 4 剩 7。",
+      "visual": {
+        "type": "equation",
+        "text": "20 − 9 − 4 ＝ ？"
+      },
+      "hint": "分兩次減。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "S19",
+      "cat": "subtract",
+      "question": "19 − □ − 5 ＝ 8，□ 是多少？",
+      "options": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer": "6",
+      "explain": "19 先減 6 等於 13，再減 5 就剩 8。",
+      "visual": {
+        "type": "equation",
+        "text": "19 − □ − 5 ＝ 8"
+      },
+      "hint": "先看 19 減完兩個數，一共少了多少。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "S20",
+      "cat": "subtract",
+      "question": "原本有 20 顆蘋果，吃掉 8 顆，又送人 5 顆，還剩幾顆？",
+      "options": [
+        "6 顆",
+        "7 顆",
+        "8 顆",
+        "9 顆"
+      ],
+      "answer": "7 顆",
+      "explain": "20 減 8 剩 12，再減 5 剩 7 顆。",
+      "visual": {
+        "type": "equation",
+        "text": "20 − 8 − 5 ＝ ？"
+      },
+      "hint": "吃掉和送人都要減掉。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "S21",
+      "cat": "subtract",
+      "question": "哥哥有 17 張貼紙，妹妹有 8 張，哥哥比妹妹多幾張？",
+      "options": [
+        "7 張",
+        "8 張",
+        "9 張",
+        "10 張"
+      ],
+      "answer": "9 張",
+      "explain": "17 減 8 等於 9，哥哥比妹妹多 9 張。",
+      "visual": {
+        "type": "sequence",
+        "tokens": [
+          "17",
+          "8"
+        ]
+      },
+      "hint": "用比較多的數減比較少的數。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "S22",
+      "cat": "subtract",
+      "question": "16 − 7 − □ ＝ 5，□ 是多少？",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "answer": "4",
+      "explain": "16 減 7 等於 9，9 再減 4 就是 5。",
+      "visual": {
+        "type": "equation",
+        "text": "16 − 7 − □ ＝ 5"
+      },
+      "hint": "先算 16 減 7。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "S23",
+      "cat": "subtract",
+      "question": "有 18 顆積木，拿走 6 顆，再拿走 4 顆，還有幾顆？",
+      "options": [
+        "6 顆",
+        "7 顆",
+        "8 顆",
+        "9 顆"
+      ],
+      "answer": "8 顆",
+      "explain": "18 減去 6 是 12，再減 4 剩下 8 顆。",
+      "visual": {
+        "type": "equation",
+        "text": "18 − 6 − 4 ＝ ？"
+      },
+      "hint": "先數第一回剩多少，再減第二回。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "S24",
+      "cat": "subtract",
+      "question": "小安有 20 元，先花 6 元，再花 7 元，還剩幾元？",
+      "options": [
+        "5 元",
+        "6 元",
+        "7 元",
+        "8 元"
+      ],
+      "answer": "7 元",
+      "explain": "20 減 6 再減 7，剩 7 元。",
+      "visual": {
+        "type": "coins",
+        "values": [
+          10,
+          10
+        ]
+      },
+      "hint": "兩次買東西都要付錢。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "S25",
+      "cat": "subtract",
+      "question": "小美有 14 顆球，拿走 3 顆紅球及 4 顆藍球，還剩幾顆？",
+      "options": [
+        "5 顆",
+        "6 顆",
+        "7 顆",
+        "8 顆"
+      ],
+      "answer": "7 顆",
+      "explain": "共拿走 3 加 4 等於 7 顆，14 減 7，剩下 7 顆。",
+      "visual": {
+        "type": "equation",
+        "text": "14 −（3 ＋ 4）＝ ？"
+      },
+      "hint": "先算一共拿走幾顆。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "L18",
+      "cat": "life",
+      "question": "有 2 個 10 元和 3 個 5 元，合起來有幾元？",
+      "options": [
+        "25 元",
+        "30 元",
+        "35 元",
+        "40 元"
+      ],
+      "answer": "35 元",
+      "explain": "2 個 10 元是 20 元，3 個 5 元是 15 元，合起來是 35 元。",
+      "visual": {
+        "type": "coins",
+        "values": [
+          10,
+          10,
+          5,
+          5,
+          5
+        ]
+      },
+      "hint": "先算兩個 10，再算三個 5。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "L19",
+      "cat": "life",
+      "question": "小美有 30 元，買 12 元的麵包和 8 元的牛奶，還剩幾元？",
+      "options": [
+        "8 元",
+        "10 元",
+        "12 元",
+        "14 元"
+      ],
+      "answer": "10 元",
+      "explain": "兩樣東西是 12 加 8 等於 20 元，30 減 20 剩下 10 元。",
+      "visual": {
+        "type": "coins",
+        "values": [
+          10,
+          10,
+          10
+        ]
+      },
+      "hint": "先算一共花多少錢。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "L20",
+      "cat": "life",
+      "question": "現在是 7 點半，一小時後是幾點？",
+      "options": [
+        "7 點",
+        "8 點",
+        "8 點半",
+        "9 點半"
+      ],
+      "answer": "8 點半",
+      "explain": "7 點半再過一小時，就是 8 點半。",
+      "visual": {
+        "type": "clock",
+        "hour": 7,
+        "minute": 30
+      },
+      "hint": "增加一小時，分針的位置不變。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "L21",
+      "cat": "life",
+      "question": "今天是星期二，再過四天是星期幾？",
+      "options": [
+        "星期四",
+        "星期五",
+        "星期六",
+        "星期日"
+      ],
+      "answer": "星期六",
+      "explain": "星期二往後四天依序是三、四、五、六，所以是星期六。",
+      "visual": {
+        "type": "calendar",
+        "today": "星期二",
+        "label": "今天"
+      },
+      "hint": "把明天當第一天，往後數四天。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "L22",
+      "cat": "life",
+      "question": "2 個 10 元、1 個 5 元、4 個 1 元，合起來是多少元？",
+      "options": [
+        "27 元",
+        "28 元",
+        "29 元",
+        "30 元"
+      ],
+      "answer": "29 元",
+      "explain": "20 元加 5 元，再加 4 元，是 29 元。",
+      "visual": {
+        "type": "coins",
+        "values": [
+          10,
+          10,
+          5,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "hint": "先把同面額的硬幣合起來。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "L23",
+      "cat": "life",
+      "question": "小安有 40 元，先買 15 元的文具，再買 10 元的飲料，剩幾元？",
+      "options": [
+        "10 元",
+        "15 元",
+        "20 元",
+        "25 元"
+      ],
+      "answer": "15 元",
+      "explain": "一共花 15 加 10 等於 25 元，40 減 25 剩 15 元。",
+      "visual": {
+        "type": "coins",
+        "values": [
+          10,
+          10,
+          10,
+          10
+        ]
+      },
+      "hint": "先算兩樣東西的價錢。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "L24",
+      "cat": "life",
+      "question": "現在是 9 點，半小時後再過一小時，是幾點？",
+      "options": [
+        "9 點半",
+        "10 點",
+        "10 點半",
+        "11 點"
+      ],
+      "answer": "10 點半",
+      "explain": "9 點先過半小時變 9 點半，再過一小時變 10 點半。",
+      "visual": {
+        "type": "clock",
+        "hour": 9,
+        "minute": 0
+      },
+      "hint": "先加半小時，再加一小時。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "L25",
+      "cat": "life",
+      "question": "今天是星期五，再過三天是星期幾？",
+      "options": [
+        "星期日",
+        "星期一",
+        "星期二",
+        "星期三"
+      ],
+      "answer": "星期一",
+      "explain": "星期五再過一天是星期六，兩天是星期日，三天是星期一。",
+      "visual": {
+        "type": "calendar",
+        "today": "星期五",
+        "label": "今天"
+      },
+      "hint": "把星期六當第一天。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "G18",
+      "cat": "shape",
+      "question": "這排圖形裡，不是三角形的共有幾個？",
+      "options": [
+        "4 個",
+        "5 個",
+        "6 個",
+        "7 個"
+      ],
+      "answer": "6 個",
+      "explain": "有 3 個正方形和 3 個圓形，不是三角形的共 6 個。",
+      "visual": {
+        "type": "shapes",
+        "values": [
+          "△",
+          "□",
+          "○",
+          "△",
+          "□",
+          "○",
+          "□",
+          "△",
+          "○"
+        ]
+      },
+      "hint": "先不要數三角形，只數其他兩種。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "G19",
+      "cat": "shape",
+      "question": "甲繩長 9 個積木，乙繩比甲繩短 3 個，丙繩比乙繩長 2 個。丙繩多長？",
+      "options": [
+        "6 個",
+        "7 個",
+        "8 個",
+        "9 個"
+      ],
+      "answer": "8 個",
+      "explain": "乙繩長 9 減 3 等於 6 個，丙繩再加 2，長 8 個。",
+      "visual": {
+        "type": "unit",
+        "items": [
+          {
+            "label": "甲繩",
+            "count": 9,
+            "color": "#f59f8a"
+          }
+        ]
+      },
+      "hint": "先算乙繩長多少，再算丙繩。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "G20",
+      "cat": "shape",
+      "question": "圖形照著「○、△、△、□」重複排列，空格應放哪個？",
+      "options": [
+        "○",
+        "△",
+        "□",
+        "☆"
+      ],
+      "answer": "△",
+      "explain": "每組是圓形、三角形、三角形、正方形，空格是第二個三角形。",
+      "visual": {
+        "type": "sequence",
+        "tokens": [
+          "○",
+          "△",
+          "△",
+          "□",
+          "○",
+          "△",
+          "❓"
+        ]
+      },
+      "hint": "先找到重複的四個圖形。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "G21",
+      "cat": "shape",
+      "question": "甲繩長 5 格，乙繩長 9 格，丙繩長 7 格。第二長是哪條？",
+      "options": [
+        "甲繩",
+        "乙繩",
+        "丙繩",
+        "一樣長"
+      ],
+      "answer": "丙繩",
+      "explain": "三條從長到短是乙 9、丙 7、甲 5，所以第二長是丙繩。",
+      "visual": {
+        "type": "unit",
+        "items": [
+          {
+            "label": "甲繩",
+            "count": 5,
+            "color": "#f59f8a"
+          },
+          {
+            "label": "乙繩",
+            "count": 9,
+            "color": "#77b1e9"
+          },
+          {
+            "label": "丙繩",
+            "count": 7,
+            "color": "#81cda9"
+          }
+        ]
+      },
+      "hint": "先找最長，再找次長。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "G22",
+      "cat": "shape",
+      "question": "這排圖形中，三角形比正方形多幾個？",
+      "options": [
+        "1 個",
+        "2 個",
+        "3 個",
+        "4 個"
+      ],
+      "answer": "2 個",
+      "explain": "有 4 個三角形和 2 個正方形，4 減 2 等於 2。",
+      "visual": {
+        "type": "shapes",
+        "values": [
+          "△",
+          "△",
+          "□",
+          "△",
+          "□",
+          "△"
+        ]
+      },
+      "hint": "先分別數兩種圖形，再比較。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "G23",
+      "cat": "shape",
+      "question": "依照「○、□、△」重複排列，最後的空格要放什麼？",
+      "options": [
+        "○",
+        "□",
+        "△",
+        "☆"
+      ],
+      "answer": "△",
+      "explain": "每三個圖形都按圓形、正方形、三角形的順序，最後一個是三角形。",
+      "visual": {
+        "type": "sequence",
+        "tokens": [
+          "○",
+          "□",
+          "△",
+          "○",
+          "□",
+          "△",
+          "○",
+          "□",
+          "❓"
+        ]
+      },
+      "hint": "每三個為一組，看看最後少誰。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "G24",
+      "cat": "shape",
+      "question": "紅繩長 6 格，藍繩比紅繩長 4 格，綠繩又比藍繩短 3 格。綠繩長幾格？",
+      "options": [
+        "6 格",
+        "7 格",
+        "8 格",
+        "9 格"
+      ],
+      "answer": "7 格",
+      "explain": "藍繩長 6 加 4 等於 10 格，綠繩長 10 減 3 等於 7 格。",
+      "visual": {
+        "type": "unit",
+        "items": [
+          {
+            "label": "紅繩",
+            "count": 6,
+            "color": "#f59f8a"
+          }
+        ]
+      },
+      "hint": "先求藍繩，再求綠繩。",
+      "difficulty": "expert"
+    },
+    {
+      "id": "G25",
+      "cat": "shape",
+      "question": "圖中有 5 個三角形、3 個正方形、2 個圓形，哪兩種合起來和三角形一樣多？",
+      "options": [
+        "正方形和圓形",
+        "正方形和三角形",
+        "圓形和三角形",
+        "沒有任何兩種"
+      ],
+      "answer": "正方形和圓形",
+      "explain": "3 個正方形加上 2 個圓形是 5 個，和 5 個三角形一樣多。",
+      "visual": {
+        "type": "shapes",
+        "values": [
+          "△",
+          "□",
+          "○",
+          "△",
+          "□",
+          "△",
+          "○",
+          "□",
+          "△",
+          "△"
+        ]
+      },
+      "hint": "先把正方形和圓形的個數相加。",
+      "difficulty": "expert"
+    }
+  ]
+}
