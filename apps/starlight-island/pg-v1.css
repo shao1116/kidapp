@@ -1,0 +1,28 @@
+/* Leaf Kingdom v1.0: illustrated, fully annotated encyclopedia and accessible tutorial */
+.level-list{grid-template-columns:repeat(6,minmax(0,1fr))}
+.level-select{background:linear-gradient(145deg,#fffef6,#edf8ec)}
+.level-head strong{font-size:18px}.stage-caption{font-weight:800}
+.pg-guide-voice{border:2px solid #c8dfbf;border-radius:12px;background:#f4faeb;color:#417455;min-height:42px;padding:8px 14px;font-weight:900;margin:8px 0}
+.pg-book-controls{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;margin:5px 0 12px}
+.pg-book-controls button{border:2px solid #cfe2c5;border-radius:12px;background:#fff;color:#417459;min-height:43px;font-size:13px;font-weight:850;padding:8px 13px}
+.pg-book-controls button[aria-pressed="true"]{background:#d6f3db;border-color:#54ad75}
+.pg-book-cards{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.pg-fact-card{border:2px solid #deebd6;border-radius:18px;background:linear-gradient(160deg,#f8fff3,#fffdf4);padding:12px;min-width:0}
+.pg-fact-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.pg-fact-img{background:#e9f6e3;display:grid;place-items:center;flex:0 0 88px;width:88px;height:88px;border-radius:14px;overflow:hidden}
+.pg-fact-img img{max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain}
+.pg-fact-top h3{font-size:18px;font-weight:950;line-height:1.8;min-width:0}
+.pg-fact-type{font-size:11px;font-weight:850;color:#539271}
+.pg-fact-speak{margin-left:auto;border:2px solid #c5dec5;background:white;border-radius:12px;min-width:40px;min-height:42px;font-size:18px;flex:0 0 40px}
+.pg-fact-card p{font-size:13px;line-height:2.1;margin:6px 0;color:#435e51;clear:both}
+.pg-fact-card p b{font-weight:950;color:#397a5c;display:block}
+.pg-fact-card p.pg-fact-tip{font-size:12px;color:#866c3d;padding:5px 9px;border-radius:10px;background:#fff1d8}
+.pg-book-note,.pg-eco-note{grid-column:1/-1;font-size:13px;line-height:2.1;background:#fff2d6;color:#735e3e;padding:10px 12px;border-radius:12px;margin:8px 0}
+.pg-eco-note{background:#f6fbec;border:2px solid #dce7c9;margin-top:12px}
+.science .science-box{display:block;padding:0 14px 17px}
+.science summary{font-size:17px;line-height:2}
+.pg-fact-img img.pg-science-thumb{float:none;margin:0;width:100%;height:100%;object-fit:contain;filter:none}
+@media(max-width:950px){.pg-book-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:750px){.level-list{grid-template-columns:repeat(4,minmax(0,1fr))}.pg-fact-img{width:74px;height:74px;flex-basis:74px}.pg-fact-top h3{font-size:16px}}
+@media(max-width:510px){.level-list{grid-template-columns:repeat(3,minmax(0,1fr))}.pg-book-cards{grid-template-columns:1fr}.pg-book-controls button{flex:1 1 auto}.pg-fact-card{padding:11px}.pg-fact-card p{font-size:13px}.pg-fact-img{width:82px;height:82px;flex-basis:82px}.science summary{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.pg-fact-card *, .pg-book-cards *{animation:none!important;transition:none!important}}
