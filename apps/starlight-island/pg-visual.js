@@ -1,4 +1,4 @@
-/* Leaf Kingdom v0.5.1 original illustrated art layer. All gameplay mechanics remain unchanged. */
+/* Leaf Kingdom v1.1 refined illustrated art layer. All gameplay mechanics remain unchanged. */
 (() => {
   const art = typeof PG_ART_IMAGE !== 'undefined' ? PG_ART_IMAGE : null;
   const frames = typeof PG_ART_FRAMES !== 'undefined' ? PG_ART_FRAMES : {};
@@ -106,7 +106,8 @@
     [528,550,'bloomshrub',77],[727,549,'broad',94],
     [400,57,'bloomshrub',65],[557,77,'tall',84],[956,566,'leafshrub',65],
     [100,560,'sapling',82],[821,77,'bloomshrub',64],
-    [275,534,'leafshrub',62],[686,87,'sapling',70]
+    [275,534,'leafshrub',62],[686,87,'sapling',70],
+    [54,395,'berryshrub',75],[458,68,'fern',70],[965,77,'berryshrub',72],[390,547,'fern',69]
   ];
   let decoCacheStage='',decorations=[];
   drawBackground=function(){
