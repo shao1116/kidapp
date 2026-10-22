@@ -58,14 +58,14 @@ const VEC={
 const artImages={};for(const [key,svg] of Object.entries(VEC)){const image=new Image();image.src='data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);artImages[key]=image;}
 function thumb(key){
  const spriteKey={c:'c',a:'a',b:'b',g:'g',w:'w'}[key]||key;
- if(VEC[spriteKey])return artImages[spriteKey].src;
+ if(VEC[spriteKey]&&!(typeof PG_ART_FRAMES!=='undefined'&&PG_ART_FRAMES[spriteKey]&&typeof PG_ART_IMAGE!=='undefined'&&PG_ART_IMAGE.complete&&PG_ART_IMAGE.naturalWidth))return artImages[spriteKey].src;
  if(typeof PG_ART_IMAGE==='undefined'||!PG_ART_IMAGE.complete||!PG_ART_IMAGE.naturalWidth||!PG_ART_FRAMES[spriteKey])return '';
  if(!thumb.cache)thumb.cache={};if(thumb.cache[spriteKey])return thumb.cache[spriteKey];
  const [sx,sy,sw,sh]=PG_ART_FRAMES[spriteKey],c=document.createElement('canvas');c.width=120;c.height=120;
  const ct=c.getContext('2d');const k=Math.min(116/sw,116/sh);ct.drawImage(PG_ART_IMAGE,sx,sy,sw,sh,(120-sw*k)/2,117-sh*k,sw*k,sh*k);
  return (thumb.cache[spriteKey]=c.toDataURL('image/webp',.83));
 }
-function drawCustom(key,x,y,h){const im=artImages[key];if(im?.complete&&im.naturalWidth){const w=h*im.naturalWidth/im.naturalHeight;ctx.drawImage(im,x-w/2,y-h,w,h);return true}return false;}
+function drawCustom(key,x,y,h){if(typeof PG_ART_IMAGE!=='undefined'&&PG_ART_IMAGE.complete&&PG_ART_IMAGE.naturalWidth&&typeof PG_ART_FRAMES!=='undefined'&&PG_ART_FRAMES[key]){const [sx,sy,sw,sh]=PG_ART_FRAMES[key],w=h*sw/sh;ctx.drawImage(PG_ART_IMAGE,sx,sy,sw,sh,x-w/2,y-h,w,h);return true}const im=artImages[key];if(im?.complete&&im.naturalWidth){const w=h*im.naturalWidth/im.naturalHeight;ctx.drawImage(im,x-w/2,y-h,w,h);return true}return false;}
 const originalDrawSlot=drawSlot;
 drawSlot=function(s){const p=s.plant;if(!p||!VEC[p.type])return originalDrawSlot(s);const [x,y]=s.pos;ctx.save();ellipse(x,y+26,40,17,'#47745566');circle(x,y+7,39,'#d9ba8c');strokeCircle(x,y+7,38,s.id===selectedSite?'#fff0a7':'#f0eac8',4);drawCustom(p.type,x,y+23,108*(1+.09*(p.level-1)));for(let i=0;i<p.level;i++)circle(x-12+i*12,y+47,4,'#ffd875');ctx.textAlign='center';ctx.fillStyle='#fff9db';ctx.font='900 14px system-ui';ctx.fillText(String(s.id+1),x,y+57);ctx.restore()};
 const originalDrawBug=drawBug;
@@ -104,11 +104,13 @@ function renderBook(){
 science.querySelectorAll('[data-book]').forEach(b=>b.addEventListener('click',()=>{bookFilter=b.dataset.book;renderBook()}));
 $('pg-book-read').onclick=()=>say('這本圖鑑共有八種植物和七種昆蟲。點每張卡片上的喇叭，就能聽植物或昆蟲的介紹。');
 book.addEventListener('toggle',()=>{if(book.open)renderBook()});
+function refreshExtendedArt(){if(book.open)renderBook();shop?.querySelectorAll('[data-plant="pitcher"],[data-plant="dandelion"]').forEach(btn=>{const img=btn.querySelector('.pg-art-thumb');if(img)img.src=thumb(btn.dataset.plant)||artImages[btn.dataset.plant].src});refreshPlaces()}
+if(typeof PG_ART_IMAGE!=='undefined')PG_ART_IMAGE.addEventListener('load',()=>queueMicrotask(refreshExtendedArt));
 if(typeof PG_ART_IMAGE!=='undefined')PG_ART_IMAGE.addEventListener('load',()=>{if(book.open)renderBook()});
 
 // Give each plant a card, and explain that it is temporarily locked rather than disabling discovery.
 const shop=$('plantCards');for(const [id,t] of Object.entries(MORE_PLANTS)){
- const b=document.createElement('button');b.className='plant-card';b.type='button';b.dataset.plant=id;b.setAttribute('aria-pressed','false');b.innerHTML=`<span class="plant-icon"><img class="pg-art-thumb" src="${artImages[id].src}" alt=""></span><span><b>${t.name}</b><small>${t.description}</small><span class="cost">☀️ ${t.cost}</span></span><em class="lock-label" hidden>🔒 第 ${t.unlock} 關</em>`;shop.append(b);
+ const b=document.createElement('button');b.className='plant-card';b.type='button';b.dataset.plant=id;b.setAttribute('aria-pressed','false');b.innerHTML=`<span class="plant-icon"><img class="pg-art-thumb" src="${thumb(id)||artImages[id].src}" alt=""></span><span><b>${t.name}</b><small>${t.description}</small><span class="cost">☀️ ${t.cost}</span></span><em class="lock-label" hidden>🔒 第 ${t.unlock} 關</em>`;shop.append(b);
 }
 // The original image layer only decorates six defenders. For these two vector units, shop icons are already assigned.
 const pgOldCards=refreshCards;
@@ -117,7 +119,7 @@ clickPlant=function(key){const keys=Object.keys(PLANTS);if(game.ended)return;if(
 shop.querySelectorAll('[data-plant="pitcher"],[data-plant="dandelion"]').forEach(b=>b.addEventListener('click',()=>clickPlant(b.dataset.plant)));
 
 const oldPlaces=refreshPlaces;
-refreshPlaces=function(){oldPlaces();document.querySelectorAll('.mobile-place').forEach(b=>{const spot=game.spots[Number(b.dataset.place)];if(spot?.plant&&VEC[spot.plant.type])b.innerHTML=`<img class="pg-place-thumb" src="${artImages[spot.plant.type].src}" alt="">`})};
+refreshPlaces=function(){oldPlaces();document.querySelectorAll('.mobile-place').forEach(b=>{const spot=game.spots[Number(b.dataset.place)];if(spot?.plant&&VEC[spot.plant.type])b.innerHTML=`<img class="pg-place-thumb" src="${thumb(spot.plant.type)||artImages[spot.plant.type].src}" alt="">`})};
 
 const oldMenu=pgMenu;
 const levelBox=document.querySelector('.level-list');levelBox.innerHTML=LEVELS_V1.map((v,i)=>`<button type="button" class="level-btn" data-level="${i+1}" aria-label="第${i+1}關 ${v.name}"><i>🔒</i><span>${i+1} ${v.name}</span></button>`).join('');
