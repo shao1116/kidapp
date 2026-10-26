@@ -114,7 +114,7 @@ const shop=$('plantCards');for(const [id,t] of Object.entries(MORE_PLANTS)){
 }
 // The original image layer only decorates six defenders. For these two vector units, shop icons are already assigned.
 const pgOldCards=refreshCards;
-refreshCards=function(){pgOldCards();const keys=Object.keys(PLANTS);document.querySelectorAll('[data-plant]').forEach(el=>{const key=el.dataset.plant,unlocked=keys.indexOf(key)<pgMap().unlock;el.disabled=!unlocked||game.ended||(game.sun<PLANTS[key].cost&&selectedKind!==key);el.classList.toggle('locked',!unlocked);el.classList.toggle('selected',selectedKind===key);el.setAttribute('aria-pressed',String(selectedKind===key));const lock=el.querySelector('.lock-label');if(lock){lock.hidden=unlocked;lock.textContent='🔒 第 '+(MORE_PLANTS[key]?.unlock||keys.indexOf(key)+1)+'關'};});};
+refreshCards=function(){pgOldCards();const keys=Object.keys(PLANTS);document.querySelectorAll('[data-plant]').forEach(el=>{const key=el.dataset.plant,unlocked=keys.indexOf(key)<pgMap().unlock;el.hidden=!unlocked;el.disabled=!unlocked||game.ended||(game.sun<PLANTS[key].cost&&selectedKind!==key);el.classList.toggle('locked',!unlocked);el.classList.toggle('selected',selectedKind===key);el.setAttribute('aria-pressed',String(selectedKind===key));const lock=el.querySelector('.lock-label');if(lock){lock.hidden=unlocked;lock.textContent='🔒 第 '+(MORE_PLANTS[key]?.unlock||keys.indexOf(key)+1)+'關'};});};
 clickPlant=function(key){const keys=Object.keys(PLANTS);if(game.ended)return;if(keys.indexOf(key)>=pgMap().unlock){notice('這株植物要完成前面的關卡才能使用。');return}selectedKind=selectedKind===key?null:key;selectedSite=-1;refreshCards();refreshInspector();notice(selectedKind?'已選 '+PLANTS[key].name+'，再點地圖上空的圓圈。':'選植物卡，再點空的圓圈。')};
 shop.querySelectorAll('[data-plant="pitcher"],[data-plant="dandelion"]').forEach(b=>b.addEventListener('click',()=>clickPlant(b.dataset.plant)));
 
@@ -155,11 +155,77 @@ const guideSteps=[
 function guide(i){if(i>=guideSteps.length){record.guideV1=true;save();closeDialog();setBanner('👇 點植物卡，再點空圈圈',5);return}const [icon,title,body]=guideSteps[i];showDialog(icon,title,body,i===guideSteps.length-1?'開始冒險':'下一步',()=>guide(i+1),`第 ${i+1} / ${guideSteps.length} 步`);const speakBtn=$('pgGuideVoice');if(speakBtn)speakBtn.onclick=()=>say(title+'。'+body)}
 const voiceBtn=document.createElement('button');voiceBtn.id='pgGuideVoice';voiceBtn.type='button';voiceBtn.className='pg-guide-voice';voiceBtn.textContent='🔊 聽解說';document.querySelector('.dialog').insertBefore(voiceBtn,$('modalButton'));
 const guideReplay=document.createElement('button');guideReplay.type='button';guideReplay.className='smallbtn';guideReplay.id='pgGuideAgain';guideReplay.textContent='❔ 新手教學';document.querySelector('.nav').prepend(guideReplay);guideReplay.addEventListener('click',()=>guide(0));
+
+// Plant discovery: keep the first stage simple and introduce each defender when it joins.
+// Names and stage thresholds use the same stable keys as PLANTS and PG_MAPS.
+const PG_PLANT_UNLOCKS=[
+ {id:'sunflower',stage:1,feature:'綠葉能利用陽光製造養分。',skill:'會幫你收集陽光。'},
+ {id:'cactus',stage:1,feature:'身上的刺能幫助保護自己。',skill:'會射出小刺防守。'},
+ {id:'sundew',stage:2,feature:'葉片有會黏住昆蟲的黏液。',skill:'讓小蟲走得慢一點。'},
+ {id:'flytrap',stage:3,feature:'捕蟲葉受到適當觸碰會閉合。',skill:'能近距離捕捉小蟲。'},
+ {id:'mint',stage:4,feature:'葉子有特別的芳香。',skill:'用香氣讓小蟲變慢。'},
+ {id:'alyssum',stage:5,feature:'有許多小小的四瓣花。',skill:'能請瓢蟲幫忙。'},
+ {id:'pitcher',stage:6,feature:'瓶狀捕蟲籠是特化的葉片。',skill:'能捕捉靠近的小蟲。'},
+ {id:'dandelion',stage:9,feature:'帶冠毛的果實能隨風飄散。',skill:'吹風把小蟲推回去。'}
+];
+record.plantIntroduced=Array.isArray(record.plantIntroduced)?
+ [...new Set(record.plantIntroduced.filter(id=>PG_PLANT_UNLOCKS.some(p=>p.id===id)))]:[];
+const pgIntroHost=document.createElement('div');
+pgIntroHost.id='pgPlantWelcome';pgIntroHost.className='pg-plant-welcome';pgIntroHost.hidden=true;
+document.querySelector('.dialog').insertBefore(pgIntroHost,$('modalButton'));
+let pgIntroShowing=null;
+function pgIntroPicture(id){
+ const src=thumb(id);
+ const label=PG_SPECIES.find(o=>o.id===id)?.name||PLANTS[id]?.name||'植物';
+ return src?'<img class="pg-plant-welcome-image" alt="'+escapeHTML(label)+'" src="'+src+'">':
+ '<span class="pg-plant-welcome-fallback" aria-hidden="true">'+(PLANTS[id]?.symbol||'🌱')+'</span>';
+}
+function pgRenderIntro(){
+ if(!pgIntroShowing||pgIntroHost.hidden)return;
+ pgIntroHost.innerHTML=pgIntroShowing.map(p=>{
+   const name=PG_SPECIES.find(o=>o.id===p.id)?.name||PLANTS[p.id].name;
+   return '<article class="pg-plant-intro-card" data-intro-plant="'+p.id+'">'+
+   '<div class="pg-plant-intro-picture">'+pgIntroPicture(p.id)+'</div>'+
+   '<h3>'+bopomofo(name)+'</h3>'+
+   '<p><strong>'+bopomofo('真的植物：')+'</strong>'+bopomofo(p.feature)+'</p>'+
+   '<p><strong>'+bopomofo('遊戲裡：')+'</strong>'+bopomofo(p.skill)+'</p>'+
+   '</article>';
+ }).join('');
+}
+function pgShowPlantIntroduction(stage){
+ const pending=PG_PLANT_UNLOCKS.filter(p=>p.stage<=stage&&!record.plantIntroduced.includes(p.id));
+ if(!pending.length)return false;
+ if(modalOpen)closeDialog();
+ pgIntroShowing=pending;
+ const first=pending.length===2&&pending.every(p=>p.stage===1);
+ showDialog('🌱',first?'認識兩位植物守衛':'新植物加入了！',
+   first?'先認識這兩株植物，再一起守護神樹！':'新朋友來了，看看它有什麼本領！',
+   first?'開始守護':'我認識了',()=>{
+     record.plantIntroduced=Array.from(new Set([...record.plantIntroduced,...pending.map(p=>p.id)]));
+     if(!record.guideV1){record.guideV1=true;record.tutorial=true}
+     save();pgIntroHost.hidden=true;pgIntroShowing=null;
+     $('modalArt').hidden=false;closeDialog();
+     setBanner('👇 點植物，再點空圈圈',3.5);
+   });
+ $('modalArt').hidden=true;
+ pgIntroHost.hidden=false;pgRenderIntro();
+ const voice=$('pgGuideVoice');
+ if(voice){voice.hidden=false;voice.onclick=()=>{
+    say(pending.map(p=>{const n=PG_SPECIES.find(o=>o.id===p.id)?.name||PLANTS[p.id].name;return n+'。'+p.feature+'在遊戲裡，'+p.skill}).join('。'));
+ }};
+ return true;
+}
+const pgOriginalFresh=fresh;
+fresh=function(level){pgOriginalFresh(level);pgShowPlantIntroduction(game.stage)};
+if(typeof PG_ART_IMAGE!=='undefined'){
+ PG_ART_IMAGE.addEventListener('load',()=>{if(pgIntroShowing)pgRenderIntro()});
+}
+
 // Label each science card and the category tabs with the same Bopomofo style.
 science.querySelectorAll('[data-book]').forEach(b=>{b.innerHTML=bopomofo(b.textContent)});
 const note=document.createElement('p');note.className='pg-eco-note';note.innerHTML=bopomofo('小提醒：不是所有昆蟲都是害蟲。打敗遊戲裡的小蟲，只是守護神樹的幻想故事。');book.insertAdjacentElement('afterend',note);
 // Replace the initial v0.5 introductory dialog with the complete tutorial for new players.
 pgMenu();refreshCards();refreshPlaces();
-if(!record.guideV1){if(modalOpen)closeDialog();guide(0)}
-window.PG_V1_DEBUG={levels:LEVELS_V1,encyclopedia:PG_SPECIES,maps:PG_MAPS,getState:()=>({stage:game.stage,wave:game.wave,sun:game.sun,life:game.tree,phase,bugs:bugs.length})};
+if(modalOpen)closeDialog();pgShowPlantIntroduction(game.stage)
+window.PG_V1_DEBUG={levels:LEVELS_V1,encyclopedia:PG_SPECIES,maps:PG_MAPS,plantUnlocks:PG_PLANT_UNLOCKS,getState:()=>({stage:game.stage,wave:game.wave,sun:game.sun,life:game.tree,phase,bugs:bugs.length})};
 })();
