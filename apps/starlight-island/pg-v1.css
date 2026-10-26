@@ -26,3 +26,28 @@
 @media(max-width:750px){.level-list{grid-template-columns:repeat(4,minmax(0,1fr))}.pg-fact-img{width:74px;height:74px;flex-basis:74px}.pg-fact-top h3{font-size:16px}}
 @media(max-width:510px){.level-list{grid-template-columns:repeat(3,minmax(0,1fr))}.pg-book-cards{grid-template-columns:1fr}.pg-book-controls button{flex:1 1 auto}.pg-fact-card{padding:11px}.pg-fact-card p{font-size:13px}.pg-fact-img{width:82px;height:82px;flex-basis:82px}.science summary{font-size:15px}}
 @media(prefers-reduced-motion:reduce){.pg-fact-card *, .pg-book-cards *{animation:none!important;transition:none!important}}
+
+/* Guided plant discovery: only unlocked cards are visible. */
+.plant-card[hidden],#pgPlantWelcome[hidden]{display:none!important}
+.dialog{max-height:92dvh;overflow-y:auto}
+.dialog:has(.pg-plant-welcome:not([hidden])){width:min(650px,100%);padding:16px 16px 20px}
+.dialog:has(.pg-plant-welcome:not([hidden])) h2{font-size:23px}
+.dialog:has(.pg-plant-welcome:not([hidden]))>p{margin:6px 0 10px;font-size:14px;line-height:1.85}
+.pg-plant-welcome{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:10px 0 15px}
+.pg-plant-intro-card{min-width:0;display:grid;grid-template-columns:86px minmax(0,1fr);column-gap:12px;align-items:start;text-align:left;background:linear-gradient(140deg,#f2ffea,#fffcef);border:2px solid #d7eacb;border-radius:17px;padding:11px;box-shadow:0 4px 9px #385a3f11}
+.pg-plant-intro-picture{grid-row:1/span 3;display:grid;place-items:center;width:86px;min-height:110px;align-self:center}
+.pg-plant-welcome-image{width:82px;height:108px;object-fit:contain;filter:drop-shadow(0 3px 4px #326d4640)}
+.pg-plant-welcome-fallback{font-size:48px}
+.pg-plant-intro-card h3{font-size:19px;line-height:1.75;margin:0;color:#31734e;min-width:0}
+.pg-plant-intro-card p{font-size:13px;line-height:1.85;margin:2px 0 5px;color:#506d54;font-weight:750;min-width:0}
+.pg-plant-intro-card p strong{display:block;color:#387454;font-weight:950}
+.pg-plant-intro-card .bopo-rt{font-size:.43em}
+@media(max-width:540px){
+ .dialog:has(.pg-plant-welcome:not([hidden])){padding:12px 10px 16px}
+ .pg-plant-welcome{grid-template-columns:1fr;gap:8px;margin:7px 0}
+ .pg-plant-intro-card{grid-template-columns:78px minmax(0,1fr);gap:6px 8px;padding:9px}
+ .pg-plant-intro-picture{width:78px;min-height:100px}
+ .pg-plant-welcome-image{width:74px;height:96px}
+ .pg-plant-intro-card h3{font-size:17px}
+ .pg-plant-intro-card p{font-size:12.5px;line-height:1.75}
+}
