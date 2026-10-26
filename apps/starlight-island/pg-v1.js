@@ -156,6 +156,7 @@ function guide(i){if(i>=guideSteps.length){record.guideV1=true;save();closeDialo
 const voiceBtn=document.createElement('button');voiceBtn.id='pgGuideVoice';voiceBtn.type='button';voiceBtn.className='pg-guide-voice';voiceBtn.textContent='🔊 聽解說';document.querySelector('.dialog').insertBefore(voiceBtn,$('modalButton'));
 const guideReplay=document.createElement('button');guideReplay.type='button';guideReplay.className='smallbtn';guideReplay.id='pgGuideAgain';guideReplay.textContent='❔ 新手教學';document.querySelector('.nav').prepend(guideReplay);guideReplay.addEventListener('click',()=>guide(0));
 
+Object.assign(ZHUYIN_MAP,{'領':'ㄌㄧㄥˇ','身':'ㄕㄣ','受':'ㄕㄡˋ','芳':'ㄈㄤ','瓣':'ㄅㄢˋ'});
 // Plant discovery: keep the first stage simple and introduce each defender when it joins.
 // Names and stage thresholds use the same stable keys as PLANTS and PG_MAPS.
 const PG_PLANT_UNLOCKS=[
@@ -226,6 +227,6 @@ science.querySelectorAll('[data-book]').forEach(b=>{b.innerHTML=bopomofo(b.textC
 const note=document.createElement('p');note.className='pg-eco-note';note.innerHTML=bopomofo('小提醒：不是所有昆蟲都是害蟲。打敗遊戲裡的小蟲，只是守護神樹的幻想故事。');book.insertAdjacentElement('afterend',note);
 // Replace the initial v0.5 introductory dialog with the complete tutorial for new players.
 pgMenu();refreshCards();refreshPlaces();
-if(modalOpen)closeDialog();pgShowPlantIntroduction(game.stage)
+if(modalOpen)closeDialog();if(!pgShowPlantIntroduction(game.stage)&&!record.guideV1)guide(0)
 window.PG_V1_DEBUG={levels:LEVELS_V1,encyclopedia:PG_SPECIES,maps:PG_MAPS,plantUnlocks:PG_PLANT_UNLOCKS,getState:()=>({stage:game.stage,wave:game.wave,sun:game.sun,life:game.tree,phase,bugs:bugs.length})};
 })();
