@@ -156,7 +156,7 @@ function guide(i){if(i>=guideSteps.length){record.guideV1=true;save();closeDialo
 const voiceBtn=document.createElement('button');voiceBtn.id='pgGuideVoice';voiceBtn.type='button';voiceBtn.className='pg-guide-voice';voiceBtn.textContent='🔊 聽解說';document.querySelector('.dialog').insertBefore(voiceBtn,$('modalButton'));
 const guideReplay=document.createElement('button');guideReplay.type='button';guideReplay.className='smallbtn';guideReplay.id='pgGuideAgain';guideReplay.textContent='❔ 新手教學';document.querySelector('.nav').prepend(guideReplay);guideReplay.addEventListener('click',()=>guide(0));
 
-Object.assign(ZHUYIN_MAP,{'領':'ㄌㄧㄥˇ','身':'ㄕㄣ','受':'ㄕㄡˋ','芳':'ㄈㄤ','瓣':'ㄅㄢˋ'});
+Object.assign(ZHUYIN_MAP,{'領':'ㄌㄧㄥˇ','身':'ㄕㄣ','受':'ㄕㄡˋ','芳':'ㄈㄤ','瓣':'ㄅㄢˋ','定':'ㄉㄧㄥˋ','期':'ㄑㄧˊ','附':'ㄈㄨˋ','泌':'ㄇㄧˋ','含':'ㄏㄢˊ','揉':'ㄖㄡˊ','涼':'ㄌㄧㄤˊ','蜜':'ㄇㄧˋ','往':'ㄨㄤˇ','臺':'ㄊㄞˊ','灣':'ㄨㄢ','常':'ㄔㄤˊ','若':'ㄖㄨㄛˋ'});
 // Plant discovery: keep the first stage simple and introduce each defender when it joins.
 // Names and stage thresholds use the same stable keys as PLANTS and PG_MAPS.
 const PG_PLANT_UNLOCKS=[
