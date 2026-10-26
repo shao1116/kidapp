@@ -13,16 +13,16 @@ Object.assign(PG_BUGS,{
  j:{name:'葉蟬',hp:66,speed:85,reward:25,bite:1.65}
 });
 const LEVELS_V1=[
- {name:'小芽花園',world:'花園學校',fact:'葉子能幫植物製造養分。',mission:'認識陽光與葉子'},
- {name:'葉片農場',world:'花園學校',fact:'葉甲有一對保護翅膀的鞘翅。',mission:'認識吃葉子的昆蟲'},
- {name:'風之草原',world:'花園學校',fact:'蚱蜢靠有力的後腿跳得遠。',mission:'觀察昆蟲怎麼跳'},
- {name:'花香祕境',world:'花園學校',fact:'花朵能為部分昆蟲提供食物。',mission:'認識昆蟲與花'},
- {name:'神樹之森',world:'花園學校',fact:'植物和昆蟲有各種不同的關係。',mission:'綜合守護挑戰'},
+ {name:'小芽花園',world:'花園學校',fact:'向日葵的綠葉能利用陽光製造養分。',mission:'認識向日葵和仙人掌'},
+ {name:'葉片農場',world:'花園學校',fact:'茅膏菜用黏液黏住小昆蟲；葉甲也叫金花蟲。',mission:'認識茅膏菜的黏液'},
+ {name:'風之草原',world:'花園學校',fact:'捕蠅草的捕蟲葉會閉合；蚱蜢很會跳。',mission:'認識捕蠅草和蚱蜢'},
+ {name:'花香祕境',world:'花園學校',fact:'薄荷有芳香的葉片，粉蝨能吸食植物汁液。',mission:'認識薄荷和粉蝨'},
+ {name:'神樹之森',world:'花園學校',fact:'香雪球有許多小小的四瓣花，可提供部分昆蟲花蜜。',mission:'認識香雪球與昆蟲'},
  {name:'露珠溼地',world:'神奇溼地',fact:'豬籠草的捕蟲籠是變形的葉子。',mission:'解鎖豬籠草'},
  {name:'蜿蜒溪谷',world:'神奇溼地',fact:'茅膏菜的黏液能黏住小昆蟲。',mission:'認識黏液陷阱'},
  {name:'昆蟲祕徑',world:'神奇溼地',fact:'象鼻蟲有長長的口吻。',mission:'認識象鼻蟲'},
- {name:'風種子山丘',world:'種子森林',fact:'蒲公英的果實可藉冠毛隨風飄散。',mission:'解鎖蒲公英'},
- {name:'跳跳葉林',world:'種子森林',fact:'葉蟬有很會跳的後腿。',mission:'認識葉蟬'},
+ {name:'風種子山丘',world:'種子森林',fact:'蒲公英的果實帶著冠毛，可以隨風傳播。',mission:'解鎖蒲公英'},
+ {name:'跳跳葉林',world:'種子森林',fact:'葉蟬善於跳躍，也會吸取植物汁液。',mission:'認識葉蟬'},
  {name:'星光木橋',world:'種子森林',fact:'不同植物有不同的葉子與防禦方式。',mission:'搭配植物守衛'},
  {name:'神樹大守護',world:'種子森林',fact:'照顧植物，也要認識昆蟲的重要。',mission:'完成森林守護'}
 ];
@@ -72,21 +72,21 @@ const originalDrawBug=drawBug;
 drawBug=function(b){if(!VEC[b.kind])return originalDrawBug(b);const xy=pointOnPath(b.progress),x=xy[0],y=xy[1]+18;ctx.save();ellipse(x,xy[1]+18,24,6,'#426c5545');const jump=b.kind==='j'?Math.sin(visualTick*10+b.wobble)*8:Math.sin(visualTick*6+b.wobble)*2;drawCustom(b.kind,x,y+jump,55);if(b.hp<b.maxHp){rr(x-23,y-66,46,6,3,'#fff6df');rr(x-23,y-66,Math.max(0,46*b.hp/b.maxHp),6,3,'#73c47b')}if(b.slow>0)strokeCircle(x,xy[1]-14,25,'#f5c9d5',2);ctx.restore()};
 
 const PG_SPECIES=[
- {id:'sunflower',type:'plant',name:'向日葵',real:'綠色植物用光合作用製造養分。',fantasy:'遊戲中會幫你收集陽光。',tip:'先種向日葵，再種攻擊植物。'},
- {id:'cactus',type:'plant',name:'仙人掌',real:'許多仙人掌有刺，能幫助防禦。',fantasy:'遊戲中會射出小刺。',tip:'適合守在彎路旁邊。'},
- {id:'sundew',type:'plant',name:'茅膏菜',real:'葉片有黏液，可以黏住小昆蟲。',fantasy:'遊戲中會發射黏液泡泡。',tip:'和仙人掌放在一起更好。'},
- {id:'flytrap',type:'plant',name:'捕蠅草',real:'捕蟲葉遇到適當刺激後會閉合。',fantasy:'遊戲中會近距離咬住小蟲。',tip:'靠近道路可以發揮力量。'},
- {id:'mint',type:'plant',name:'薄荷',real:'薄荷有特別的香氣。',fantasy:'遊戲中的香氣會讓小蟲變慢。',tip:'擺在轉彎處可以拖慢小蟲。'},
- {id:'alyssum',type:'plant',name:'香雪球',real:'花可為一些昆蟲提供食物。',fantasy:'遊戲中會請瓢蟲幫忙守護。',tip:'適合對付成群小蟲。'},
- {id:'pitcher',type:'plant',name:'豬籠草',real:'捕蟲籠是變形的葉子，可以形成陷阱。',fantasy:'遊戲中能抓住靠近的小蟲。',tip:'靠近路邊才容易抓到。'},
- {id:'dandelion',type:'plant',name:'蒲公英',real:'蒲公英的果實有冠毛，能隨風飄散。',fantasy:'遊戲中用風球把小蟲吹回去。',tip:'放在長路段可以爭取時間。'},
- {id:'c',type:'bug',name:'毛毛蟲',real:'很多蝴蝶或蛾的幼蟲會吃葉子。',fantasy:'在遊戲中沿路找神樹。',tip:'移動較慢，先觀察牠。'},
- {id:'a',type:'bug',name:'蚜蟲',real:'用口器吸取植物的汁液。',fantasy:'會成群又快速前進。',tip:'香雪球與仙人掌都能幫忙。'},
- {id:'b',type:'bug',name:'葉甲',real:'葉甲的翅膀外有較硬的鞘翅。',fantasy:'遊戲中比較耐打。',tip:'可搭配捕蠅草。'},
- {id:'g',type:'bug',name:'蚱蜢',real:'有強壯的後腿，很會跳。',fantasy:'遊戲中有時會突然加速。',tip:'先用薄荷拖慢牠。'},
- {id:'w',type:'bug',name:'粉蝨',real:'粉蝨的成蟲有翅膀。',fantasy:'可以飛過一些近地陷阱。',tip:'要用能打飛行目標的守衛。'},
- {id:'n',type:'bug',name:'象鼻蟲',real:'象鼻蟲有像長鼻子的口吻。',fantasy:'遊戲中很耐打。',tip:'用大傷害的植物對付牠。'},
- {id:'j',type:'bug',name:'葉蟬',real:'葉蟬有適合跳躍的後腿。',fantasy:'移動速度很快。',tip:'用薄荷和蒲公英拖慢。'}
+ {id:'sunflower',type:'plant',name:'向日葵',real:'向日葵的綠葉利用陽光進行光合作用，製造養分。',fantasy:'在遊戲中定期收集陽光，幫忙種更多植物。',tip:'先種向日葵，再種仙人掌。'},
+ {id:'cactus',type:'plant',name:'仙人掌',real:'許多仙人掌的刺是特化的葉子，能幫助保護植物。',fantasy:'在遊戲中發射小刺，攻擊路上的昆蟲。',tip:'放在道路轉彎附近。'},
+ {id:'sundew',type:'plant',name:'茅膏菜',real:'茅膏菜的葉片有腺毛，會分泌黏液黏住小昆蟲。',fantasy:'在遊戲中發射黏液泡泡，讓小蟲慢下來。',tip:'和仙人掌一起守護。'},
+ {id:'flytrap',type:'plant',name:'捕蠅草',real:'捕蠅草的捕蟲葉受到適當觸碰後會快速閉合。',fantasy:'在遊戲中近距離咬住小蟲。',tip:'要種在靠近道路的位置。'},
+ {id:'mint',type:'plant',name:'薄荷',real:'薄荷的葉片含有芳香成分，揉一揉會有清涼香氣。',fantasy:'在遊戲中用香氣讓附近的昆蟲變慢。',tip:'適合種在彎道旁邊。'},
+ {id:'alyssum',type:'plant',name:'香雪球',real:'香雪球有許多小小的四瓣花，可以提供部分昆蟲花蜜。',fantasy:'在遊戲中邀請瓢蟲幫忙防守。',tip:'適合遇到成群小蟲時使用。'},
+ {id:'pitcher',type:'plant',name:'豬籠草',real:'豬籠草的捕蟲籠是特化的葉片，能讓掉入的小動物不易逃出。',fantasy:'在遊戲中用瓶狀陷阱捕捉小蟲。',tip:'需要靠近小蟲會經過的道路。'},
+ {id:'dandelion',type:'plant',name:'蒲公英',real:'蒲公英的果實帶有冠毛，能隨風飄散。',fantasy:'在遊戲中吹出風球，把小蟲推回去。',tip:'適合放在道路較長的地方。'},
+ {id:'c',type:'bug',name:'毛毛蟲',real:'毛毛蟲是許多蝴蝶或蛾的幼蟲，不少種類會吃植物葉片。',fantasy:'在遊戲中沿著道路往神樹前進。',tip:'可以先觀察牠走得多快。'},
+ {id:'a',type:'bug',name:'蚜蟲',real:'蚜蟲用刺吸式口器吸取植物的汁液。',fantasy:'在遊戲中成群出現，移動比較快。',tip:'用仙人掌幫忙防守。'},
+ {id:'b',type:'bug',name:'葉甲',real:'葉甲在臺灣也常叫金花蟲。許多種類會吃植物，成蟲有鞘翅。',fantasy:'在遊戲中比較耐打。',tip:'搭配多株攻擊植物。'},
+ {id:'g',type:'bug',name:'蚱蜢',real:'蚱蜢有發達的後腿，很會跳躍，不少種類吃植物。',fantasy:'在遊戲中有時會突然加速。',tip:'用薄荷幫忙減速。'},
+ {id:'w',type:'bug',name:'粉蝨',real:'粉蝨成蟲有翅膀，成蟲和若蟲能刺吸植物汁液。',fantasy:'在遊戲中能飛過部分近地陷阱。',tip:'改用能攻擊飛行目標的植物。'},
+ {id:'n',type:'bug',name:'象鼻蟲',real:'許多象鼻蟲的頭部有長長的口吻，口器位在前端。',fantasy:'在遊戲中防禦比較強。',tip:'用高傷害的植物慢慢對付。'},
+ {id:'j',type:'bug',name:'葉蟬',real:'葉蟬用刺吸式口器吸取植物汁液，也很會跳。',fantasy:'在遊戲中移動速度很快。',tip:'用薄荷和蒲公英爭取時間。'}
 ];
 let bookFilter='all';
 function say(text){if(!('speechSynthesis' in window))return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='zh-TW';u.rate=.82;u.pitch=1.08;const options=speechSynthesis.getVoices();u.voice=options.find(v=>v.lang.toLowerCase()==='zh-tw')||null;speechSynthesis.speak(u)}catch(e){console.warn('Speech unavailable',e)}}
